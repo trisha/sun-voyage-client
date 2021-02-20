@@ -4,7 +4,7 @@ import Comment from './Comment.js'
 
 const Planet = (props) => {
 
-    let commentList = props.comments.map(comment => {
+    let commentList = props.planet.comments.map(comment => {
         return < Comment comment={comment} />
     })
 

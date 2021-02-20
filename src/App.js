@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import AllPlanets from './components/Planet/AllPlanets'
 import Planet from './components/Planet/Planet'
 import CommentPage from './components/Comment/AddComment.js'
+import TestData from './Data'
 import './App.css';
 
 const PrivateRoute = ({ component: Component, ...rest }) => { // Below route checks to see if a user is logged in. 
@@ -32,7 +33,7 @@ function App() {
   let [isAuthenticated, setIsAuthenticated] = useState(true);
 
   // Remove once backend is made
-  let [comments, setComments] = useState(commentArray)
+  let [data, setData] = useState(TestData)
 
   useEffect(() => {
     let token;
@@ -60,13 +61,13 @@ function App() {
     }
   }
 
-  const addComment = (input) => {
-    let tempComments = comments
+  const addComment = (input, id) => {
+    let tempData = data
     let tempObject = {
       text: input
     }
-    tempComments.push(tempObject)
-    setComments([...tempComments])
+    tempData[id].comments.push(tempObject)
+    setData([...tempData])
   }
 
   console.log('Current User', currentUser);
@@ -80,19 +81,19 @@ function App() {
 
           {/* Route to display all planets */}
           <Route exact path="/planets" render={ (props) => {
-              return < AllPlanets planetData={planetData} />
+              return < AllPlanets planetData={data} />
             }}
           />
 
           {/* Route to display specific planet by ID */}
           <Route path="/planets/display/:id" render={ (props) => {
-              return < Planet planet={planetData[props.match.params.id]} comments={comments} />
+              return < Planet planet={data[props.match.params.id]} />
             }}
           />
 
           {/* Route to add comment to specific Planet by ID */}
           <Route path="/comments/add/:id" render={ (props) => {
-              return < CommentPage planet={planetData[props.match.params.id]} comments={comments} addComment={addComment} />
+              return < CommentPage planet={data[props.match.params.id]} addComment={addComment} />
             }}
           />
 
