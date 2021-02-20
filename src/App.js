@@ -11,6 +11,7 @@ import About from './components/About';
 import Footer from './components/Footer';
 import AllPlanets from './components/Planet/AllPlanets'
 import Planet from './components/Planet/Planet'
+import CommentPage from './components/Comment/CommentPage.js'
 import './App.css';
 
 const PrivateRoute = ({ component: Component, ...rest }) => { // Below route checks to see if a user is logged in. 
@@ -21,12 +22,17 @@ const PrivateRoute = ({ component: Component, ...rest }) => { // Below route che
   />;
 }
 
+// This is just dummy data to use while the backend is being made. Will remove in the future
 const planetData = [{ name: 'Earth', id: 0 }, { name: 'Pluto', id: 1 }, { name: 'Mars', id: 2 } ]
+const commentArray = [{ text: 'Wow!'}, { text: 'Radical'}, { text: 'Third thing!'}]
 
 function App() {
   // set state values
   let [currentUser, setCurrentUser] = useState("");
   let [isAuthenticated, setIsAuthenticated] = useState(true);
+
+  // Remove once backend is made
+  let [comments, setComments] = useState(commentArray)
 
   useEffect(() => {
     let token;
@@ -54,6 +60,15 @@ function App() {
     }
   }
 
+  const addComment = (input) => {
+    let tempComments = comments
+    let tempObject = {
+      text: input
+    }
+    tempComments.push(tempObject)
+    setComments([...tempComments])
+  }
+
   console.log('Current User', currentUser);
   console.log('Authenicated', isAuthenticated);
 
@@ -71,7 +86,13 @@ function App() {
 
           {/* Route to display specific planet by ID */}
           <Route path="/planets/display/:id" render={ (props) => {
-              return < Planet planet={planetData[props.match.params.id]} />
+              return < Planet planet={planetData[props.match.params.id]} comments={comments} />
+            }}
+          />
+
+          {/* Route to add comment to specific Planet by ID */}
+          <Route path="/comments/add/:id" render={ (props) => {
+              return < CommentPage planet={planetData[props.match.params.id]} comments={comments} addComment={addComment} />
             }}
           />
 
