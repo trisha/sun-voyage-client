@@ -11,7 +11,7 @@ import About from './components/About';
 import Footer from './components/Footer';
 import AllPlanets from './components/Planet/AllPlanets'
 import Planet from './components/Planet/Planet'
-import CommentPage from './components/Comment/CommentPage.js'
+import CommentPage from './components/Comment/AddComment.js'
 import './App.css';
 
 const PrivateRoute = ({ component: Component, ...rest }) => { // Below route checks to see if a user is logged in. 

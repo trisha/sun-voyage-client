@@ -6,7 +6,7 @@ const Comment = (props) => {
     let [newComment, setNewComment] = useState('')
     let [redirect, setRedirect] = useState(false)
 
-    if (redirect) return <Redirect to="/planets" />
+    if (redirect) return <Redirect to={`/planets/display/${props.planet.id}`} />
 
     return (
         <div>
