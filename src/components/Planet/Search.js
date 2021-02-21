@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Comment from './Comment.js'
 
-const Planet = (props) => {
+const Search = (props) => {
 
     let commentList = props.planet.comments.map(comment => {
         return < Comment comment={comment} />
@@ -22,4 +22,4 @@ const Planet = (props) => {
     );
 }
 
-export default Planet;
+export default Search;

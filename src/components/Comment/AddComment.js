@@ -13,7 +13,7 @@ const Comment = (props) => {
             <p>Write your comment here</p>
             <input type='text' onChange={(e) => {setNewComment(e.target.value)}} />
             <input type='submit' onClick={() => {
-                if (newComment) {props.addComment(newComment)}
+                if (newComment) {props.addComment(newComment, props.planet.id)}
                 setRedirect(true)
             }} />
         </div>
