@@ -38,11 +38,13 @@ function App() {
     let token;
     if (!localStorage.getItem('jwtToken')) {
       setIsAuthenticated(false);
+      console.log("inside if")
     } else {
       token = jwt_decode(localStorage.getItem('jwtToken'));
       setAuthToken(localStorage.jwtToken);
       setCurrentUser(token);
       setIsAuthenticated(true);
+      console.log(token)
     }
   }, []);
 
