@@ -6,8 +6,23 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const Signup = () => {
     let [email, setEmail] = useState('')
     let [password, setPassword] = useState('');
+    let [name, setName] = useState('')
+    let [weight, setWeight] = useState(null);
+    let [DOB, setDOB] = useState(null)
     let [confirmPassword, setConfirmPassword] = useState('');
     let [redirect, setRedirect] = useState(false);
+
+    const handleName = (e) => {
+        setName(e.target.value);
+    }
+
+    const handleWeight = (e) => {
+        setWeight(e.target.value);
+    }
+
+    const handleDOB = (e) => {
+        setDOB(e.target.value);
+    }
 
     const handleEmail = (e) => {
         setEmail(e.target.value);
@@ -25,9 +40,10 @@ const Signup = () => {
         e.preventDefault();
 
         if (password === confirmPassword) {
-            const newUser = { email, password }
-
-            axios.post(`${REACT_APP_SERVER_URL}/api/signup`, newUser)
+            const newUser = { name, weight, DOB, email, password }
+            console.log(newUser)
+            console.log(`${REACT_APP_SERVER_URL}/auth/signup`)
+            axios.post(`${REACT_APP_SERVER_URL}/auth/signup`, newUser)
             .then(response => {
                 console.log(response);
                 setRedirect(true);
@@ -44,6 +60,18 @@ const Signup = () => {
                 <div className="card card-body">
                     <h2 className="py-2">Signup</h2>
                     <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                            <label htmlFor="name">Name</label>
+                            <input type="text" name="name" value={name} onChange={handleName} className="form-control"/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="weight">Weight</label>
+                            <input type="number" name="weight" value={weight} onChange={handleWeight} className="form-control"/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="DOB">Date of Birth</label>
+                            <input type="date" name="DOB" value={DOB} onChange={handleDOB} className="form-control"/>
+                        </div>
                         <div className="form-group">
                             <label htmlFor="email">Email</label>
                             <input type="email" name="email" value={email} onChange={handleEmail} className="form-control"/>
