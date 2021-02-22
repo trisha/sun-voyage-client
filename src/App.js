@@ -33,9 +33,11 @@ function App() {
   // Remove once backend is made
   let [data, setData] = useState(null)
 
+  // Retrieves planet data from the Mongo database
   useEffect(() => {
     axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
       setData([...res.data.planets])
+      console.log(data)
     })
   }, [])
 
@@ -66,12 +68,17 @@ function App() {
   }
 
   const addComment = (input, id) => {
-    let tempData = data
-    let tempObject = {
-      comment: input
+    let comment = {
+      planet: id,
+      user: 'Demo Demo',
+      content: input,
+      archived: false
     }
-    tempData[id].comments.push(tempObject)
-    setData([...tempData])
+
+    axios.post(`${REACT_APP_SERVER_URL}/comments/add/${id}`, comment)
+    .then(res => {
+      console.log('Response: ' + res)
+    })
   }
 
   console.log('Current User', currentUser);
@@ -91,16 +98,13 @@ function App() {
 
           {/* Route to display specific planet by ID */}
           <Route path="/planets/display/:id" render={ (props) => {
-            console.log(props.match.params.id)
-            console.log(data)
-            console.log(data[props.match.params.id])
-              return < Planet planet={data[props.match.params.id]} />
+              return < Planet planetId={props.match.params.id} />
             }}
           />
 
           {/* Route to add comment to specific Planet by ID */}
           <Route path="/comments/add/:id" render={ (props) => {
-              return < CommentPage planet={data[props.match.params.id]} addComment={addComment} />
+              return < CommentPage planetId={props.match.params.id} addComment={addComment} />
             }}
           />
 

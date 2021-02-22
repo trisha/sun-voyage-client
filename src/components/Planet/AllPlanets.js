@@ -16,7 +16,6 @@ const AllPlanets = (props) => {
     }
 
     let list = props.planetData.map((planet, i) => {
-        console.log(planet)
         return (
             < PlanetCard planet={planet} id={i} key={`planet-id-${planet.name}`} />
         )

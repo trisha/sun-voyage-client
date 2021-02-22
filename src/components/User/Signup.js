@@ -44,7 +44,7 @@ const Signup = () => {
             console.log(`${REACT_APP_SERVER_URL}/auth/signup`)
             axios.post(`${REACT_APP_SERVER_URL}/auth/signup`, [newUser, 'hi'])
             .then(response => {
-                console.log(response);
+                console.log('Response: ' + response);
                 setRedirect(true);
             })
             .catch(error => console.log(error));

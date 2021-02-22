@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Comment from './Comment.js'
 const axios = require('axios')
 const APOD_KEY = process.env.REACT_APP_APOD_KEY
 const ASTROBIN_KEY = process.env.REACT_APP_ASTROBIN_KEY
 const ASTROBIN_SECRET = process.env.REACT_APP_ASTROBIN_SECRET
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 const Planet = (props) => {
 
-    console.log(props)
+    const [planetData, setPlanetData] = useState('')
+
+    useEffect(() => {
+        axios.get(`${REACT_APP_SERVER_URL}/planets/display/${props.planetId}`)
+        .then(rdata => {
+          setPlanetData(rdata.data.planet[0])
+        })
+    }, [])
 
     let commentList
     
-    if (props.planet.comments) {
-        commentList = props.planet.comments.map((comment, i) => {
+    if (planetData.comments) {
+        commentList = planetData.comments.map((comment, i) => {
             return < Comment comment={comment} key={`comment-id-${i}`} />
         })
     } else {
@@ -34,20 +42,26 @@ const Planet = (props) => {
     //     console.log(res)
     // })
 
-    return (
-        <div>
-            <h2>{props.planet.name}</h2>
-
-            <h4>Info:</h4>
-            <p>Mass: {props.planet.mass.massValue}</p>
-            <p>Gravity: {props.planet.gravity}</p>
-
-            <h4>Comments: </h4>
-            {commentList}
-
-            < Link to={`/comments/add/${props.planet.id}`} ><button>Add To This Entry</button></Link>
-        </div>
-    );
+    if (!planetData) {
+        return (
+            <p>Loading...</p>
+        )
+    } else {
+        return (
+            <div>
+                <h2>{planetData.name}</h2>
+    
+                <h4>Info:</h4>
+                <p>Mass: {planetData.mass.massValue}</p>
+                <p>Gravity: {planetData.gravity}</p>
+    
+                <h4>Comments: </h4>
+                {commentList}
+    
+                < Link to={`/comments/add/${planetData._id}`} ><button>Add To This Entry</button></Link>
+            </div>
+        );
+    }
 }
 
 export default Planet;
