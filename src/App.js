@@ -14,6 +14,8 @@ import Planet from './components/Planet/Planet'
 import CommentPage from './components/Comment/AddComment.js'
 import TestData from './Data'
 import './App.css';
+const axios = require('axios')
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const PrivateRoute = ({ component: Component, ...rest }) => { // Below route checks to see if a user is logged in. 
   const user = localStorage.getItem('jwtToken');
@@ -23,17 +25,21 @@ const PrivateRoute = ({ component: Component, ...rest }) => { // Below route che
   />;
 }
 
-// This is just dummy data to use while the backend is being made. Will remove in the future
-const planetData = [{ name: 'Earth', id: 0 }, { name: 'Pluto', id: 1 }, { name: 'Mars', id: 2 } ]
-const commentArray = [{ text: 'Wow!'}, { text: 'Radical'}, { text: 'Third thing!'}]
-
 function App() {
   // set state values
   let [currentUser, setCurrentUser] = useState("");
   let [isAuthenticated, setIsAuthenticated] = useState(true);
 
   // Remove once backend is made
-  let [data, setData] = useState(TestData)
+  let [data, setData] = useState(null)
+
+  // Retrieves planet data from the Mongo database
+  useEffect(() => {
+    axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
+      setData([...res.data.planets])
+      console.log(data)
+    })
+  }, [])
 
   useEffect(() => {
     let token;
@@ -63,12 +69,17 @@ function App() {
 
   // Axios for the below needs to send comment = {content: "Message body here", planet: 'planet mongoose ID', user: 'user's mongoose ID here' }
   const addComment = (input, id) => {
-    let tempData = data
-    let tempObject = {
-      text: input
+    let comment = {
+      planet: id,
+      user: 'Demo Demo',
+      content: input,
+      archived: false
     }
-    tempData[id].comments.push(tempObject)
-    setData([...tempData])
+
+    axios.post(`${REACT_APP_SERVER_URL}/comments/add/${id}`, comment)
+    .then(res => {
+      console.log('Response: ' + res)
+    })
   }
 
   console.log('Current User', currentUser);
@@ -88,13 +99,13 @@ function App() {
 
           {/* Route to display specific planet by ID */}
           <Route path="/planets/display/:id" render={ (props) => {
-              return < Planet planet={data[props.match.params.id]} />
+              return < Planet planetId={props.match.params.id} />
             }}
           />
 
           {/* Route to add comment to specific Planet by ID */}
           <Route path="/comments/add/:id" render={ (props) => {
-              return < CommentPage planet={data[props.match.params.id]} addComment={addComment} />
+              return < CommentPage planetId={props.match.params.id} addComment={addComment} />
             }}
           />
 
@@ -106,6 +117,7 @@ function App() {
             path="/login" 
             render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} 
           />
+
           <Route path="/about" component={ About } />
           <PrivateRoute path="/profile" component={ Profile } user={currentUser} />
           <Route exact path="/" component={ Welcome } />
