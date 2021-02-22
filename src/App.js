@@ -35,13 +35,7 @@ function App() {
 
   useEffect(() => {
     axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
-      console.log('Response data')
-      console.log(res.data.planets)
-
       setData([...res.data.planets])
-
-      console.log('Data in state')
-      console.log(data)
     })
   }, [])
 
@@ -97,6 +91,9 @@ function App() {
 
           {/* Route to display specific planet by ID */}
           <Route path="/planets/display/:id" render={ (props) => {
+            console.log(props.match.params.id)
+            console.log(data)
+            console.log(data[props.match.params.id])
               return < Planet planet={data[props.match.params.id]} />
             }}
           />
