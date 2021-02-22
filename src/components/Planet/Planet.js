@@ -10,11 +10,12 @@ const Planet = (props) => {
 
     return (
         <div>
-            <p>Hello, this is {props.planet.name}</p>
+            <h2>{props.planet.name}</h2>
 
+            <h4>Info:</h4>
             <p>Here are some cool planet facts! Wow!</p>
 
-            <p>Comment List: </p>
+            <h4>Comments: </h4>
             {commentList}
 
             < Link to={`/comments/add/${props.planet.id}`} ><button>Add To This Entry</button></Link>
