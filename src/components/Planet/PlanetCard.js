@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const PlanetCard = (props) => {
     return (
-        <div className='planet-card'>
+        <div className='planet-card' id={props.key}>
             <span>
                 <h3 className='planet-card-name'>{props.planet.name}{'   '}</h3>
                 <span className='planet-card-comments text-muted'>Comments: {props.planet.comments.length}</span>

@@ -15,9 +15,9 @@ const AllPlanets = (props) => {
         setSearch(input)
     }
 
-    let list = props.planetData.map(planet => {
+    let list = props.planetData.map((planet) => {
         return (
-            < PlanetCard planet={planet} />
+            < PlanetCard planet={planet} key={`planet-id-${planet.id}`} />
         )
     })
 

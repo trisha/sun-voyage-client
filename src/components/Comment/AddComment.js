@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+const axios = require('axios')
 
 const Comment = (props) => {
 
@@ -11,7 +12,7 @@ const Comment = (props) => {
     return (
         <div>
             <p>Write your comment here</p>
-            <input type='text' onChange={(e) => {setNewComment(e.target.value)}} />
+            <input type='comment' onChange={(e) => {setNewComment(e.target.value)}} />
             <input type='submit' onClick={() => {
                 if (newComment) {props.addComment(newComment, props.planet.id)}
                 setRedirect(true)

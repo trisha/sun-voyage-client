@@ -14,6 +14,8 @@ import Planet from './components/Planet/Planet'
 import CommentPage from './components/Comment/AddComment.js'
 import TestData from './Data'
 import './App.css';
+const axios = require('axios')
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const PrivateRoute = ({ component: Component, ...rest }) => { // Below route checks to see if a user is logged in. 
   const user = localStorage.getItem('jwtToken');
@@ -23,17 +25,25 @@ const PrivateRoute = ({ component: Component, ...rest }) => { // Below route che
   />;
 }
 
-// This is just dummy data to use while the backend is being made. Will remove in the future
-const planetData = [{ name: 'Earth', id: 0 }, { name: 'Pluto', id: 1 }, { name: 'Mars', id: 2 } ]
-const commentArray = [{ text: 'Wow!'}, { text: 'Radical'}, { text: 'Third thing!'}]
-
 function App() {
   // set state values
   let [currentUser, setCurrentUser] = useState("");
   let [isAuthenticated, setIsAuthenticated] = useState(true);
 
   // Remove once backend is made
-  let [data, setData] = useState(TestData)
+  let [data, setData] = useState(null)
+
+  useEffect(() => {
+    axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
+      console.log('Response data')
+      console.log(res.data.planets)
+
+      setData([...res.data.planets])
+
+      console.log('Data in state')
+      console.log(data)
+    })
+  }, [])
 
   useEffect(() => {
     let token;
@@ -64,7 +74,7 @@ function App() {
   const addComment = (input, id) => {
     let tempData = data
     let tempObject = {
-      text: input
+      comment: input
     }
     tempData[id].comments.push(tempObject)
     setData([...tempData])
@@ -105,6 +115,7 @@ function App() {
             path="/login" 
             render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} 
           />
+
           <Route path="/about" component={ About } />
           <PrivateRoute path="/profile" component={ Profile } user={currentUser} />
           <Route exact path="/" component={ Welcome } />
