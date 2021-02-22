@@ -1,7 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const Profile = (props) => {
+    const handleProfile=()=>{
+        console.log(`✔✔✔ ${localStorage.getItem('jwtToken')}`)
+        console.log(props)
+        axios({
+            url: `${REACT_APP_SERVER_URL}/api/profile`,
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+            },
+            data: props.user
+          })
+          .then(res=>{
+              console.log(res)
+          })
+          .catch(err=>{
+              console.log(`🤞 ${err}`)
+          })
+    }
+
     console.log(props);
     const userData = props.user ? 
     (<div>
@@ -20,7 +41,7 @@ const Profile = (props) => {
     
     return (
         <div>
-            { props.user ? userData : errorDiv() }
+            { props.user ? handleProfile() : errorDiv() }
         </div>
     );
 

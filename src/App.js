@@ -18,7 +18,7 @@ import './App.css';
 const PrivateRoute = ({ component: Component, ...rest }) => { // Below route checks to see if a user is logged in. 
   const user = localStorage.getItem('jwtToken');
   return <Route {...rest} render={(props) => {
-      return user ? <Component {...rest} {...props} /> : <Redirect to="/login" />
+      return user ? <Component {...rest} {...props}  /> : <Redirect to="/login" />
     }}
   />;
 }
@@ -32,6 +32,7 @@ function App() {
   let [currentUser, setCurrentUser] = useState("");
   let [isAuthenticated, setIsAuthenticated] = useState(true);
 
+
   // Remove once backend is made
   let [data, setData] = useState(TestData)
 
@@ -39,12 +40,12 @@ function App() {
     let token;
     if (!localStorage.getItem('jwtToken')) {
       setIsAuthenticated(false);
-      console.log("inside if")
     } else {
       token = jwt_decode(localStorage.getItem('jwtToken'));
       setAuthToken(localStorage.jwtToken);
       setCurrentUser(token);
       setIsAuthenticated(true);
+      console.log(`this is token 😍 ${localStorage.getItem('jwtToken')}`)
       console.log(token)
     }
   }, []);
@@ -74,6 +75,7 @@ function App() {
 
   console.log('Current User', currentUser);
   console.log('Authenicated', isAuthenticated);
+  console.log(`this is token 👀👀 ${localStorage.getItem('jwtToken')}`)
 
   return (
     <div>

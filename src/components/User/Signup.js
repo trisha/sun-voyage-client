@@ -21,6 +21,7 @@ const Signup = () => {
     }
 
     const handleDOB = (e) => {
+        console.log(e.target.value)
         setDOB(e.target.value);
     }
 
@@ -38,12 +39,12 @@ const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        console.log(password,confirmPassword)
         if (password === confirmPassword) {
             const newUser = { name, weight, DOB, email, password }
             console.log(newUser)
-            console.log(`${REACT_APP_SERVER_URL}/auth/signup`)
-            axios.post(`${REACT_APP_SERVER_URL}/auth/signup`, newUser)
+            console.log(`${REACT_APP_SERVER_URL}/api/signup`)
+            axios.post(`${REACT_APP_SERVER_URL}/api/signup`, newUser)
             .then(response => {
                 console.log(response);
                 setRedirect(true);
