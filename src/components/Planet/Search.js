@@ -4,21 +4,11 @@ import Comment from './Comment.js'
 
 const Search = (props) => {
 
-    let commentList = props.planet.comments.map(comment => {
-        return < Comment comment={comment} />
-    })
-
     return (
-        <div>
-            <p>Hello, this is {props.planet.name}</p>
-
-            <p>Here are some cool planet facts! Wow!</p>
-
-            <p>Comment List: </p>
-            {commentList}
-
-            < Link to={`/comments/add/${props.planet.id}`} ><button>Add To This Entry</button></Link>
-        </div>
+        <>
+           <input type='text' onChange={(e) => {props.handleChange(e)}} />
+           <input type='submit' onClick={(e) => {props.handleSubmit(e)}} />
+        </>
     );
 }
 

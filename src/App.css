@@ -5,6 +5,35 @@ html {
 body {
   margin-bottom: 60px; /* Margin bottom by footer height */
 }
+
+.planet-list-title {
+  display: inline;
+}
+
+.list-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.planet-card{
+  margin: 10px 0;
+  padding: 10px;
+  background-color: aliceblue;
+  display: flex;
+  justify-content: space-between;
+}
+
+.planet-card-name {
+  display: inline;
+}
+
+.link-button{
+  border: none;
+  background-color: black;
+  color: aliceblue;
+  padding: 5px 10px;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
