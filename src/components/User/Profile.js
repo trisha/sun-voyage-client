@@ -8,22 +8,17 @@ const Profile = (props) => {
         console.log(`✔✔✔ ${localStorage.getItem('jwtToken')}`)
         console.log(props)
         axios({
-            url: `${REACT_APP_SERVER_URL}/api/profile`,
+            url: `${REACT_APP_SERVER_URL}/api/profile/123`,
             method: 'GET',
-            headers: {
-              'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+            headers: {'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
             },
-            data: props.user
-          })
-          .then(res=>{
-              console.log(res)
-          })
-          .catch(err=>{
-              console.log(`🤞 ${err}`)
-          })
+            data: props.user.id}).then(res=>{console.log(res.data)})
+            .catch(err=>{
+                console.log(`🤞 ${err}`)
+            })
     }
-
-    console.log(props);
+    console.log('💕')
+    console.log(props.user);
     const userData = props.user ? 
     (<div>
         <h1>Profile</h1>
