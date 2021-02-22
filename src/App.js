@@ -61,6 +61,7 @@ function App() {
     }
   }
 
+  // Axios for the below needs to send comment = {content: "Message body here", planet: 'planet mongoose ID', user: 'user's mongoose ID here' }
   const addComment = (input, id) => {
     let tempData = data
     let tempObject = {
