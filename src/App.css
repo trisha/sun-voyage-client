@@ -10,7 +10,7 @@ body {
 /* APP MAIN PAGE */
 
 .app-main {
-  margin: 5vh;
+  margin: 8vh 12vw;
 }
 
 /* WELCOME PAGE STYLING */
@@ -18,17 +18,16 @@ body {
 .welcome-div {
   background-image: url('./Images/planet-pic.jfif');
   background-color: black;
-  /* background-position: bottom;
+  background-position: bottom;
   background-repeat: no-repeat;
-  object-fit: cover; */
-
+  object-fit: cover;
+  height: 100%;
 }
 
 .welcome-title {
   color: white;
   text-align: center;
   font-size: 200px;
-  margin-top: 180px;
   text-shadow: 0px 2px 2px #ffffff, 0px 4px 0px rgba(0, 0, 0, 1), 0px 2px 15px #ffffff;
 }
 
