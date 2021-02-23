@@ -67,7 +67,9 @@ function App() {
     }
   }
   
-  // Add a comment to a planet. 
+  // Add a comment to a planet.
+  // The onClick happens in AddComment.js.
+  // The props get passed into AddComment.js from Planet.js. 
   const addComment = (content, planetId) => {
     let comment = {
       planet: planetId,
@@ -75,7 +77,6 @@ function App() {
       content: content,
       archived: false
     }
-    console.log("Comment trying to be added is: ", comment)
     axios({
         url: `${REACT_APP_SERVER_URL}/comments/add/${planetId}`,
         method: 'POST',
