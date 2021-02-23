@@ -70,7 +70,7 @@ function App() {
   const addComment = (input, id) => {
     let comment = {
       planet: id,
-      user: 'Demo Demo',
+      user: currentUser.id,
       content: input,
       archived: false
     }

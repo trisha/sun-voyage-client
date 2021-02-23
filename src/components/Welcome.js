@@ -3,7 +3,9 @@ import React from 'react';
 const Welcome = () => {
     return (
         <div>
-            <h1>Welcome</h1>
+            {/* <div className='planet-div'>
+                <h1 className='homepage-title'>Welcome</h1>
+            </div> */}
         </div>
     );
 }
