@@ -37,7 +37,7 @@ function App() {
   useEffect(() => {
     axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
       setData([...res.data.planets])
-      console.log('Planet data from Mongo DB: ', data)
+      console.log('Planet data from Mongo DB: ', data) // Sometimes this is null because it takes a while to setData. 
     })
   }, [])
 

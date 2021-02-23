@@ -13,6 +13,7 @@ body {
   object-fit: cover; */
 }
 
+/* For h2 components in AllPlanets.js */
 .planet-list-title {
   display: inline;
 }
