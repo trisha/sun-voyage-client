@@ -94,11 +94,8 @@ function App() {
     })
   }
 
-  
-  console.log('Current User', currentUser);
-  console.log('Authenticated', isAuthenticated);
-  console.log(data)
-  
+  // console.log('Current User', currentUser);
+  // console.log('Authenticated', isAuthenticated);
 
   return (
     <div >
@@ -114,13 +111,13 @@ function App() {
 
           {/* Route to display specific planet by ID */}
           <Route path="/planets/display/:id" render={ (props) => {
-              return < Planet planetData={data[props.match.params.id]} planetId={props.match.params.id} user={currentUser} />
+              return < Planet planetId={props.match.params.id} user={currentUser} />
             }}
           />
 
           {/* Route to add comment to specific Planet by ID */}
           <Route path="/comments/add/:id" render={ (props) => {
-              return < AddComment planetId={props.match.params.id} planet={data[props.match.params.id]} addComment={addComment} />
+              return < AddComment planetId={props.match.params.id} addComment={addComment} />
             }}
           />
 
@@ -139,7 +136,7 @@ function App() {
 
         </Switch>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
