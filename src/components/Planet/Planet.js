@@ -20,6 +20,7 @@ const Planet = (props) => {
 
     // Set planetData to the property planetData
     let planetData = props.planetData
+    console.log(planetData.comments)
     
     // Populate a value into comment list if any comments exist
     let commentList
@@ -69,7 +70,7 @@ const Planet = (props) => {
                 <h4>Comments: </h4>
                 {commentList}
     
-                < Link to={`/comments/add/${planetData._id}`} ><button>Add To This Entry</button></Link>
+                < Link to={`/comments/add/${props.planetId}`} ><button>Add To This Entry</button></Link>
             </div>
         );
     }
