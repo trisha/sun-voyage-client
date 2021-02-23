@@ -2,9 +2,10 @@ import React from 'react';
 
 const Welcome = () => {
     return (
-        <div>
-            <h1>Welcome</h1>
-        </div>
+        <>
+            <h1 className='homepage-title'>Welcome</h1>
+            <div className='signup-home'>Discover the Solar System</div>
+        </>
     );
 }
 

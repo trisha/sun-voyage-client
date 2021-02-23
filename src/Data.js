@@ -16,9 +16,9 @@ const planets = [
         sideralRoation: 1560,
         comments: [
             { 
-                text: 'Here is a cool planet fact'
+                comment: 'Here is a cool planet fact'
             }, {
-                text: 'Here is another cool planet fact'
+                comment: 'Here is another cool planet fact'
             }
         ]
     },
@@ -38,9 +38,9 @@ const planets = [
         sideralRoation: 15,
         comments: [
             { 
-                text: 'Ilium is from Mass Effect'
+                comment: 'Ilium is from Mass Effect'
             }, {
-                text: 'I like Mass Effect'
+                comment: 'I like Mass Effect'
             }
         ]
     }, {
@@ -57,9 +57,9 @@ const planets = [
         sideralRoation: 26,
         comments: [
             { 
-                text: 'Venus is the Roman goddess of Beauty'
+                comment: 'Venus is the Roman goddess of Beauty'
             }, {
-                text: 'Her Greek name is Aphrodite'
+                comment: 'Her Greek name is Aphrodite'
             }
         ]
     }

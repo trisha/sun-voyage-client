@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 
 const PlanetCard = (props) => {
     return (
-        <div>
-            <span>Hello, this is {props.planet.name}......</span>
+        <div className='planet-card' key={props.id}>
+            <span>
+                <h3 className='planet-card-name'>{props.planet.name}{'   '}</h3>
+                <span className='planet-card-comments text-muted'>Comments: {props.planet.comments.length}</span>
+            </span>
 
-            < Link to={`/planets/display/${props.planet.id}`} ><button>Click me to see page</button></Link>
+            < Link to={`/planets/display/${props.planet._id}`} ><button className='link-button'>Click me to see page</button></Link>
         </div>
     );
 }

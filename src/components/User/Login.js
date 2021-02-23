@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../../utils/setAuthToken';
 import { Redirect } from 'react-router-dom';
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+const REACT_APP_SERVER_URL ='http://localhost:8000'
+//const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const Login = (props) => {
     let [email, setEmail] = useState('');
@@ -22,7 +23,7 @@ const Login = (props) => {
 
         const userData = { email, password };
 
-        axios.post(`${REACT_APP_SERVER_URL}/api/login`, userData)
+        axios.post(`${REACT_APP_SERVER_URL}/auth/login`, userData)
         .then(response => {
             const { token } = response.data;
             console.log("😍 token: ", token)
