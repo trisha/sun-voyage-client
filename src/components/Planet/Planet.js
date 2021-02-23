@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Comment from './Comment.js'
 const axios = require('axios')
-const APOD_KEY = process.env.REACT_APP_APOD_KEY
 const ASTROBIN_KEY = process.env.REACT_APP_ASTROBIN_KEY
 const ASTROBIN_SECRET = process.env.REACT_APP_ASTROBIN_SECRET
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
@@ -33,14 +32,10 @@ const Planet = (props) => {
     // .then(res => {
     //     console.log(res)
     // })
-
-    // let subject = 'pluto'
-
-    // console.log(ASTROBIN_KEY)
-    // console.log(ASTROBIN_SECRET)
-    // axios.get(`http://astrobin.com/api/v1/image/?subjects=M31&api_key=${ASTROBIN_KEY}&api_secret=${ASTROBIN_SECRET}&format=json`)
+    
+    // axios.get(`https://astrobin.com/api/v1/image/?subjects=M31&api_key=${ASTROBIN_KEY}&api_secret=${ASTROBIN_SECRET}&format=json`)
     // .then(res => {
-    //     console.log(res)
+    //     console.log('Axios response: ' + res)
     // })
 
     if (!planetData) {
@@ -53,8 +48,10 @@ const Planet = (props) => {
                 <h2>{planetData.name}</h2>
     
                 <h4>Info:</h4>
-                <p>Mass: {planetData.mass.massValue}</p>
-                <p>Gravity: {planetData.gravity}</p>
+                <p>{planetData.name} has {Math.round(( 24 / planetData.sideralRotation ))} days in a single Earth Day!</p>
+                <p>It takes {Math.round(( 24 / planetData.sideralRotation ) * 365.23)} days on {planetData.name}, and {Math.round(planetData.sideralOrbit)} days on Earth for {planetData.name} to orbit the sun</p>
+                <p>On {planetData.name} you would weigh {Math.round((120 / 9.8) * ( planetData.gravity))} pounds!</p>
+                <p>On {planetData.name} you would be {Math.round((25 * 364.25) / ( planetData.sideralOrbit))} years old!</p>
     
                 <h4>Comments: </h4>
                 {commentList}
