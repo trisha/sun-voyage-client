@@ -37,7 +37,7 @@ function App() {
   useEffect(() => {
     axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
       setData([...res.data.planets])
-      console.log(data)
+      console.log('Planet data from Mongo DB: ', data)
     })
   }, [])
 
@@ -67,16 +67,21 @@ function App() {
     }
   }
 
-  // Axios for the below needs to send comment = {content: "Message body here", planet: 'planet mongoose ID', user: 'user's mongoose ID here' }
-  const addComment = (input, id) => {
+  // Axios for the below needs to send 
+  /* comment = {
+    content: "Message body here", 
+    planet: 'planet mongoose ID', 
+    user: 'Active user's mongoose ID here' }
+  */
+  const addComment = (input, planetId) => {
     let comment = {
-      planet: id,
-      user: 'Demo Demo',
+      planet: planetId,
+      user: currentUser.id,
       content: input,
       archived: false
     }
 
-    axios.post(`${REACT_APP_SERVER_URL}/comments/add/${id}`, comment)
+    axios.post(`${REACT_APP_SERVER_URL}/comments/add/${planetId}`, comment)
     .then(res => {
       console.log('Response: ' + res)
     })
@@ -99,7 +104,7 @@ function App() {
 
           {/* Route to display specific planet by ID */}
           <Route path="/planets/display/:id" render={ (props) => {
-              return < Planet planetId={props.match.params.id} />
+              return < Planet planetId={props.match.params.id} user={currentUser} />
             }}
           />
 

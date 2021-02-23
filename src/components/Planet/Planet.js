@@ -12,9 +12,10 @@ const Planet = (props) => {
     const [planetData, setPlanetData] = useState('')
 
     useEffect(() => {
-        axios.get(`${REACT_APP_SERVER_URL}/planets/display/${props.planetId}`)
+        axios.get(`${REACT_APP_SERVER_URL}/planets/display/${props.planetId}`) // Returns info on the planet.
         .then(rdata => {
-          setPlanetData(rdata.data.planet[0])
+            console.log(rdata.data.planet[0])
+            setPlanetData(rdata.data.planet[0])
         })
     }, [])
 
@@ -22,7 +23,7 @@ const Planet = (props) => {
     
     if (planetData.comments) {
         commentList = planetData.comments.map((comment, i) => {
-            return < Comment comment={comment} key={`comment-id-${i}`} />
+            return < Comment comment={comment} user={props.user} key={`comment-id-${i}`} />
         })
     } else {
         commentList = <p>No comments yet!</p>
