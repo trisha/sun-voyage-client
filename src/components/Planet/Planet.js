@@ -8,7 +8,7 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 const Planet = (props) => {
 
-    // const [planetData, setPlanetData] = useState('')
+    const [planetData, setPlanetData] = useState(props.planetData)
 
     // useEffect(() => {
     //     axios.get(`${REACT_APP_SERVER_URL}/planets/display/${props.planetId}`) // Returns info on the planet.
@@ -19,12 +19,17 @@ const Planet = (props) => {
     // }, [planetData])
 
     // Set planetData to the property planetData
-    let planetData = props.planetData
-    console.log(planetData.comments)
+    //let planetData = props.planetData
+    console.log(planetData)
+
+    useEffect(() => {
+        setPlanetData(props.planetData)
+    }, [])
     
     // Populate a value into comment list if any comments exist
     let commentList
-    if (planetData.comments) {
+    if (planetData.length || planetData.comments) {
+        console.log(planetData)
         commentList = planetData.comments.map((comment, i) => {
             return < Comment comment={comment} user={props.user} key={`comment-id-${i}`} />
         })
