@@ -71,8 +71,7 @@ function App() {
     let comment = {
       planet: id,
       user: currentUser.id,
-      content: input,
-      archived: false
+      content: input
     }
 
     axios.post(`${REACT_APP_SERVER_URL}/comments/add/${id}`, comment)
@@ -87,7 +86,7 @@ function App() {
   return (
     <div>
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
-      <div className="container mt-5">
+      <div>
         <Switch>
 
           {/* Route to display all planets */}

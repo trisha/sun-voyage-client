@@ -48,7 +48,7 @@ const Planet = (props) => {
     
                 <h4>Info:</h4>
                 <p>{planetData.name} has {Math.round(( 24 / planetData.sideralRotation ))} days in a single Earth Day!</p>
-                <p>It takes {Math.round(( 24 / planetData.sideralRotation ) * 365.23)} days on Ceres, and {Math.round(planetData.sideralOrbit)} days on Earth for {planetData.name} to orbit the sun</p>
+                <p>It takes {Math.round(( 24 / planetData.sideralRotation ) * 365.23)} days on {planetData.name}, and {Math.round(planetData.sideralOrbit)} days on Earth for {planetData.name} to orbit the sun</p>
                 <p>On {planetData.name} you would weigh {Math.round((120 / 9.8) * ( planetData.gravity))} pounds!</p>
                 <p>On {planetData.name} you would be {Math.round((25 * 364.25) / ( planetData.sideralOrbit))} years old!</p>
     
