@@ -11,7 +11,7 @@ import About from './components/About';
 import Footer from './components/Footer';
 import AllPlanets from './components/Planet/AllPlanets'
 import Planet from './components/Planet/Planet'
-import CommentPage from './components/Comment/AddComment.js'
+import AddComment from './components/Comment/AddComment.js'
 import TestData from './Data'
 import './App.css';
 const axios = require('axios')
@@ -37,7 +37,7 @@ function App() {
   useEffect(() => {
     axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
       setData([...res.data.planets])
-      console.log(data)
+      console.log('Planet data from Mongo DB: ', data)
     })
   }, [])
 
@@ -66,23 +66,38 @@ function App() {
       setIsAuthenticated(false);
     }
   }
-
-  const addComment = (input, id) => {
+  
+  // Add a comment to a planet.
+  // The onClick happens in AddComment.js.
+  // The props get passed into AddComment.js from Planet.js. 
+  const addComment = (content, planetId) => {
     let comment = {
-      planet: id,
-      user: 'Demo Demo',
-      content: input,
+      planet: planetId,
+      user: currentUser.id,
+      content: content,
       archived: false
     }
-
-    axios.post(`${REACT_APP_SERVER_URL}/comments/add/${id}`, comment)
-    .then(res => {
-      console.log('Response: ' + res)
+    axios({
+        url: `${REACT_APP_SERVER_URL}/comments/add/${planetId}`,
+        method: 'POST',
+        headers: {'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+        },
+        data:{
+          'comment': JSON.stringify(comment), // Convert to JSON object so we can pass it via axios.
+          'userData': JSON.stringify(currentUser)
+        }
+    }).then( res => {
+      console.log(res.data)
+    })
+    .catch(err=>{
+      console.log(`🤞 ${err}`)
     })
   }
 
+  /*
   console.log('Current User', currentUser);
-  console.log('Authenicated', isAuthenticated);
+  console.log('Authenticated', isAuthenticated);
+  */
 
   return (
     <div>
@@ -98,13 +113,13 @@ function App() {
 
           {/* Route to display specific planet by ID */}
           <Route path="/planets/display/:id" render={ (props) => {
-              return < Planet planetId={props.match.params.id} />
+              return < Planet planetId={props.match.params.id} user={currentUser} />
             }}
           />
 
           {/* Route to add comment to specific Planet by ID */}
           <Route path="/comments/add/:id" render={ (props) => {
-              return < CommentPage planetId={props.match.params.id} addComment={addComment} />
+              return < AddComment planetId={props.match.params.id} addComment={addComment} />
             }}
           />
 
