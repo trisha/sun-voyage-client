@@ -99,13 +99,8 @@ function App() {
 
   /*
   console.log('Current User', currentUser);
-<<<<<<< HEAD
-  console.log('Authenicated', isAuthenticated);
-  console.log(`this is token 👀👀 ${localStorage.getItem('jwtToken')}`)
-=======
   console.log('Authenticated', isAuthenticated);
   */
->>>>>>> origin/main
 
   return (
     <div>
