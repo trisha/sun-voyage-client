@@ -42,11 +42,16 @@ const Signup = () => {
         console.log(password,confirmPassword)
         if (password === confirmPassword) {
             const newUser = { name, weight, DOB, email, password }
+<<<<<<< HEAD
             console.log(newUser)
             console.log(`${REACT_APP_SERVER_URL}/api/signup`)
             axios.post(`${REACT_APP_SERVER_URL}/api/signup`, newUser)
+=======
+            console.log(`${REACT_APP_SERVER_URL}/auth/signup`)
+            axios.post(`${REACT_APP_SERVER_URL}/auth/signup`, newUser)
+>>>>>>> origin/main
             .then(response => {
-                console.log(response);
+                console.log('Response: ' + response);
                 setRedirect(true);
             })
             .catch(error => console.log(error));

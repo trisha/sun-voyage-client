@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+<<<<<<< HEAD
 import axios from 'axios';
 const REACT_APP_SERVER_URL = 'http://localhost:8000';
 
@@ -20,6 +21,29 @@ const Profile = (props) => {
     }
     console.log('💕')
     console.log(props.user);
+=======
+const APOD_KEY = process.env.REACT_APP_APOD_KEY
+const axios = require('axios')
+
+const age = 21
+const DOB = new Date(1995, 5, 27)
+const dobStr = '1995-06-27'
+console.log(DOB)
+
+const Profile = (props) => {
+
+    const [dailyPic, setDailyPic] = useState(null)
+
+    useEffect(() => {
+        axios.get(`https://api.nasa.gov/planetary/apod?api_key=${APOD_KEY}&start_date=${dobStr}&end_date=${dobStr}`)
+        .then(res => {
+            console.log('DOB response')
+            console.log(res)
+            setDailyPic(res.data[0])
+        })
+    }, [])
+
+>>>>>>> origin/main
     const userData = props.user ? 
     (<div>
         <h1>Profile</h1>
@@ -37,7 +61,12 @@ const Profile = (props) => {
     
     return (
         <div>
+<<<<<<< HEAD
             { props.user ? handleProfile() : errorDiv() }
+=======
+            { dailyPic ? <p>{dailyPic.explanation}</p> : <p>Loading...</p> }
+            { props.user ? userData : errorDiv() }
+>>>>>>> origin/main
         </div>
     );
 

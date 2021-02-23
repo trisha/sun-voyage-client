@@ -1,9 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+
 html {
   position: relative;
   min-height: 100%;
 }
 body {
-  margin-bottom: 60px; /* Margin bottom by footer height */
+  font-family: "Times New Roman", Times, serif;
+/*   background-image: url('./Images/planet-pic.jfif');
+  background-color: black;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  object-fit: cover; */
 }
 
 .planet-list-title {
@@ -13,6 +20,21 @@ body {
 .list-div {
   display: flex;
   justify-content: space-between;
+}
+
+.homepage-title {
+  color: white;
+  text-align: center;
+  font-size: 200px;
+  margin-top: 180px;
+  text-shadow: 0px 2px 2px #ffffff, 0px 4px 0px rgba(0, 0, 0, 1), 0px 2px 15px #ffffff;
+}
+
+.signup-home {
+  padding: 20px;
+  text-align: center;
+  color: white;
+  font-size: 25px;
 }
 
 .planet-card{
@@ -34,8 +56,19 @@ body {
   padding: 5px 10px;
 }
 
+.navbar {
+  padding: 10px;
+  background-color: black;
+}
+
+.nav-link {
+  margin: 0 20px;
+  text-shadow: 0px 7px 15px #ffffff;
+}
+
 .footer {
   position: absolute;
+  background-color: black;
   bottom: 0;
   width: 100%;
   height: 60px; /* Set the fixed height of the footer here */
