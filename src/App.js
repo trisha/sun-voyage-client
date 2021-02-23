@@ -103,7 +103,7 @@ function App() {
   return (
     <div>
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
-      <div className="container mt-5">
+      <div>
         <Switch>
 
           {/* Route to display all planets */}
