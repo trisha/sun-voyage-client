@@ -7,16 +7,6 @@ const Profile = (props) => {
 
     const [dailyPic, setDailyPic] = useState(null)
 
-<<<<<<< HEAD
-    useEffect(() => {
-        axios.get(`https://api.nasa.gov/planetary/apod?api_key=${APOD_KEY}&start_date=${dobStr}&end_date=${dobStr}`)
-        .then(res => {
-            console.log('DOB response')
-            console.log(res)
-            setDailyPic(res.data[0])
-        })
-    }, [])
-=======
     // useEffect(() => {
     //     axios.get(`https://api.nasa.gov/planetary/apod?api_key=${APOD_KEY}&start_date=${dobStr}&end_date=${dobStr}`)
     //     .then(res => {
@@ -26,7 +16,6 @@ const Profile = (props) => {
     //     })
     // }, [])
 
->>>>>>> main
     const userData = props.user ? 
     (<div>
         <h1>Profile</h1>
