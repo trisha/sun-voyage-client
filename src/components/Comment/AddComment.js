@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 const axios = require('axios')
 
 const Comment = (props) => {
 
-    let [tempComment, setTempComment] = useState('')
+    let [newComment, setNewComment] = useState('')
     let [redirect, setRedirect] = useState(false)
 
-    const updateTempComment = (content) => {
-        setTempComment(content)
+    const updateNewComment = (content) => {
+        console.log("content is ", content)
+        setNewComment(content)
     }
 
     if (redirect) return <Redirect to={`/planets/display/${props.planetId}`} />
@@ -16,9 +17,9 @@ const Comment = (props) => {
     return (
         <div>
             <p>Write your comment here</p>
-            <input type='comment' onChange={(e) => {updateTempComment(e.target.value)}} />
+            <input type='comment' onChange={(e) => {updateNewComment(e.target.value)}} />
             <input type='submit' onClick={() => {
-                if (tempComment) {props.addComment(tempComment, props.planetId)}
+                if (newComment) {props.addComment(newComment, props.planetId)}
                 setRedirect(true)
             }} />
             

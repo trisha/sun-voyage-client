@@ -67,6 +67,7 @@ function App() {
     }
   }
   
+  // Add a comment to a planet. 
   const addComment = (content, planetId) => {
     let comment = {
       planet: planetId,
@@ -75,15 +76,26 @@ function App() {
       archived: false
     }
     console.log("Comment trying to be added is: ", comment)
-    axios.post(`${REACT_APP_SERVER_URL}/comments/add/${planetId}`, comment)
-    .then(res => {
-      console.log('Response: ' + res)
+    axios({
+        url: `${REACT_APP_SERVER_URL}/comments/add/${planetId}`,
+        method: 'POST',
+        headers: {'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+        },
+        data:{
+          'comment': JSON.stringify(comment), // Convert to JSON object so we can pass it via axios.
+          'userData': JSON.stringify(currentUser)
+        }
+    }).then( res => {
+      console.log(res.data)
+    })
+    .catch(err=>{
+      console.log(`🤞 ${err}`)
     })
   }
 
   /*
   console.log('Current User', currentUser);
-  console.log('Authenicated', isAuthenticated);
+  console.log('Authenticated', isAuthenticated);
   */
 
   return (
