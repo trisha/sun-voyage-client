@@ -6,24 +6,19 @@ html {
 }
 body {
   font-family: "Times New Roman", Times, serif;
-/*   background-image: url('./Images/planet-pic.jfif');
+}
+
+/* WELCOME PAGE STYLING */
+
+.welcome-div {
+  background-image: url('./Images/planet-pic.jfif');
   background-color: black;
-  background-position: bottom;
+  /* background-position: bottom;
   background-repeat: no-repeat;
   object-fit: cover; */
 }
 
-/* For h2 components in AllPlanets.js */
-.planet-list-title {
-  display: inline;
-}
-
-.list-div {
-  display: flex;
-  justify-content: space-between;
-}
-
-.homepage-title {
+.welcome-title {
   color: white;
   text-align: center;
   font-size: 200px;
@@ -31,11 +26,22 @@ body {
   text-shadow: 0px 2px 2px #ffffff, 0px 4px 0px rgba(0, 0, 0, 1), 0px 2px 15px #ffffff;
 }
 
-.signup-home {
+.welcome-subtitle {
   padding: 20px;
   text-align: center;
   color: white;
   font-size: 25px;
+}
+
+/* ALL PLANETS PAGE */
+
+.planet-list-title {
+  display: inline;
+}
+
+.list-div {
+  display: flex;
+  justify-content: space-between;
 }
 
 .planet-card{
@@ -57,6 +63,8 @@ body {
   padding: 5px 10px;
 }
 
+/* NAVBAR */
+
 .navbar {
   padding: 10px;
   background-color: black;
@@ -66,6 +74,8 @@ body {
   margin: 0 20px;
   text-shadow: 0px 7px 15px #ffffff;
 }
+
+/* FOOTER */
 
 .footer {
   position: absolute;

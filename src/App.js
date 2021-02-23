@@ -31,13 +31,12 @@ function App() {
   let [isAuthenticated, setIsAuthenticated] = useState(true);
 
   // Remove once backend is made
-  let [data, setData] = useState(null)
+  let [data, setData] = useState([])
 
   // Retrieves planet data from the Mongo database
   useEffect(() => {
     axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
       setData([...res.data.planets])
-      console.log('Planet data from Mongo DB: ', data) // Sometimes this is null because it takes a while to setData. 
     })
   }, [])
 
@@ -95,15 +94,16 @@ function App() {
     })
   }
 
-  /*
+  
   console.log('Current User', currentUser);
   console.log('Authenticated', isAuthenticated);
-  */
+  console.log(data)
+  
 
   return (
-    <div>
+    <div >
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
-      <div>
+      <div className='app-main'>
         <Switch>
 
           {/* Route to display all planets */}
@@ -114,13 +114,13 @@ function App() {
 
           {/* Route to display specific planet by ID */}
           <Route path="/planets/display/:id" render={ (props) => {
-              return < Planet planetId={props.match.params.id} user={currentUser} />
+              return < Planet planetData={data[props.match.params.id]} planetId={props.match.params.id} user={currentUser} />
             }}
           />
 
           {/* Route to add comment to specific Planet by ID */}
           <Route path="/comments/add/:id" render={ (props) => {
-              return < AddComment planetId={props.match.params.id} addComment={addComment} />
+              return < AddComment planetId={props.match.params.id} planet={data[props.match.params.id]} addComment={addComment} />
             }}
           />
 
