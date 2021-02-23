@@ -3,7 +3,12 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../../utils/setAuthToken';
 import { Redirect } from 'react-router-dom';
+<<<<<<< HEAD
 const REACT_APP_SERVER_URL = 'http://localhost:8000';
+=======
+const REACT_APP_SERVER_URL ='http://localhost:8000'
+//const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+>>>>>>> main
 
 const Login = (props) => {
     let [email, setEmail] = useState('');
