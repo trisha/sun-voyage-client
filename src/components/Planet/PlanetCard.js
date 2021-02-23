@@ -9,7 +9,7 @@ const PlanetCard = (props) => {
                 <span className='planet-card-comments text-muted'>Comments: {props.planet.comments.length}</span>
             </span>
 
-            < Link to={`/planets/display/${props.id}`} ><button className='link-button'>Click me to see page</button></Link>
+            < Link to={`/planets/display/${props.planet._id}`} ><button className='link-button'>Click me to see page</button></Link>
         </div>
     );
 }
