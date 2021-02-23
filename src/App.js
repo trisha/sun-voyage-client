@@ -77,6 +77,7 @@ function App() {
       content: content,
       archived: false
     }
+    // Below is the same thing as axios.post()
     axios({
         url: `${REACT_APP_SERVER_URL}/comments/add/${planetId}`,
         method: 'POST',
@@ -84,7 +85,7 @@ function App() {
         },
         data:{
           'comment': JSON.stringify(comment), // Convert to JSON object so we can pass it via axios.
-          'userData': JSON.stringify(currentUser)
+          'userData': JSON.stringify(currentUser) // I think that we don't need this but including it to show how to send more than 1 object.
         }
     }).then( res => {
       console.log(res.data)
