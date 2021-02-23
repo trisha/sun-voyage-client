@@ -11,7 +11,7 @@ import About from './components/About';
 import Footer from './components/Footer';
 import AllPlanets from './components/Planet/AllPlanets'
 import Planet from './components/Planet/Planet'
-import CommentPage from './components/Comment/AddComment.js'
+import AddComment from './components/Comment/AddComment.js'
 import TestData from './Data'
 import './App.css';
 const axios = require('axios')
@@ -66,29 +66,25 @@ function App() {
       setIsAuthenticated(false);
     }
   }
-
-  // Axios for the below needs to send 
-  /* comment = {
-    content: "Message body here", 
-    planet: 'planet mongoose ID', 
-    user: 'Active user's mongoose ID here' }
-  */
-  const addComment = (input, planetId) => {
+  
+  const addComment = (content, planetId) => {
     let comment = {
       planet: planetId,
       user: currentUser.id,
-      content: input,
+      content: content,
       archived: false
     }
-
+    console.log("Comment trying to be added is: ", comment)
     axios.post(`${REACT_APP_SERVER_URL}/comments/add/${planetId}`, comment)
     .then(res => {
       console.log('Response: ' + res)
     })
   }
 
+  /*
   console.log('Current User', currentUser);
   console.log('Authenicated', isAuthenticated);
+  */
 
   return (
     <div>
@@ -110,7 +106,7 @@ function App() {
 
           {/* Route to add comment to specific Planet by ID */}
           <Route path="/comments/add/:id" render={ (props) => {
-              return < CommentPage planetId={props.match.params.id} addComment={addComment} />
+              return < AddComment planetId={props.match.params.id} addComment={addComment} />
             }}
           />
 

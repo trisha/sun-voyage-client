@@ -14,7 +14,7 @@ const Planet = (props) => {
     useEffect(() => {
         axios.get(`${REACT_APP_SERVER_URL}/planets/display/${props.planetId}`) // Returns info on the planet.
         .then(rdata => {
-            console.log(rdata.data.planet[0])
+            // console.log(rdata.data.planet[0])
             setPlanetData(rdata.data.planet[0])
         })
     }, [])
