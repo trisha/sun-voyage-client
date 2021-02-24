@@ -8,7 +8,7 @@ const About = () => {
             title: 'Frontend Developer, CSStylist',
             githubURL: 'https://github.com/ElyssaW',
             linkedinURL: 'https://www.linkedin.com/in/elyssa-winch/',
-            bio: 'Add your bio here.'
+            bio: 'Add your bio here. You can add line breaks <br> instead of paragraph tags (p tags give too much space up top), as well as escape special characters such as like \' this.'
         },
         {
             name: 'Patricia Pan',
@@ -16,7 +16,7 @@ const About = () => {
             title: 'Fullstack Manager',
             githubURL: 'https://github.com/patricia-pan',
             linkedinURL: 'https://www.linkedin.com/in/patricia-pan/',
-            bio: 'This is a test bio. <br> I added line break HTML elements, let\'s see if it works.'
+            bio: 'Trisha is a software engineer with a background in management consulting, as well as chemical and biomedical engineering.<br><br>In her free time, she enjoys painting, backpacking, and doing improv.'
         },
         {
             name: 'Yasaman Forouzesh',
@@ -30,7 +30,7 @@ const About = () => {
 
     const teammateCards = teammates.map((person, i) => (
         <div className="teammate">
-            <img className="profile" src={person.imgURL} />
+            <img className="profile" src={person.imgURL} alt={person.name} />
             <h3>{person.name}</h3>
             <h5>{person.title}</h5>
             
@@ -38,8 +38,8 @@ const About = () => {
             <p dangerouslySetInnerHTML={{ __html: person.bio }} />
             
             <p>
-                <a href={person.githubURL}><img className="logo" src='githubLogo.png' /></a> 
-                <a href={person.linkedinURL}><img className="logo" src='linkedinLogo.png' /></a>
+                <a href={person.githubURL}><img className="logo" src='githubLogo.png' alt="github logo" /></a> 
+                <a href={person.linkedinURL}><img className="logo" src='linkedinLogo.png' alt="linkedin logo" /></a>
             </p>
         </div>
     ))

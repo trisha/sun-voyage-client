@@ -6,6 +6,7 @@ const axios = require('axios')
 
 const Profile = (props) => {
 
+    // GRAB IMAGE FOR USER BASED ON THEIR BIRTHDAY.
     console.log(props.user)
     const [dailyPic, setDailyPic] = useState(null)
 
@@ -18,6 +19,7 @@ const Profile = (props) => {
         })
     }, [])
 
+    // RENDER PROFILE.
     const userData = props.user ? 
     (<div>
         <h1>Profile</h1>
@@ -37,6 +39,17 @@ const Profile = (props) => {
         );
     };
     
+    // EDIT PROFILE. 
+    const [editMode, setEditMode] = useState(false) // Toggle on/off when user clicks Edit/Save button.
+    const [editingName, setEditingName] = useState('')
+    const [editingDOB, setEditingDOB] = useState('')
+    const [editingWeight, setEditingWeight] = useState('')
+
+    // Call this function when the user clicks on the 'Edit' button.
+    const editProfile = () => {
+
+    } 
+
     return (
         <div className='app-main'>
             { dailyPic ? <p>{dailyPic.explanation}</p> : <p>Loading...</p> }
