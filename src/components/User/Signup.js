@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+const REACT_APP_SERVER_URL ='http://localhost:8000'
+//const REACT_APP_SERVER_URL =process.env.REACT_APP_SERVER_URL;
 
 const Signup = () => {
     let [email, setEmail] = useState('')
@@ -21,6 +22,7 @@ const Signup = () => {
     }
 
     const handleDOB = (e) => {
+        console.log(e.target.value)
         setDOB(e.target.value);
     }
 
@@ -38,7 +40,7 @@ const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        console.log(password,confirmPassword)
         if (password === confirmPassword) {
             const newUser = { name, weight, DOB, email, password }
             console.log(`${REACT_APP_SERVER_URL}/auth/signup`)
