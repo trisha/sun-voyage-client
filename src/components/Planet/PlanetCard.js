@@ -5,16 +5,17 @@ import { Link } from 'react-router-dom';
 const PlanetCard = (props) => {
     
     return (
-        <div>
-            <Card style={{ width: '20rem', height: '60vh' }} key={props.id} className={'planet-card ' + props.planet.name.replace(/[0-9]/g, '')}>
-            <Card.Body className='planet-card' style={{ backgroundImage: `url(../../Images/6033f85cf487a44600fe84af.png)`}}>
-                <Card.Title><h3>{props.planet.name}</h3></Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">Comments: {props.planet.comments.length}</Card.Subtitle>
-                
-                < Link to={`/planets/display/${props.planet._id}`} ><button className='link-button'>Click me to see page</button></Link>
-            </Card.Body>
+        <>
+            <Card style={{ width: '90%', height: '15rem' }} key={props.id} fluid="md" className={'planet-card ' + props.planet.name.replace(/[0-9]/g, '')}>
+                <Card.Body style={{ backgroundImage: `url(../../Images/6033f85cf487a44600fe84af.png)`}}>
+                    <Card.Title><h3 className='planet-card-title'>{props.planet.name}</h3></Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">Comments: {props.planet.comments.length}</Card.Subtitle>
+                    
+                    < Link to={`/planets/display/${props.planet._id}`} ><button className='link-button'>See Page</button></Link>
+                    < Link to={`/planets/display/${props.planet._id}`} ><button className='link-button'>View Archives</button></Link>
+                </Card.Body>
             </Card>
-        </div>
+        </>
     );
 }
 
