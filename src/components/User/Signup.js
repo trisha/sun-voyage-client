@@ -5,12 +5,12 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const Signup = () => {
     let [email, setEmail] = useState('')
-    let [password, setPassword] = useState('');
+    let [password, setPassword] = useState('')
     let [name, setName] = useState('')
-    let [weight, setWeight] = useState(null);
+    let [weight, setWeight] = useState(null)
     let [DOB, setDOB] = useState(null)
-    let [confirmPassword, setConfirmPassword] = useState('');
-    let [redirect, setRedirect] = useState(false);
+    let [confirmPassword, setConfirmPassword] = useState('')
+    let [redirect, setRedirect] = useState(false)
 
     const handleName = (e) => {
         setName(e.target.value);

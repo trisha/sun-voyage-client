@@ -17,7 +17,7 @@ const Planet = (props) => {
             // console.log(rdata.data.planet[0])
             setPlanetData(rdata.data.planet[0])
         })
-    }, [])
+    }, [props.refreshPage])
 
     if (!planetData) {
         return (
