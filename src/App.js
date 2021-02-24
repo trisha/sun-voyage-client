@@ -30,21 +30,6 @@ function App() {
   let [currentUser, setCurrentUser] = useState("");
   let [isAuthenticated, setIsAuthenticated] = useState(true);
 
-  // Remove once backend is made
-  let [data, setData] = useState([])
-  // This variable is for data on the planet the user is currently looking at. It needs to live up here so add comment can change it, allowing the user to automatically see their new posted comment
-  let [planetData, setPlanetData] = useState(null)
-
-  // Retrieves planet data from the Mongo database
-  useEffect(() => {
-    axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
-      setData([...res.data.planets])
-    })
-  }, [])
-
-  // Flag for refreshing Planet page after we add a comment to it.
-  const [refreshPage, setRefreshPage] = useState(false)
-
   useEffect(() => {
     let token;
     if (!localStorage.getItem('jwtToken')) {
@@ -71,6 +56,8 @@ function App() {
     }
   }
 
+  // Set states for planets. 
+  let [data, setData] = useState([]) // For storing all planet data.
   const [refreshPage, setRefreshPage] = useState(false) // For refreshing the Planet page after adding a comment to it.
 
   // Retrieves planet data from the Mongo database
@@ -85,7 +72,6 @@ function App() {
   // The onClick happens in AddComment.js.
   // The props get passed into AddComment.js from App.js. 
   const addComment = (content, planetId) => {
-    console.log(planetId)
     let comment = {
       planet: planetId,
       user: currentUser.id,
@@ -103,14 +89,10 @@ function App() {
           'userData': JSON.stringify(currentUser) // W don't need this but including it to show how to send more than 1 object.
         }
     }).then( res => {
-      let tempData = planetData
-      tempData.comments.push(comment)
-      setPlanetData(tempData)
       console.log(res.data)
       refreshPage ? setRefreshPage(false) : setRefreshPage(true) // Toggle between the two every time a comment is added.
     })
     .catch(err=>{
-      console.log('Hit failure')
       console.log(`🤞 ${err}`)
     })
   }
