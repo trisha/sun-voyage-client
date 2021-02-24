@@ -12,9 +12,9 @@ const Comment = (props) => {
     }
 
     if (redirect) return <Redirect to={`/planets/display/${props.planetId}`} />
-    
+
     return (
-        <div>
+        <div className='app-main'>
             <p>Write your comment here</p>
             <input type='comment' onChange={(e) => {updateNewComment(e.target.value)}} />
             <input type='submit' onClick={() => {

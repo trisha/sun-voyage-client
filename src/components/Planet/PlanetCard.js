@@ -1,15 +1,19 @@
 import React from 'react';
+import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 
 const PlanetCard = (props) => {
+    
     return (
-        <div className='planet-card' key={props.id}>
-            <span>
-                <h3 className='planet-card-name'>{props.planet.name}{'   '}</h3>
-                <span className='planet-card-comments text-muted'>Comments: {props.planet.comments.length}</span>
-            </span>
-
-            < Link to={`/planets/display/${props.planet._id}`} ><button className='link-button'>Click me to see page</button></Link>
+        <div>
+            <Card style={{ width: '20rem', height: '60vh' }} key={props.id} className={'planet-card ' + props.planet.name.replace(/[0-9]/g, '')}>
+            <Card.Body className='planet-card' style={{ backgroundImage: `url(../../Images/6033f85cf487a44600fe84af.png)`}}>
+                <Card.Title><h3>{props.planet.name}</h3></Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">Comments: {props.planet.comments.length}</Card.Subtitle>
+                
+                < Link to={`/planets/display/${props.planet._id}`} ><button className='link-button'>Click me to see page</button></Link>
+            </Card.Body>
+            </Card>
         </div>
     );
 }

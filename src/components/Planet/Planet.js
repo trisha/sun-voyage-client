@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Comment from './Comment.js'
+import moment from 'moment'
 const axios = require('axios')
-const ASTROBIN_KEY = process.env.REACT_APP_ASTROBIN_KEY
-const ASTROBIN_SECRET = process.env.REACT_APP_ASTROBIN_SECRET
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 const Planet = (props) => {
@@ -40,7 +39,7 @@ const Planet = (props) => {
 
             let planetDayLength
             if (Math.abs(planetData.sideralRotation) > 23.93) {
-                planetDayLength = <p>A single day on {planetData.name} is {Math.round(( Math.abs(planetData.sideralRotation) / 24 ))} days on Earth!</p>
+                planetDayLength = <p>A single day on {planetData.name} is {Math.round(( Math.abs(planetData.sideralRotation) / 24 ))} day(s) on Earth!</p>
             } else {
                 planetDayLength = <p>{planetData.name} has {Math.round(( 24 / Math.abs(planetData.sideralRotation) ))} day(s) in a single Earth Day!</p>
             } 
@@ -52,15 +51,19 @@ const Planet = (props) => {
                 planetTimeToOrbit = <p>It takes {Math.round(planetData.sideralOrbit)} days on Earth for {planetData.name} to orbit the sun</p>
             }
 
+            console.log(moment().diff(`${props.user.DOB}`, 'years'))
         return (
-            <div>
+            <div className='app-main'>
                 <h2>{planetData.name}</h2>
     
                 <h4>Info:</h4>
-                <p>{planetData.name} has {Math.round(( 24 / planetData.sideralRotation ))} days in a single Earth Day!</p>
-                <p>It takes {Math.round(( 24 / planetData.sideralRotation ) * 365.23)} days on {planetData.name}, and {Math.round(planetData.sideralOrbit)} days on Earth for {planetData.name} to orbit the sun</p>
-                <p>On {planetData.name} you would weigh {Math.round((120 / 9.8) * ( planetData.gravity))} pounds!</p>
-                <p>On {planetData.name} you would be {Math.round((25 * 364.25) / ( planetData.sideralOrbit))} years old!</p>
+                {planetDayLength}
+
+                {planetTimeToOrbit}
+
+                <p>If you weigh {props.user.weight} pounds on Earth, you would weigh {Math.round((props.user.weight / 9.8) * ( planetData.gravity))} pound(s) on {planetData.name}!</p>
+
+                <p>On {planetData.name} you would be {Math.round((moment().diff(`${props.user.DOB}`, 'years') * 364.25) / ( planetData.sideralOrbit))} years old!</p>
     
                 <h4>Comments: </h4>
                 {commentList}
