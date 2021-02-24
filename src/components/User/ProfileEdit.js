@@ -4,7 +4,7 @@ const moment = require('moment')
 const APOD_KEY = process.env.REACT_APP_APOD_KEY
 const axios = require('axios')
 
-const Profile = (props) => {
+const ProfileEdit = (props) => {
 
     // GRAB IMAGE FOR USER BASED ON THEIR BIRTHDAY.
     // console.log(props.user)
@@ -28,6 +28,7 @@ const Profile = (props) => {
         setEditMode(false)
         // Update values with the state values.
         // Send user information to backend so that it can update the user based on ID.
+        // Axios, put, 
     }
 
     // RENDER PROFILE.
@@ -76,4 +77,4 @@ const Profile = (props) => {
 
 }
 
-export default Profile;
+export default ProfileEdit;
