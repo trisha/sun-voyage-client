@@ -86,9 +86,10 @@ body {
 
 /* ABOUT PAGE */
 .about {
-  color: white;
-  text-align: center;
   background-color: rgba(255, 255, 255, 0.612);
+  color: white;
+  padding: 5px;
+  text-align: center;
 }
 
 .team {
@@ -102,7 +103,7 @@ body {
 }
 
   .profile {
-    border-radius: 10px;
+    border-radius: 6px;
   }
   .logo {
     width: 30px;
