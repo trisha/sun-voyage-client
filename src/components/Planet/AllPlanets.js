@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CardColumns } from 'react-bootstrap'
 import PlanetCard from './PlanetCard.js'
 import Search from './Search.js'
 
@@ -22,15 +23,15 @@ const AllPlanets = (props) => {
     })
 
     return (
-        <div>
-            <div className='list-div'>
-                <h2 className='planet-list-title'>List of all Planets</h2>
-                <span>
-                    < Search handleChange={handleChange} handleSubmit={handleSubmit} />
-                </span>
+        <div className='list-div container'>
+            <div>
+                < CardColumns >
+                    {list}
+                </ CardColumns >
             </div>
-
-            {list}
+            {/* <span>
+                < Search handleChange={handleChange} handleSubmit={handleSubmit} />
+            </span> */}
         </div>
     );
 }
