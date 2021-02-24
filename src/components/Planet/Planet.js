@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Row, Col } from 'react-bootstrap'
 import Comment from './Comment.js'
 import moment from 'moment'
 const axios = require('axios')
@@ -52,24 +53,47 @@ const Planet = (props) => {
                 planetTimeToOrbit = <p>It takes {Math.round(planetData.sideralOrbit)} days on Earth for {planetData.name} to orbit the sun</p>
             }
 
-            console.log(moment().diff(`${props.user.DOB}`, 'years'))
+            let userData
+            if (props.user) {
+                userData = props.user
+            } else {
+                userData = {
+                    weight: 150,
+                    age: 30,
+                    DOB: '2000-01-01'
+                }
+            }
+
         return (
             <div className='app-main'>
-                <h2>{planetData.name}</h2>
-    
-                <h4>Info:</h4>
-                {planetDayLength}
+            <Row className='planet-page'>
+                <Col className='col-12' >
+                    <div className={`planet-page-image ` + planetData.name.replace(/[0-9]/g, '')}>
+                        <h2 className='planet-page-title'>{planetData.name}</h2>
 
-                {planetTimeToOrbit}
+                        <Row>
+                            <Col className='planet-info-div col-5'>
+                                {planetDayLength}
 
-                <p>If you weigh {props.user.weight} pounds on Earth, you would weigh {Math.round((props.user.weight / 9.8) * ( planetData.gravity))} pound(s) on {planetData.name}!</p>
+                                {planetTimeToOrbit}
 
-                <p>On {planetData.name} you would be {Math.round((moment().diff(`${props.user.DOB}`, 'years') * 364.25) / ( planetData.sideralOrbit))} years old!</p>
-    
-                <h4>Comments: </h4>
-                {commentList}
-    
-                < Link to={`/comments/add/${planetData._id}`} ><button>Add To This Entry</button></Link>
+                                <p>If you weigh {userData.weight} pounds on Earth, you would weigh {Math.round((userData.weight / 9.8) * ( planetData.gravity))} pound(s) on {planetData.name}!</p>
+
+                                <p>On {planetData.name} you would be {Math.round((moment().diff(`${userData.DOB}`, 'years') * 364.25) / ( planetData.sideralOrbit))} years old!</p>
+
+                                <p>Your next birthday on {planetData.name} will be on {moment().diff(`${userData.DOB}`, 'days') / planetData.sideralOrbit}</p>
+                            </Col>
+                        </Row>                   
+                    </div>
+                </Col>
+                
+            </Row>
+            <Row className='planet-comment-div'>
+                    <h4>Comments: </h4>
+                    {commentList}
+        
+                    < Link to={`/comments/add/${planetData._id}`} ><button className='link-button'>Add To This Entry</button></Link>
+                </Row>
             </div>
         );
     }

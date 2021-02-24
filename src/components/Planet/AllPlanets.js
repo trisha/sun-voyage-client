@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CardColumns } from 'react-bootstrap'
+import { CardColumns, Row } from 'react-bootstrap'
 import PlanetCard from './PlanetCard.js'
 import Search from './Search.js'
 
@@ -23,15 +23,13 @@ const AllPlanets = (props) => {
     })
 
     return (
-        <div className='list-div container'>
-            <div>
-                < CardColumns >
-                    {list}
-                </ CardColumns >
+        <div className='flex-container'>
+            <div className='list-div container'>
+                {list}
+                {/* <span>
+                    < Search handleChange={handleChange} handleSubmit={handleSubmit} />
+                </span> */}
             </div>
-            {/* <span>
-                < Search handleChange={handleChange} handleSubmit={handleSubmit} />
-            </span> */}
         </div>
     );
 }
