@@ -12,7 +12,7 @@ body {
 /* APP MAIN PAGE */
 
 .app-main {
-  margin: 6vh 5vw;
+  margin: 6vh 4vw;
   padding: 4vh 6vw;
   background-color: #fafafa;
   min-height: 70vh;
@@ -23,15 +23,27 @@ body {
 .welcome-container-div {
   width: 100vw;
   height: 80vh;
+  overflow: hidden;
 }
 
 .welcome-div {
   background-image: url('./Images/planet-pic.jfif');
   background-color: black;
-  background-position: center top;
+  background-position: center 40%;
   background-repeat: no-repeat;
   object-fit: cover;
   min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poiret One', cursive;
+  transition: 1s;
+}
+
+.welcome-div:hover {
+  background-position: center 50%;
+  transform: scale(1.05);
 }
 
 .welcome-title {
@@ -39,11 +51,18 @@ body {
   color: white;
   text-align: center;
   font-size: 200px;
-  text-shadow: 0px 2px 2px #ffffff, 0px 4px 0px rgba(0, 0, 0, 1), 0px 2px 15px #ffffff;
+  text-shadow: 0px 2px 2px #ffffff,  0px 2px 15px #ffffff;
+  transition: 1s;
+}
+
+.welcome-title:hover {
+  letter-spacing: 8px;
+  text-shadow: 0px 2px 2px #ffffff, 0px 4px 0px rgba(0, 0, 0, 1), 0px 2px 25px #ffffff;
 }
 
 .welcome-subtitle {
-  padding: 20px;
+  width: 25vw;
+  padding: 20px 30px;
   text-align: center;
   color: white;
   font-size: 25px;
@@ -55,18 +74,42 @@ body {
   display: inline;
 }
 
+.flex-container {
+  max-width: 100%;
+}
+
 .list-div {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+}
+
+.planet-card-title {
+  font-family: 'Poiret One', cursive;
+  font-size: 35px;
+  font-weight: bolder;
 }
 
 .planet-card {
-  background-color: none;
-  color: black;
-  background-size: 400px;
-  background-position: 120% 250%;
+  margin: 1vh 0;
+  background-size: 650px;
+  background-position: 88% 30%;
   background-repeat: no-repeat;
   object-fit: cover;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  transition: 1s;
+}
+
+.planet-card:hover {
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+  background-position: 75% 30%;
+}
+
+.planet-card-archives {
+  display: inline;
 }
 
 /* .planet-card{
@@ -85,7 +128,10 @@ body {
   border: none;
   background-color: black;
   color: aliceblue;
-  padding: 5px 10px;
+  padding: 10px 18px;
+  margin-top: 2%;
+  width: 20%;
+  display: block;
 }
 
   /* PLANET CARD PICTURES */
@@ -148,7 +194,9 @@ body {
 
 .navbar {
   padding: 10px;
+  font-size: 20px;
   background-color: black;
+  font-family: 'Poiret One', cursive;
 }
 
 .nav-link {
