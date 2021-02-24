@@ -19,6 +19,12 @@ const Profile = (props) => {
         })
     }, [])
 
+    // DETERMINE WHETHER TO DISPLAY RENDER VIEW OR EDIT VIEW.
+    // Call this function when the user clicks on the 'Edit' button.
+    const editProfile = () => {
+        setEditMode(true)
+    }
+
     // RENDER PROFILE.
     const userData = props.user ? 
     (<div>
@@ -28,9 +34,11 @@ const Profile = (props) => {
         <p><strong>DOB:</strong> {props.user.DOB}</p> 
         <p><strong>Age (years):</strong> {moment().diff(`${props.user.DOB}`, 'years')}</p> 
         <p><strong>Weight (pounds):</strong> {props.user.weight}</p> 
-        <button>Edit</button>
-    </div>) : <h4>Loading...</h4>
+        <button onClick={editProfile}>Edit</button>
+    </div>) : <h4>User information loading...</h4>
 
+    // We don't need below because backend automatically redirects us to Login page if it requires a token, and a user isn't logged in.
+    /*
     const errorDiv = () => {
         return (
             <div className="text-center pt-4 app-main">
@@ -38,22 +46,24 @@ const Profile = (props) => {
             </div>
         );
     };
+    */
     
     // EDIT PROFILE. 
     const [editMode, setEditMode] = useState(false) // Toggle on/off when user clicks Edit/Save button.
+    // Storing temporary states. 
     const [editingName, setEditingName] = useState('')
     const [editingDOB, setEditingDOB] = useState('')
-    const [editingWeight, setEditingWeight] = useState('')
+    const [editingWeight, setEditingWeight] = useState('') 
 
-    // Call this function when the user clicks on the 'Edit' button.
-    const editProfile = () => {
-
-    } 
-
+    const editUserData = (
+        <p>This is the edit profile view!!!</p>
+    )
+    
     return (
         <div className='app-main'>
-            { dailyPic ? <p>{dailyPic.explanation}</p> : <p>Loading...</p> }
-            { props.user ? userData : errorDiv() }
+            { dailyPic ? <p>{dailyPic.explanation}</p> : <p>Loading image...</p> }
+            { editMode ? editUserData : userData }
+            {/* { props.user ? userData : errorDiv() } */}
         </div>
     );
 
