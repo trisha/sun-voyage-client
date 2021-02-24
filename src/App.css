@@ -5,26 +5,37 @@ html {
   min-height: 100%;
 }
 body {
+  height: 100%;
   font-family: "Times New Roman", Times, serif;
+  background-color: black;
 }
 /* APP MAIN PAGE */
 
 .app-main {
-  margin: 8vh 12vw;
+  margin: 6vh 5vw;
+  padding: 4vh 6vw;
+  background-color: #fafafa;
+  min-height: 70vh;
 }
 
 /* WELCOME PAGE STYLING */
 
+.welcome-container-div {
+  width: 100vw;
+  height: 80vh;
+}
+
 .welcome-div {
   background-image: url('./Images/planet-pic.jfif');
   background-color: black;
-  background-position: bottom;
+  background-position: center top;
   background-repeat: no-repeat;
   object-fit: cover;
-  height: 100%;
+  min-height: 80vh;
 }
 
 .welcome-title {
+  padding: 20vh 0 0 0;
   color: white;
   text-align: center;
   font-size: 200px;
@@ -49,17 +60,26 @@ body {
   justify-content: space-between;
 }
 
-.planet-card{
+.planet-card {
+  background-color: none;
+  color: black;
+  background-size: 400px;
+  background-position: 120% 250%;
+  background-repeat: no-repeat;
+  object-fit: cover;
+}
+
+/* .planet-card{
   margin: 10px 0;
   padding: 10px;
   background-color: aliceblue;
   display: flex;
   justify-content: space-between;
-}
+} */
 
-.planet-card-name {
+/* .planet-card-name {
   display: inline;
-}
+} */
 
 .link-button{
   border: none;
@@ -67,6 +87,62 @@ body {
   color: aliceblue;
   padding: 5px 10px;
 }
+
+  /* PLANET CARD PICTURES */
+
+  .Ceres {
+    background-image: url('./Images/ceres-transparent.png');
+  }
+
+  .Haumea {
+    background-image: url('./Images/haumea-transparent.png');
+  }
+
+  .Eris {
+    background-image: url('./Images/eris-transparent.png');
+  }
+
+  .Makemake {
+    background-image: url('./Images/makemake-transparent.png');
+  }
+
+  .Jupiter {
+    background-image: url('./Images/jupiter-transparent.png');
+  }
+
+  .Saturn {
+    background-image: url('./Images/saturn-transparent.png');
+  }
+
+  .Mars {
+    background-image: url('./Images/mars-transparent.png');
+  }
+
+  .Mercury {
+    background-image: url('./Images/mercury-transparent.png');
+  }
+
+  .Venus {
+    background-image: url('./Images/venus-transparent.png');
+  }
+
+  .Neptune {
+    background-image: url('./Images/neptune-transparent.png');
+  }
+
+  .Uranus {
+    background-image: url('./Images/uranus-transparent.png');
+  }
+
+  .Pluto {
+    background-image: url('./Images/pluto-transparent.png');
+  }
+
+  .Earth {
+    background-image: url('./Images/earth-transparent.png');
+  }
+
+
 
 /* NAVBAR */
 

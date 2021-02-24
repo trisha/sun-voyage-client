@@ -34,6 +34,7 @@ const Login = (props) => {
             setAuthToken(token);
             // Decode token to get the user data
             const decoded = jwt_decode(token);
+            console.log(decoded)
             // Set current user
             props.nowCurrentUser(decoded);
         })
@@ -43,7 +44,7 @@ const Login = (props) => {
     if (props.user) return <Redirect to="/profile" user={props.user} />;
 
     return (
-        <div className="row mt-4">
+        <div className="row mt-4 app-main">
             <div className="col-md-7 offset-md-3">
                 <div className="card card-body">
                     <h2 className="py-2">Login</h2>

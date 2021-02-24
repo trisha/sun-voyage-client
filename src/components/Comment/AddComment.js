@@ -8,25 +8,19 @@ const Comment = (props) => {
     let [redirect, setRedirect] = useState(false)
 
     const updateNewComment = (content) => {
-        console.log("content is ", content)
         setNewComment(content)
     }
 
     if (redirect) return <Redirect to={`/planets/display/${props.planetId}`} />
-    
+
     return (
-        <div>
+        <div className='app-main'>
             <p>Write your comment here</p>
             <input type='comment' onChange={(e) => {updateNewComment(e.target.value)}} />
             <input type='submit' onClick={() => {
                 if (newComment) {props.addComment(newComment, props.planetId)}
                 setRedirect(true)
             }} />
-            
-            {/* <form>
-                <input type="text" name="content"></input>
-                <button input type="submit" onClick={(newComment, props.planetId) => props.addComment}>Submit</button>
-            </form> */}
         </div>
     );
 }

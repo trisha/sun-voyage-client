@@ -27,22 +27,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => { // Below route che
 }
 
 function App() {
-  // set state values
+  // set Authentication state values
   let [currentUser, setCurrentUser] = useState("");
   let [isAuthenticated, setIsAuthenticated] = useState(true);
-
-  // Remove once backend is made
-  let [data, setData] = useState([])
-
-  // Retrieves planet data from the Mongo database
-  useEffect(() => {
-    axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
-      setData([...res.data.planets])
-    })
-  }, [])
-
-  // Flag for refreshing Planet page after we add a comment to it.
-  const [refreshPage, setRefreshPage] = useState(false)
 
   useEffect(() => {
     let token;
@@ -71,10 +58,22 @@ function App() {
       setIsAuthenticated(false);
     }
   }
+
+  // Set states for planets. 
+  let [data, setData] = useState([]) // For storing all planet data.
+  const [refreshPage, setRefreshPage] = useState(false) // For refreshing the Planet page after adding a comment to it.
+
+  // Retrieves planet data from the Mongo database
+  useEffect(() => {
+    axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
+      setData([...res.data.planets])
+    })
+  }, [])  
   
   // Add a comment to a planet.
+  // To store the temporary comment content, the onChange for setNewComment is in AddComment.js
   // The onClick happens in AddComment.js.
-  // The props get passed into AddComment.js from Planet.js. 
+  // The props get passed into AddComment.js from App.js. 
   const addComment = (content, planetId) => {
     let comment = {
       planet: planetId,
@@ -90,10 +89,11 @@ function App() {
         },
         data:{
           'comment': JSON.stringify(comment), // Convert to JSON object so we can pass it via axios.
-          'userData': JSON.stringify(currentUser) // I think that we don't need this but including it to show how to send more than 1 object.
+          'userData': JSON.stringify(currentUser) // W don't need this but including it to show how to send more than 1 object.
         }
     }).then( res => {
       console.log(res.data)
+      refreshPage ? setRefreshPage(false) : setRefreshPage(true) // Toggle between the two every time a comment is added.
     })
     .catch(err=>{
       console.log(`🤞 ${err}`)
@@ -106,7 +106,7 @@ function App() {
   return (
     <div >
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
-      <div className='app-main'>
+      <div >
         <Switch>
 
           {/* Route to display all planets */}
