@@ -40,6 +40,9 @@ function App() {
     })
   }, [])
 
+  // Flag for refreshing Planet page after we add a comment to it.
+  const [refreshPage, setRefreshPage] = useState(false)
+
   useEffect(() => {
     let token;
     if (!localStorage.getItem('jwtToken')) {
@@ -111,7 +114,7 @@ function App() {
 
           {/* Route to display specific planet by ID */}
           <Route path="/planets/display/:id" render={ (props) => {
-              return < Planet planetId={props.match.params.id} user={currentUser} />
+              return < Planet planetId={props.match.params.id} refreshPage={refreshPage} user={currentUser} />
             }}
           />
 
