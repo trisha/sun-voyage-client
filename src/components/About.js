@@ -17,7 +17,7 @@ const About = () => {
             <h1>The Team</h1>
             <div className="team">
                 <div className="teammate">
-                    <img src='https://media-exp1.licdn.com/dms/image/C5603AQGPXnfliT9Zpg/profile-displayphoto-shrink_200_200/0/1599016140804?e=1619654400&v=beta&t=IK-lHyhfjMhNakU_sPoDuXyPFpx2VnzH3X2DXPR5RT4' />
+                    <img className="profile" src='https://media-exp1.licdn.com/dms/image/C5603AQGPXnfliT9Zpg/profile-displayphoto-shrink_200_200/0/1599016140804?e=1619654400&v=beta&t=IK-lHyhfjMhNakU_sPoDuXyPFpx2VnzH3X2DXPR5RT4' />
                     <h3>Yasaman Forouzesh</h3>
                     <p>
                         Backend Developer, Data Wrangler
@@ -29,11 +29,10 @@ const About = () => {
                 </div>
 
                 <div className="teammate">
-                    <img src='https://media-exp1.licdn.com/dms/image/C5603AQExvwtz83SW_A/profile-displayphoto-shrink_200_200/0/1611081947490?e=1619654400&v=beta&t=0fZe_modaRsIprbkbv7EHleQ8GmnmPGw1HTHdq1zYyQ' />
+                    <img className="profile" src='https://media-exp1.licdn.com/dms/image/C5603AQExvwtz83SW_A/profile-displayphoto-shrink_200_200/0/1611081947490?e=1619654400&v=beta&t=0fZe_modaRsIprbkbv7EHleQ8GmnmPGw1HTHdq1zYyQ' />
                     <h3>Patricia Pan</h3>
-                    <p>
-                        Fullstack Manager
-                    </p>
+                    <h5>Fullstack Manager</h5>
+                    
                     <p>
                         <img className="logo" src='githubLogo.png' />
                         <img className="logo" src='linkedinLogo.png' />
@@ -42,7 +41,7 @@ const About = () => {
                 </div>
 
                 <div className="teammate">
-                <img src='https://media-exp1.licdn.com/dms/image/C4E03AQHFV87MXIFfCA/profile-displayphoto-shrink_200_200/0/1588485326132?e=1619654400&v=beta&t=Pnfm-LMcLNe87-iI0UTcqrffF_40-Lth4iZHjJKPjoo' />
+                <img className="profile" src='https://media-exp1.licdn.com/dms/image/C4E03AQHFV87MXIFfCA/profile-displayphoto-shrink_200_200/0/1588485326132?e=1619654400&v=beta&t=Pnfm-LMcLNe87-iI0UTcqrffF_40-Lth4iZHjJKPjoo' />
                     <h3>Elyssa Winch</h3>
                     <h5>Frontend Developer, CSStylist</h5>
                     <p>
