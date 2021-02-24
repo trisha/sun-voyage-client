@@ -42,6 +42,9 @@ function App() {
     })
   }, [])
 
+  // Flag for refreshing Planet page after we add a comment to it.
+  const [refreshPage, setRefreshPage] = useState(false)
+
   useEffect(() => {
     let token;
     if (!localStorage.getItem('jwtToken')) {
@@ -79,6 +82,7 @@ function App() {
       content: content,
       archived: false
     }
+    // Below is the same thing as axios.post()
     axios({
         url: `${REACT_APP_SERVER_URL}/comments/add/${planetId}`,
         method: 'POST',
@@ -86,7 +90,7 @@ function App() {
         },
         data:{
           'comment': JSON.stringify(comment), // Convert to JSON object so we can pass it via axios.
-          'userData': JSON.stringify(currentUser)
+          'userData': JSON.stringify(currentUser) // I think that we don't need this but including it to show how to send more than 1 object.
         }
     }).then( res => {
       let tempData = planetData
@@ -117,7 +121,7 @@ function App() {
 
           {/* Route to display specific planet by ID */}
           <Route path="/planets/display/:id" render={ (props) => {
-              return < Planet planetId={props.match.params.id} user={currentUser} planetData={planetData} setPlanetData={setPlanetData} />
+              return < Planet planetId={props.match.params.id} refreshPage={refreshPage} user={currentUser} />
             }}
           />
 

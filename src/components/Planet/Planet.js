@@ -15,7 +15,7 @@ const Planet = (props) => {
             console.log(rdata.data.planet[0])
             props.setPlanetData(rdata.data.planet[0])
         })
-    }, [])
+    }, [props.refreshPage])
 
     console.log('planet is rerendering')
 
