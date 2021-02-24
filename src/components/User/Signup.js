@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { Form, Col } from 'react-bootstrap'
 const REACT_APP_SERVER_URL ='http://localhost:8000'
 //const REACT_APP_SERVER_URL =process.env.REACT_APP_SERVER_URL;
 
@@ -56,40 +57,41 @@ const Signup = () => {
     if (redirect) return <Redirect to="/login" />
 
     return (
-        <div className="row mt-4 app-main">
-            <div className="col-md-7 offset-md-3">
-                <div className="card card-body">
-                    <h2 className="py-2">Signup</h2>
-                    <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                            <label htmlFor="name">Name</label>
-                            <input type="text" name="name" value={name} onChange={handleName} className="form-control"/>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="weight">Weight</label>
-                            <input type="number" name="weight" value={weight} onChange={handleWeight} className="form-control"/>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="DOB">Date of Birth</label>
-                            <input type="date" name="DOB" value={DOB} onChange={handleDOB} className="form-control"/>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="email">Email</label>
-                            <input type="email" name="email" value={email} onChange={handleEmail} className="form-control"/>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="password">Password</label>
-                            <input type="password" name="password" value={password} onChange={handlePassword} className="form-control"/>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="confirmPassword">Confirm Password</label>
-                            <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleConfirmPassword} className="form-control"/>
-                        </div>
-                        <button type="submit" className="btn btn-primary float-right">Submit</button>
-                    </form>
-                </div>
+        <div className="card card-body signup-page">
+        <h2 className="py-2 title bold signup-title-div">
+            <span className='signup'>Signup</span>
+            <span className='login'>Login</span>
+        </h2>
+        <Form onSubmit={handleSubmit} className='signup-form'>
+            <Form.Row className="form-group">
+                <label htmlFor="name">Name</label>
+                <input type="text" name="name" value={name} onChange={handleName} className="form-control"/>
+            </Form.Row>
+            <Form.Row className="form-group">
+                <Col>
+                <label htmlFor="weight">Weight</label>
+                <input type="number" name="weight" value={weight} onChange={handleWeight} className="form-control"/>
+                </Col>
+                <Col>
+                <label htmlFor="DOB">Date of Birth</label>
+                <input type="date" name="DOB" value={DOB} onChange={handleDOB} className="form-control"/>
+                </Col>
+            </Form.Row>
+            <Form.Row className="form-group">
+                <label htmlFor="email">Email</label>
+                <input type="email" name="email" value={email} onChange={handleEmail} className="form-control"/>
+            </Form.Row>
+            <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input type="password" name="password" value={password} onChange={handlePassword} className="form-control"/>
             </div>
-        </div>
+            <div className="form-group">
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleConfirmPassword} className="form-control"/>
+            </div>
+            <button type="submit" className="link-button btn btn-primary float-right">Submit</button>
+        </Form>
+    </div>     
     );
 
 }

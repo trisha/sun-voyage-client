@@ -29,7 +29,7 @@ body {
 /* APP MAIN PAGE */
 
 .app-main {
-  margin: 6vh 4vw;
+  margin: 6vh 6vw;
   padding: 4vh 6vw;
   background-color: #fafafa;
   min-height: 70vh;
@@ -108,11 +108,16 @@ body {
 }
 
 .planet-card {
-  margin: 1vh 0;
+  margin: 1vw 0;
   background-size: 650px;
   background-position: 88% 30%;
   background-repeat: no-repeat;
   object-fit: cover;
+  padding: 5px;
+  background-color: aliceblue;
+  display: flex;
+  justify-content: space-between;
+  transition: .5s;
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
 }
@@ -127,15 +132,6 @@ body {
   display: inline;
 }
 
-.planet-card{
-  margin: 10px 0;
-  padding: 10px;
-  background-color: aliceblue;
-  display: flex;
-  justify-content: space-between;
-  transition: .5s;
-} 
-
 .link-button{
   border: none;
   background-color: black;
@@ -144,6 +140,11 @@ body {
   margin-top: 2%;
   width: 20%;
   display: block;
+}
+
+.link-parent:hover .exp-color-box {
+  background-color: red;
+  width: 100%;
 }
 
 /* PLANET SPECIFIC PAGE */
@@ -240,6 +241,19 @@ body {
 .nav-link {
   margin: 0 20px;
   text-shadow: 0px 7px 15px #ffffff;
+}
+
+/* SIGN UP */
+
+.signup-page {
+  width: 58%;
+  margin: 2% 20%;
+  padding: 20px 40px;
+}
+
+.signup-title-div {
+  display: flex;
+  justify-content: space-between;
 }
 
 /* FOOTER */
