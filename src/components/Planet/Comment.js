@@ -7,18 +7,7 @@ const buttons = (props) => {
     return (
         props.comment.user == props.user.id ? <div><button>Edit</button> <button>Delete</button></div> : ""
 )}
-const edit=()=>{
-    axios({
-        url: `${REACT_APP_SERVER_URL}/comments/edit/6033f85cf487a44600fe84b2/603439d427aff1977941d669`,
-        method: 'PUT',
-        headers: {'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
-        },
-        data:{'message':"this is just test edit comment"}
-    }).then(res=>{console.log(res.data)})
-        .catch(err=>{
-            console.log(`🤞 ${err}`)
-        })
-}
+
 const Comment = (props) => {
     return (
         <div>
