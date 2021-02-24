@@ -8,7 +8,6 @@ const Comment = (props) => {
     let [redirect, setRedirect] = useState(false)
 
     const updateNewComment = (content) => {
-        console.log("content is ", content)
         setNewComment(content)
     }
 
@@ -22,11 +21,14 @@ const Comment = (props) => {
                 if (newComment) {props.addComment(newComment, props.planetId)}
                 setRedirect(true)
             }} />
+<<<<<<< HEAD
             
             {/* <form>
                 <input type="text" name="content" onChange={(e) => {updateNewComment(e.target.value)}} />
                 <input type="submit" onClick={(props.newComment, props.planetId)=>{props.addComment(newComment, props.planetId)}} />
             </form> */}
+=======
+>>>>>>> 91c750d55b918ace678d39aa4e483fd4ce0f93b6
         </div>
     );
 }

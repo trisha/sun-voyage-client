@@ -26,7 +26,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => { // Below route che
 }
 
 function App() {
-  // set state values
+  // set Authentication state values
   let [currentUser, setCurrentUser] = useState("");
   let [isAuthenticated, setIsAuthenticated] = useState(true);
 
@@ -70,10 +70,20 @@ function App() {
       setIsAuthenticated(false);
     }
   }
+
+  const [refreshPage, setRefreshPage] = useState(false) // For refreshing the Planet page after adding a comment to it.
+
+  // Retrieves planet data from the Mongo database
+  useEffect(() => {
+    axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
+      setData([...res.data.planets])
+    })
+  }, [])  
   
   // Add a comment to a planet.
+  // To store the temporary comment content, the onChange for setNewComment is in AddComment.js
   // The onClick happens in AddComment.js.
-  // The props get passed into AddComment.js from Planet.js. 
+  // The props get passed into AddComment.js from App.js. 
   const addComment = (content, planetId) => {
     console.log(planetId)
     let comment = {
@@ -90,13 +100,14 @@ function App() {
         },
         data:{
           'comment': JSON.stringify(comment), // Convert to JSON object so we can pass it via axios.
-          'userData': JSON.stringify(currentUser) // I think that we don't need this but including it to show how to send more than 1 object.
+          'userData': JSON.stringify(currentUser) // W don't need this but including it to show how to send more than 1 object.
         }
     }).then( res => {
       let tempData = planetData
       tempData.comments.push(comment)
       setPlanetData(tempData)
       console.log(res.data)
+      refreshPage ? setRefreshPage(false) : setRefreshPage(true) // Toggle between the two every time a comment is added.
     })
     .catch(err=>{
       console.log('Hit failure')
