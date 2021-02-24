@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Signup from './components/User/Signup';
 import Login from './components/User/Login';
 import Profile from './components/User/Profile';
+import ProfileEdit from './components/User/ProfileEdit';
 import Welcome from './components/Welcome';
 import About from './components/About';
 import Footer from './components/Footer';
@@ -135,7 +136,7 @@ function App() {
           />
 
           {/* Route to add comment to specific Planet by ID */}
-          <Route path="/comments/add/:id" render={ (props) => {
+          <PrivateRoute path="/comments/add/:id" render={ (props) => {
               return < AddComment planetId={props.match.params.id} addComment={addComment} tokenExpiration={tokenExpiration} user={currentUser}/>
             }}
           />
@@ -150,7 +151,8 @@ function App() {
           />
 
           <Route path="/about" component={ About } />
-          <PrivateRoute path="/profile" component={ Profile } user={currentUser} />
+          <PrivateRoute exact path="/profile" component={ Profile } user={currentUser} />
+          <PrivateRoute path="/profile/edit" component={ ProfileEdit } user={currentUser} />
           <Route exact path="/" component={ Welcome } />
 
         </Switch>
