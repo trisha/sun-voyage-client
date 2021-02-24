@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 const moment = require('moment')
 const APOD_KEY = process.env.REACT_APP_APOD_KEY
@@ -19,16 +20,13 @@ const Profile = (props) => {
         })
     }, [])
 
-    // Call this function when the user clicks on the 'Edit' button.
-    // Needs to be defined above onClick={editProfile}.
+    const [editMode, setEditMode] = useState(false) // Toggle on/off when user clicks Edit/Save button.
+    
     const editProfile = () => {
         setEditMode(true)
     }
-    const saveProfile = () => {
-        setEditMode(false)
-        // Update values with the state values.
-        // Send user information to backend so that it can update the user based on ID.
-    }
+
+    if (editMode) return <Redirect to={'/profile/edit'} />
 
     // RENDER PROFILE.
     const userData = props.user ? 
@@ -42,38 +40,12 @@ const Profile = (props) => {
         <button onClick={editProfile}>Edit</button>
     </div>) : <h4>User information loading...</h4>
     
-    // EDIT PROFILE. 
-    const [editMode, setEditMode] = useState(false) // Toggle on/off when user clicks Edit/Save button.
-    // Storing temporary states. 
-    const [editingName, setEditingName] = useState('')
-    const [editingDOB, setEditingDOB] = useState('')
-    const [editingWeight, setEditingWeight] = useState('') 
-
-    const editName = (e) => setEditingName(e.target.value)
-    const editDOB = (e) => {
-        setEditingDOB(e.target.value)
-        console.log(editingDOB)
-    }
-
-    const editUserData = (
-        <div>
-            <p>This is the edit profile view  !!!</p>
-            <p><strong>Name:</strong> <input type='string' defaultValue={props.user.name}></input></p> 
-            <p><strong>Email:</strong> <input type='string' defaultValue={props.user.email}></input></p> 
-            <p><strong>DOB:</strong> <input type='string' defaultValue={props.user.DOB} placeholder="YYYY-MM-DD"></input></p> 
-            <p><strong>Age:</strong> {moment().diff(`${props.user.DOB}`, 'years')} years old</p> 
-            <p><strong>Weight: </strong> <input type='string' defaultValue={props.user.weight}></input> pounds </p> 
-            <button onClick={saveProfile}>Save</button>
-        </div>
-    )
-    
     return (
         <div className='app-main'>
             { dailyPic ? <p>{dailyPic.explanation}</p> : <p>Loading image...</p> }
-            { editMode ? editUserData : userData }
+            { userData }
         </div>
     );
-
 }
 
 export default Profile;
