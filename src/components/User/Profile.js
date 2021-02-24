@@ -24,7 +24,9 @@ const Profile = (props) => {
         <p><strong>Name:</strong> {props.user.name}</p> 
         <p><strong>Email:</strong> {props.user.email}</p> 
         <p><strong>DOB:</strong> {props.user.DOB}</p> 
-        <p><strong>Age:</strong> {moment().diff(`${props.user.DOB}`, 'years')}</p> 
+        <p><strong>Age (years):</strong> {moment().diff(`${props.user.DOB}`, 'years')}</p> 
+        <p><strong>Weight (pounds):</strong> {props.user.weight}</p> 
+        <button>Edit</button>
     </div>) : <h4>Loading...</h4>
 
     const errorDiv = () => {
