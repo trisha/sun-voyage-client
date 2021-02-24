@@ -79,7 +79,7 @@ const Planet = (props) => {
 
                                 <p>If you weigh {userData.weight} pounds on Earth, you would weigh {Math.round((userData.weight / 9.8) * ( planetData.gravity))} pound(s) on {planetData.name}!</p>
 
-                                <p>On {planetData.name} you would be {Math.round((moment().diff(`${userData.DOB}`, 'years') * 364.25) / ( planetData.sideralOrbit))} years old!</p>
+                                <p>On {planetData.name} you would be {Math.floor((moment().diff(`${userData.DOB}`, 'years') * 364.25) / ( planetData.sideralOrbit))} years old!</p>
 
                                 <p>Your next birthday on {planetData.name} will be on {moment().diff(`${userData.DOB}`, 'days') / planetData.sideralOrbit}</p>
                             </Col>
