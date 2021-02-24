@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import Comment from './Comment.js'
 import moment from 'moment'
 const axios = require('axios')
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
+// const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
+const REACT_APP_SERVER_URL ='http://localhost:8000'
 
 const Planet = (props) => {
 
@@ -16,7 +17,9 @@ const Planet = (props) => {
             // console.log(rdata.data.planet[0])
             setPlanetData(rdata.data.planet[0])
         })
+        
     }, [props.refreshPage])
+
 
     if (!planetData) {
         return (
@@ -33,10 +36,8 @@ const Planet = (props) => {
             } else {
                 commentList = <p>No comments yet!</p>
             }
-
             // Planet info is defined here, outside of the return statement, due to the fact
             // that the way the data is processed changes based on which planet we're looking at - planets with days longer than Earth's require a different formula from planets with days shorter than Earth's, for example
-
             let planetDayLength
             if (Math.abs(planetData.sideralRotation) > 23.93) {
                 planetDayLength = <p>A single day on {planetData.name} is {Math.round(( Math.abs(planetData.sideralRotation) / 24 ))} day(s) on Earth!</p>

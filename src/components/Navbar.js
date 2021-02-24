@@ -29,7 +29,10 @@ const Navbar = (props) => {
                                 <NavLink className="nav-link"  to="/profile">Profile</NavLink>
                             </li>
                             <li className="nav-item">
+                                <Link tp={'/login'}>
+
                                 <span onClick={props.handleLogout} className="nav-link logout-link">Logout</span>
+                                </Link>
                             </li>
                         </ul>
                         : <ul className="navbar-nav ml-auto">
