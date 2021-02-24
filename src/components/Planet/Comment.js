@@ -5,7 +5,7 @@ import React from 'react';
 // const buttons = Add edit and delete buttons here.
 const buttons = (props) => {
     return (
-        props.comment.user == props.user.id ? <div><button>Edit</button> <button>Delete</button></div> : ""
+        props.user && props.comment.user == props.user.id ? <div><button>Edit</button> <button>Delete</button></div> : ""
 )}
 
 

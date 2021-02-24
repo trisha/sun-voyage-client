@@ -52,7 +52,17 @@ const Planet = (props) => {
                 planetTimeToOrbit = <p>It takes {Math.round(planetData.sideralOrbit)} days on Earth for {planetData.name} to orbit the sun</p>
             }
 
-            console.log(moment().diff(`${props.user.DOB}`, 'years'))
+            let userData
+            if (props.user) {
+                userData = props.user
+            } else {
+                userData = {
+                    weight: 150,
+                    age: 30,
+                    DOB: '2000-01-01'
+                }
+            }
+
         return (
             <div className='app-main'>
             <Row className='planet-page'>
@@ -66,11 +76,11 @@ const Planet = (props) => {
 
                                 {planetTimeToOrbit}
 
-                                <p>If you weigh {props.user.weight} pounds on Earth, you would weigh {Math.round((props.user.weight / 9.8) * ( planetData.gravity))} pound(s) on {planetData.name}!</p>
+                                <p>If you weigh {userData.weight} pounds on Earth, you would weigh {Math.round((userData.weight / 9.8) * ( planetData.gravity))} pound(s) on {planetData.name}!</p>
 
-                                <p>On {planetData.name} you would be {Math.round((moment().diff(`${props.user.DOB}`, 'years') * 364.25) / ( planetData.sideralOrbit))} years old!</p>
+                                <p>On {planetData.name} you would be {Math.round((moment().diff(`${userData.DOB}`, 'years') * 364.25) / ( planetData.sideralOrbit))} years old!</p>
 
-                                <p>Your next birthday on {planetData.name} will be on {moment().diff(`${props.user.DOB}`, 'days') / planetData.sideralOrbit}</p>
+                                <p>Your next birthday on {planetData.name} will be on {moment().diff(`${userData.DOB}`, 'days') / planetData.sideralOrbit}</p>
                             </Col>
                         </Row>                   
                     </div>
