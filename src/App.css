@@ -49,6 +49,28 @@ body {
   font-size: 25px;
 }
 
+/* ABOUT PAGE */
+.about {
+  color: white;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.612);
+}
+
+.team {
+  display: flex;
+  justify-content: center;
+}
+
+.teammate {
+  width: 30%;
+}
+
+.logo {
+  width: 30px;
+  margin-right: 8px; 
+  magrin-left: 8px;
+}
+
 /* ALL PLANETS PAGE */
 
 .planet-list-title {
