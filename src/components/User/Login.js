@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import { Form } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 import setAuthToken from '../../utils/setAuthToken';
 import { Redirect } from 'react-router-dom';
 const REACT_APP_SERVER_URL ='http://localhost:8000'
@@ -47,8 +48,7 @@ const Login = (props) => {
     return (
         <div className="card card-body signup-page">
             <h2 className="py-2 title bold signup-title-div">
-                <span className='signup'>Signup</span>
-                <span className='login'>Login</span>
+                <span className='signup active-page'>Login</span>
             </h2>
 
             <Form onSubmit={handleSubmit}>

@@ -100,7 +100,7 @@ const Planet = (props) => {
                 {moons}
             </Row>
             <Row className='planet-comment-div'>
-                    <h4>Comments: </h4>
+                    <h4 className='title bold comment-section-head'>Comments: </h4>
                     {commentList}
         
                     < Link to={`/comments/add/${planetData._id}`} ><button className='link-button'>Add To This Entry</button></Link>

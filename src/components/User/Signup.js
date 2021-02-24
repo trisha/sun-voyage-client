@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Form, Col } from 'react-bootstrap'
 const REACT_APP_SERVER_URL ='http://localhost:8000'
 //const REACT_APP_SERVER_URL =process.env.REACT_APP_SERVER_URL;
@@ -60,7 +61,6 @@ const Signup = () => {
         <div className="card card-body signup-page">
         <h2 className="py-2 title bold signup-title-div">
             <span className='signup'>Signup</span>
-            <span className='login'>Login</span>
         </h2>
         <Form onSubmit={handleSubmit} className='signup-form'>
             <Form.Row className="form-group">
