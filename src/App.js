@@ -15,12 +15,13 @@ import AddComment from './components/Comment/AddComment.js'
 import TestData from './Data'
 import './App.css';
 const axios = require('axios')
-const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+const REACT_APP_SERVER_URL = 'http://localhost:8000'
+//const REACT_APP_SERVER_URL =process.env.REACT_APP_SERVER_URL;
 
 const PrivateRoute = ({ component: Component, ...rest }) => { // Below route checks to see if a user is logged in. 
   const user = localStorage.getItem('jwtToken');
   return <Route {...rest} render={(props) => {
-      return user ? <Component {...rest} {...props} /> : <Redirect to="/login" />
+      return user ? <Component {...rest} {...props}  /> : <Redirect to="/login" />
     }}
   />;
 }
@@ -39,6 +40,8 @@ function App() {
       setAuthToken(localStorage.jwtToken);
       setCurrentUser(token);
       setIsAuthenticated(true);
+      console.log(`this is token 😍 ${localStorage.getItem('jwtToken')}`)
+      console.log(token)
     }
   }, []);
 
@@ -47,6 +50,19 @@ function App() {
     setCurrentUser(userData);
     setIsAuthenticated(true);
   };
+  const tokenExpiration=()=>{
+    var dateNow = new Date();
+    dateNow.getTime()
+    console.log("Inside the tokenExpiration",dateNow.getTime())
+    var decodedToken=jwt_decode(localStorage.getItem('jwtToken'));
+    if(decodedToken.exp<dateNow.getTime()/1000){
+      handleLogout()
+      return false
+    }
+    return true
+    console.log("💕")
+    console.log(decodedToken.exp)
+  } 
 
   const handleLogout = () => {
     if (localStorage.getItem('jwtToken')) {
@@ -114,13 +130,13 @@ function App() {
 
           {/* Route to display specific planet by ID */}
           <Route path="/planets/display/:id" render={ (props) => {
-              return < Planet planetId={props.match.params.id} refreshPage={refreshPage} user={currentUser} />
+              return < Planet tokenExpiration={tokenExpiration} planetId={props.match.params.id} refreshPage={refreshPage} user={currentUser} />
             }}
           />
 
           {/* Route to add comment to specific Planet by ID */}
           <Route path="/comments/add/:id" render={ (props) => {
-              return < AddComment planetId={props.match.params.id} addComment={addComment} />
+              return < AddComment planetId={props.match.params.id} addComment={addComment} tokenExpiration={tokenExpiration} user={currentUser}/>
             }}
           />
 
