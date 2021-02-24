@@ -113,6 +113,8 @@ body {
   background-position: 88% 30%;
   background-repeat: no-repeat;
   object-fit: cover;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
 }
 
 .planet-card:hover {
@@ -131,6 +133,7 @@ body {
   background-color: aliceblue;
   display: flex;
   justify-content: space-between;
+  transition: .5s;
 } 
 
 .link-button{

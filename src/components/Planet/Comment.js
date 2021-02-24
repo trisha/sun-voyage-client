@@ -18,7 +18,7 @@ const Comment = (props) => {
                 Posted by <span className='bold'>{props.comment.user}</span> on {props.comment.createdAt}
             </div>
             <div>
-                {props.comment.user == props.user.id ? <div><button >Edit</button> <button>Delete</button></div> : ""}
+                {props.user && props.comment.user == props.user.id ? <div><button >Edit</button> <button>Delete</button></div> : ""}
             </div>
         </div>
     );
