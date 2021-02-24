@@ -36,17 +36,6 @@ const Profile = (props) => {
         <p><strong>Weight (pounds):</strong> {props.user.weight}</p> 
         <button onClick={editProfile}>Edit</button>
     </div>) : <h4>User information loading...</h4>
-
-    // We don't need below because backend automatically redirects us to Login page if it requires a token, and a user isn't logged in.
-    /*
-    const errorDiv = () => {
-        return (
-            <div className="text-center pt-4 app-main">
-                <h3>Please <Link to="/login">login</Link> to view this page</h3>
-            </div>
-        );
-    };
-    */
     
     // EDIT PROFILE. 
     const [editMode, setEditMode] = useState(false) // Toggle on/off when user clicks Edit/Save button.
@@ -63,7 +52,6 @@ const Profile = (props) => {
         <div className='app-main'>
             { dailyPic ? <p>{dailyPic.explanation}</p> : <p>Loading image...</p> }
             { editMode ? editUserData : userData }
-            {/* { props.user ? userData : errorDiv() } */}
         </div>
     );
 
