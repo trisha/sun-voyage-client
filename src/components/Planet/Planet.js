@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap'
+import Moon from './Moon'
 import Comment from './Comment.js'
 import moment from 'moment'
 const axios = require('axios')
@@ -64,6 +65,10 @@ const Planet = (props) => {
                 }
             }
 
+            let moons = planetData.moons.map(moon => {
+                return < Moon moon={moon} />
+            })
+
         return (
             <div className='app-main'>
             <Row className='planet-page'>
@@ -87,6 +92,12 @@ const Planet = (props) => {
                     </div>
                 </Col>
                 
+            </Row>
+            <Row className='planet-page'>
+                <h4 className='title bold moons-title'>Moons: {planetData.moons.length}</h4>
+            </Row>
+            < Row className="moon-container" >
+                {moons}
             </Row>
             <Row className='planet-comment-div'>
                     <h4>Comments: </h4>

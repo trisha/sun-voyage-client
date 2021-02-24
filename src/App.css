@@ -137,6 +137,8 @@ body {
 .planet-card {
   margin: 1vw 0;
   background-size: 650px;
+  width: 90%; 
+  height: 15rem;
   background-position: 88% 30%;
   background-repeat: no-repeat;
   object-fit: cover;
@@ -185,6 +187,7 @@ body {
 
 .planet-page {
   display: flex;
+  height: fit-content;
 }
 
 .planet-page-image {
@@ -199,8 +202,27 @@ body {
 
 .planet-info-div {
   background-color: #fafafa;
+  width: 100%;
   font-size: 18px;
   display: inline;
+}
+
+.moon-container {
+  width: 121%;
+}
+
+.moons-title {
+  margin: 14px;
+  padding-bottom: 8px;
+  width: 100%;
+  border-bottom: 3px solid black;
+}
+
+.moon-card {
+  width: 20%;
+  min-width: 190px;
+  margin: .5vw;
+  padding: 5px;
 }
 
 .planet-comment-div {
