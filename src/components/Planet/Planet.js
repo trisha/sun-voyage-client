@@ -81,7 +81,7 @@ const Planet = (props) => {
                     <h4>Comments: </h4>
                     {commentList}
         
-                    < Link to={`/comments/add/${planetData._id}`} ><button>Add To This Entry</button></Link>
+                    < Link to={`/comments/add/${planetData._id}`} ><button className='link-button'>Add To This Entry</button></Link>
                 </Row>
             </div>
         );
