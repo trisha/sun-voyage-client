@@ -11,9 +11,11 @@ const buttons = (props) => {
 
 const Comment = (props) => {
     return (
-        <div>
-            {props.comment.content}
-            <div>
+        <div className='comment-div'>
+            <div className='comment-body'>
+                {props.comment.content}
+            </div>
+            <div className='comment-head'>
                 Posted by {props.user.name} on {props.comment.createdAt}
             </div>
             <div>
