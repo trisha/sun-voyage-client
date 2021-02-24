@@ -32,6 +32,8 @@ function App() {
 
   // Remove once backend is made
   let [data, setData] = useState([])
+  // This variable is for data on the planet the user is currently looking at. It needs to live up here so add comment can change it, allowing the user to automatically see their new posted comment
+  let [planetData, setPlanetData] = useState(null)
 
   // Retrieves planet data from the Mongo database
   useEffect(() => {
@@ -70,6 +72,7 @@ function App() {
   // The onClick happens in AddComment.js.
   // The props get passed into AddComment.js from Planet.js. 
   const addComment = (content, planetId) => {
+    console.log(planetId)
     let comment = {
       planet: planetId,
       user: currentUser.id,
@@ -86,9 +89,13 @@ function App() {
           'userData': JSON.stringify(currentUser)
         }
     }).then( res => {
+      let tempData = planetData
+      tempData.comments.push(comment)
+      setPlanetData(tempData)
       console.log(res.data)
     })
     .catch(err=>{
+      console.log('Hit failure')
       console.log(`🤞 ${err}`)
     })
   }
@@ -110,7 +117,7 @@ function App() {
 
           {/* Route to display specific planet by ID */}
           <Route path="/planets/display/:id" render={ (props) => {
-              return < Planet planetId={props.match.params.id} user={currentUser} />
+              return < Planet planetId={props.match.params.id} user={currentUser} planetData={planetData} setPlanetData={setPlanetData} />
             }}
           />
 
