@@ -27,20 +27,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => { // Below route che
 }
 
 function App() {
-  // set state values
+  // set Authentication state values
   let [currentUser, setCurrentUser] = useState("");
   let [isAuthenticated, setIsAuthenticated] = useState(true);
-
-
-  // Remove once backend is made
-  let [data, setData] = useState([])
-
-  // Retrieves planet data from the Mongo database
-  useEffect(() => {
-    axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
-      setData([...res.data.planets])
-    })
-  }, [])
 
   useEffect(() => {
     let token;
@@ -61,6 +50,19 @@ function App() {
     setCurrentUser(userData);
     setIsAuthenticated(true);
   };
+  const tokenExpiration=()=>{
+    var dateNow = new Date();
+    dateNow.getTime()
+    console.log("Inside the tokenExpiration",dateNow.getTime())
+    var decodedToken=jwt_decode(localStorage.getItem('jwtToken'));
+    if(decodedToken.exp<dateNow.getTime()/1000){
+      handleLogout()
+      return false
+    }
+    return true
+    console.log("💕")
+    console.log(decodedToken.exp)
+  } 
 
   const handleLogout = () => {
     if (localStorage.getItem('jwtToken')) {
@@ -69,10 +71,22 @@ function App() {
       setIsAuthenticated(false);
     }
   }
+
+  // Set states for planets. 
+  let [data, setData] = useState([]) // For storing all planet data.
+  const [refreshPage, setRefreshPage] = useState(false) // For refreshing the Planet page after adding a comment to it.
+
+  // Retrieves planet data from the Mongo database
+  useEffect(() => {
+    axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
+      setData([...res.data.planets])
+    })
+  }, [])  
   
   // Add a comment to a planet.
+  // To store the temporary comment content, the onChange for setNewComment is in AddComment.js
   // The onClick happens in AddComment.js.
-  // The props get passed into AddComment.js from Planet.js. 
+  // The props get passed into AddComment.js from App.js. 
   const addComment = (content, planetId) => {
     let comment = {
       planet: planetId,
@@ -80,6 +94,7 @@ function App() {
       content: content,
       archived: false
     }
+    // Below is the same thing as axios.post()
     axios({
         url: `${REACT_APP_SERVER_URL}/comments/add/${planetId}`,
         method: 'POST',
@@ -87,26 +102,24 @@ function App() {
         },
         data:{
           'comment': JSON.stringify(comment), // Convert to JSON object so we can pass it via axios.
-          'userData': JSON.stringify(currentUser)
+          'userData': JSON.stringify(currentUser) // W don't need this but including it to show how to send more than 1 object.
         }
     }).then( res => {
       console.log(res.data)
+      refreshPage ? setRefreshPage(false) : setRefreshPage(true) // Toggle between the two every time a comment is added.
     })
     .catch(err=>{
       console.log(`🤞 ${err}`)
     })
   }
 
-  
-  console.log('Current User', currentUser);
-  console.log('Authenticated', isAuthenticated);
-  console.log(data)
-  
+  // console.log('Current User', currentUser);
+  // console.log('Authenticated', isAuthenticated);
 
   return (
     <div >
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
-      <div className='app-main'>
+      <div >
         <Switch>
 
           {/* Route to display all planets */}
@@ -117,13 +130,13 @@ function App() {
 
           {/* Route to display specific planet by ID */}
           <Route path="/planets/display/:id" render={ (props) => {
-              return < Planet planetData={data[props.match.params.id]} planetId={props.match.params.id} user={currentUser} />
+              return < Planet tokenExpiration={tokenExpiration} planetId={props.match.params.id} refreshPage={refreshPage} user={currentUser} />
             }}
           />
 
           {/* Route to add comment to specific Planet by ID */}
           <Route path="/comments/add/:id" render={ (props) => {
-              return < AddComment planetId={props.match.params.id} planet={data[props.match.params.id]} addComment={addComment} />
+              return < AddComment planetId={props.match.params.id} addComment={addComment} tokenExpiration={tokenExpiration} user={currentUser}/>
             }}
           />
 

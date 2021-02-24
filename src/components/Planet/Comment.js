@@ -13,7 +13,7 @@ const Comment = (props) => {
         <div>
             {props.comment.content}
             <div>
-                Posted by {props.comment.user} on {props.comment.createdAt}
+                Posted by {props.user.name} on {props.comment.createdAt}
             </div>
             <div>
                 {props.comment.user == props.user.id ? <div><button >Edit</button> <button>Delete</button></div> : ""}
