@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import AllPlanets from './components/Planet/AllPlanets'
 import Planet from './components/Planet/Planet'
 import AddComment from './components/Comment/AddComment.js'
+import APOD from './components/Planet/APOD.js'
 import TestData from './Data'
 import './App.css';
 const axios = require('axios')
@@ -126,6 +127,8 @@ function App() {
           <Route exact path="/" component={ Welcome } />
 
           <Route path="/about" component={ About } />
+
+          <Route path="/apod" render={(props) => { return < APOD user={currentUser} /> }}/>
 
           {/* Display all planets */}
           <Route exact path="/planets" render={ (props) => {
