@@ -61,7 +61,7 @@ const Signup = () => {
     if (redirect) return <Redirect to="/login" />
 
     let errorMessage = error ? (
-        <p>Error creating account</p>
+        <p className='error'>Error creating account</p>
     ) : (null)
 
     return (

@@ -49,7 +49,7 @@ const Login = (props) => {
     if (props.user) return <Redirect to="/profile" user={props.user} />;
 
     let errorMessage = error ? (
-        <p>Error logging in</p>
+        <p className='error'>Error logging in: Bad Credentials</p>
     ) : (null)
 
     return (
