@@ -20,13 +20,15 @@ const Profile = (props) => {
         })
     }, [])
 
-    const [editMode, setEditMode] = useState(false) // Toggle on/off when user clicks Edit/Save button.
+    const [editMode, setEditMode] = useState(false) // Toggle on when user clicks Edit button.
+    const [viewCommentsMode, setViewCommentsMode] = useState(false) // Toggle on when user clicks 'View Comments' button.
     
-    const editProfile = () => {
-        setEditMode(true)
-    }
+    // Editing state triggers React to refresh. (Unable to directly return the Redirect)
+    const editProfile = () => setEditMode(true)
+    const viewComments = () => setViewCommentsMode(true)
 
     if (editMode) return <Redirect to={'/profile/edit'} />
+    if (viewCommentsMode) return <Redirect to={'/profile/comments'} />
 
     // RENDER PROFILE.
     const userData = props.user ? 
