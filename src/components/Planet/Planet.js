@@ -10,15 +10,29 @@ const REACT_APP_SERVER_URL ='http://localhost:8000'
 
 const Planet = (props) => {
 
-    const [planetData, setPlanetData] = useState(null)
+    const [planetData, setPlanetData] = useState({})
+    // Yasamn added
+    const [comments,setComments]=useState([])
 
     useEffect(() => {
         axios.get(`${REACT_APP_SERVER_URL}/planets/display/${props.planetId}`) 
         // Returns info on the planet.
         .then(rdata => {
-            // console.log(rdata.data.planet[0])
-            setPlanetData(rdata.data.planet[0])
+            //-----> Elyssa I really don't know what information do you need but we should grad the information that we need from rdata and make our own objedt and push to planetdata
+            
+            console.log(rdata.data)
+            
+            //setPlanetData(PlanetData)
+            setPlanetData({
+                name:rdata.data[0].name,
+                sideralOrbit:rdata.data[0].sideralOrbit,
+                mass:rdata.data[0].mass,
+                moons:rdata.data[0].moons
+            })
+            setComments([...comments,rdata.data[0].comments])
+        }).catch(err=>{
         })
+        
         
     }, [props.refreshPage])
 
@@ -64,16 +78,17 @@ const Planet = (props) => {
                     DOB: '2000-01-01'
                 }
             }
-
-            let moons = planetData.moons.map(moon => {
-                return < Moon moon={moon} />
-            })
+            
+            // let moons = planetData.moons.map(moon => {
+            //     return < Moon moon={moon} />
+            // })
 
         return (
             <div className='app-main'>
             <Row className='planet-page'>
                 <Col className='col-12' >
-                    <div className={`planet-page-image ` + planetData.name.replace(/[0-9]/g, '')}>
+                    {/* <div className={`planet-page-image ` + planetData.name.replace(/[0-9]/g, '')}> */}
+                    <div className={`planet-page-image `}>
                         <h2 className='planet-page-title'>{planetData.name}</h2>
 
                         <Row >
@@ -94,10 +109,10 @@ const Planet = (props) => {
                 
             </Row>
             <Row className='planet-page'>
-                <h4 className='title bold moons-title'>Moons: {planetData.moons.length}</h4>
+                {/* <h4 className='title bold moons-title'>Moons: {planetData.moons.length}</h4> */}
             </Row>
             < Row className="moon-container" >
-                {moons}
+                {/* {moons} */}
             </Row>
             <Row className='planet-comment-div'>
                     <h4 className='title bold comment-section-head'>Comments: </h4>
@@ -106,6 +121,10 @@ const Planet = (props) => {
                     < Link to={`/comments/add/${planetData._id}`} ><button className='link-button'>Add To This Entry</button></Link>
                 </Row>
             </div>
+            // <>
+            //     <p>{planetData.name}</p>
+            //     <p>{console.log(planetData.moons)}</p>
+            // </>
         );
     }
 }

@@ -12,14 +12,15 @@ const Profile = (props) => {
     // console.log(props.user)
     const [dailyPic, setDailyPic] = useState(null)
 
-    useEffect(() => {
-        axios.get(`https://api.nasa.gov/planetary/apod?api_key=${APOD_KEY}&start_date=${props.user.DOB}&end_date=${props.user.DOB}`)
-        .then(res => {
-            // console.log('DOB response')
-            // console.log(res)
-            setDailyPic(res.data[0])
-        })
-    }, [])
+    // useEffect(() => {
+    //     axios.get(`https://api.nasa.gov/planetary/apod?api_key=${APOD_KEY}&start_date=${props.user.DOB}&end_date=${props.user.DOB}`)
+    //     .then(res => {
+    //         // console.log('DOB response')
+    //         // console.log(res)
+    //         setDailyPic(res.data[0])
+    //     })
+    // }, [])
+    
 
     const [editMode, setEditMode] = useState(false) // Toggle on when user clicks Edit button.
     const [viewCommentsMode, setViewCommentsMode] = useState(false) // Toggle on when user clicks 'View Comments' button.
