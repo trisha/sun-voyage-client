@@ -33,18 +33,7 @@ const ProfileComments = (props) => {
     
     return (
         <div className='app-main'>
-            {userComments.map((data,i)=>{
-                console.log(`👏👏${data.planetName}`)
-                return <>
-                {/*----> Elyssa here is would be planet name and contenet so I will fix the state problem tomorrow and here just need design*/}
-                    <h1>Planet Name:</h1>
-                    <p>{data.planetName}</p>
-                    <h1>content:</h1>
-                    <p>{data.content}</p>
-                </>
-            })
-            }
-            { props.user.name }'s Comments
+            <p>comments</p>
         </div>
     );
 }
