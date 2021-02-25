@@ -23,9 +23,11 @@ const Profile = (props) => {
     const [editMode, setEditMode] = useState(false) // Toggle on/off when user clicks Edit/Save button.
     
     const editProfile = () => {
+        // We need the state change so that React knows to refresh the page.
         setEditMode(true)
     }
 
+    // Unable to return within 'editProfile' since we need the state change to force a 'refresh'.
     if (editMode) return <Redirect to={'/profile/edit'} />
 
     // RENDER PROFILE.
