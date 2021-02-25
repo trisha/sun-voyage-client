@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { Form, Col } from 'react-bootstrap'
 const REACT_APP_SERVER_URL ='http://localhost:8000'
 //const REACT_APP_SERVER_URL =process.env.REACT_APP_SERVER_URL;
@@ -62,7 +61,7 @@ const Signup = () => {
     if (redirect) return <Redirect to="/login" />
 
     let errorMessage = error ? (
-        <p>Error creating account</p>
+        <p className='error'>Error creating account</p>
     ) : (null)
 
     return (
