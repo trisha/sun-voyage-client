@@ -76,7 +76,7 @@ const Planet = (props) => {
                     <div className={`planet-page-image ` + planetData.name.replace(/[0-9]/g, '')}>
                         <h2 className='planet-page-title'>{planetData.name}</h2>
 
-                        <Row>
+                        <Row >
                             <Col className='planet-info-div col-5'>
                                 {planetDayLength}
 
