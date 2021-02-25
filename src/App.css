@@ -332,7 +332,8 @@ body {
 }
 
 .textbox-big {
-  width: 80%;
+  margin: 20px 0;
+  width: 100%;
   height: 20em;
   border: none;
 }
