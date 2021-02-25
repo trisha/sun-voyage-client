@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap'
+import Moon from './Moon'
 import Comment from './Comment.js'
 import moment from 'moment'
 const axios = require('axios')
@@ -64,6 +65,10 @@ const Planet = (props) => {
                 }
             }
 
+            let moons = planetData.moons.map(moon => {
+                return < Moon moon={moon} />
+            })
+
         return (
             <div className='app-main'>
             <Row className='planet-page'>
@@ -71,7 +76,7 @@ const Planet = (props) => {
                     <div className={`planet-page-image ` + planetData.name.replace(/[0-9]/g, '')}>
                         <h2 className='planet-page-title'>{planetData.name}</h2>
 
-                        <Row>
+                        <Row >
                             <Col className='planet-info-div col-5'>
                                 {planetDayLength}
 
@@ -79,7 +84,7 @@ const Planet = (props) => {
 
                                 <p>If you weigh {userData.weight} pounds on Earth, you would weigh {Math.round((userData.weight / 9.8) * ( planetData.gravity))} pound(s) on {planetData.name}!</p>
 
-                                <p>On {planetData.name} you would be {Math.round((moment().diff(`${userData.DOB}`, 'years') * 364.25) / ( planetData.sideralOrbit))} years old!</p>
+                                <p>On {planetData.name} you would be {Math.floor((moment().diff(`${userData.DOB}`, 'years') * 364.25) / ( planetData.sideralOrbit))} years old!</p>
 
                                 <p>Your next birthday on {planetData.name} will be on {moment().diff(`${userData.DOB}`, 'days') / planetData.sideralOrbit}</p>
                             </Col>
@@ -88,8 +93,14 @@ const Planet = (props) => {
                 </Col>
                 
             </Row>
+            <Row className='planet-page'>
+                <h4 className='title bold moons-title'>Moons: {planetData.moons.length}</h4>
+            </Row>
+            < Row className="moon-container" >
+                {moons}
+            </Row>
             <Row className='planet-comment-div'>
-                    <h4>Comments: </h4>
+                    <h4 className='title bold comment-section-head'>Comments: </h4>
                     {commentList}
         
                     < Link to={`/comments/add/${planetData._id}`} ><button className='link-button'>Add To This Entry</button></Link>
