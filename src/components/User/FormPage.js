@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { Redirect } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import React, {useState} from 'react';
 import { Form, Col } from 'react-bootstrap'
-const REACT_APP_SERVER_URL ='http://localhost:8000'
+import Login from './Login.js'
 //const REACT_APP_SERVER_URL =process.env.REACT_APP_SERVER_URL;
 
-const Signup = () => {
+const Signup = (props) => {
+
     let [email, setEmail] = useState('')
     let [password, setPassword] = useState('')
     let [name, setName] = useState('')
@@ -61,6 +59,7 @@ const Signup = () => {
         <div className="card card-body signup-page">
         <h2 className="py-2 title bold signup-title-div">
             <span className='signup'>Signup</span>
+            <span className='login'>Login</span>
         </h2>
         <Form onSubmit={handleSubmit} className='signup-form'>
             <Form.Row className="form-group">
@@ -93,7 +92,6 @@ const Signup = () => {
         </Form>
     </div>     
     );
-
 }
 
 export default Signup;

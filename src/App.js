@@ -6,6 +6,8 @@ import Navbar from './components/Navbar';
 import Signup from './components/User/Signup';
 import Login from './components/User/Login';
 import Profile from './components/User/Profile';
+import ProfileEdit from './components/User/ProfileEdit';
+import ProfileComments from './components/User/ProfileComments';
 import Welcome from './components/Welcome';
 import About from './components/About';
 import Footer from './components/Footer';
@@ -121,37 +123,37 @@ function App() {
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
       <div >
         <Switch>
+          <Route exact path="/" component={ Welcome } />
 
-          {/* Route to display all planets */}
+          <Route path="/about" component={ About } />
+
+          {/* Display all planets */}
           <Route exact path="/planets" render={ (props) => {
               return < AllPlanets planetData={data} />
             }}
           />
 
-          {/* Route to display specific planet by ID */}
+          {/* Display specific planet by mongoose ID */}
           <Route path="/planets/display/:id" render={ (props) => {
               return < Planet tokenExpiration={tokenExpiration} planetId={props.match.params.id} refreshPage={refreshPage} user={currentUser} />
             }}
           />
 
-          {/* Route to add comment to specific Planet by ID */}
-          <Route path="/comments/add/:id" render={ (props) => {
+          {/* Add comment to specific Planet ID */}
+          <PrivateRoute path="/comments/add/:id" render={ (props) => {
               return < AddComment planetId={props.match.params.id} addComment={addComment} tokenExpiration={tokenExpiration} user={currentUser}/>
             }}
           />
 
-          {/* Sign Up Route */}
+          {/* Authentication Routes */}
           <Route path="/signup" component={ Signup } />
-
-          {/* Login Route */}
           <Route 
             path="/login" 
             render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} 
           />
-
-          <Route path="/about" component={ About } />
-          <PrivateRoute path="/profile" component={ Profile } user={currentUser} />
-          <Route exact path="/" component={ Welcome } />
+          <PrivateRoute exact path="/profile" component={ Profile } user={currentUser} />
+          <PrivateRoute path="/profile/edit" component={ ProfileEdit } user={currentUser} />
+          <PrivateRoute path="/profile/comments" component={ ProfileComments } user={currentUser} planets={data} />
 
         </Switch>
       </div>

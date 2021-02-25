@@ -14,19 +14,19 @@ const Comment = (props) => {
     }
 
     if (redirect) return <Redirect to={`/planets/display/${props.planetId}`} />
+
     if(props.tokenExpiration() && !props.user){
         return (
-            <div className='app-main'>
-                <p>Write your comment here</p>
-                <input type='comment' onChange={(e) => {updateNewComment(e.target.value)}} />
-                <input type='submit' onClick={() => {
+            <div className='app-main add-comment-page'>
+                <p className='bold title add-comment-title'>Write your comment here</p>
+                <textarea className='textbox-big box-shadow' onChange={(e) => {updateNewComment(e.target.value)}} />
+                <input type='submit' className='text-submit bold box-shadow' onClick={() => {
                     if (newComment) {props.addComment(newComment, props.planetId)}
                     setRedirect(true)
                 }} />
             </div>
         );
-    }
-    else{
+    } else {
         return(
             <Link to={"/login"}/>
         )

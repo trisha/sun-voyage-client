@@ -11,37 +11,7 @@ const Profile = (props) => {
     console.log(props.user)
     const [dailyPic, setDailyPic] = useState(null)
 
-    // useEffect(() => {
-    //     axios.get(`https://api.nasa.gov/planetary/apod?api_key=${APOD_KEY}&start_date=${props.user.DOB}&end_date=${props.user.DOB}`)
-    //     .then(res => {
-    //         console.log('DOB response')
-    //         console.log(res)
-    //         setDailyPic(res.data[0])
-    //     })
-    // }, [])
-    useEffect(() => {
-
-        axios({
-            url:'http://localhost:8000/auth/profile',
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
-            }
-        })
-        .then(res=>{
-                console.log('👏👏')
-                console.log(res)
-            })
-        // axios.get(`${REACT_APP_SERVER_URL}/planets`)
-        // .then(res => {
-        //     console.log('✔✔✔✔✔✔✔')
-        //     console.log('DOB response')
-        //     console.log(`👀👀👀${res}`)
-        // })
-        // .catch(err=>{
-        //     console.log(err)
-        // })
-    },[])
+    
 
     const userData = props.user ? 
     (<div>
@@ -52,6 +22,7 @@ const Profile = (props) => {
         <p><strong>Age (years):</strong> {moment().diff(`${props.user.DOB}`, 'years')}</p> 
         <p><strong>Weight (pounds):</strong> {props.user.weight}</p> 
         <button>Edit</button>
+        <button onClick={props.viewComments}>View Comments</button>
     </div>) : <h4>Loading...</h4>
 
     const errorDiv = () => {
