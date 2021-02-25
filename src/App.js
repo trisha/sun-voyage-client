@@ -81,6 +81,7 @@ function App() {
   // Retrieves planet data from the Mongo database
   useEffect(() => {
     axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
+      console.log(res)
       setData([...res.data.planets])
     })
   }, [])  
