@@ -317,8 +317,12 @@ body {
 
 /* PROFILE */
 
-.profile-info {
-  
+.apod-pic {
+  width: 600px;
+  height: 600px;
+  object-fit: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* SIGN UP */

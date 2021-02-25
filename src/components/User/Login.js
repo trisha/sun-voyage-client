@@ -11,6 +11,7 @@ const REACT_APP_SERVER_URL ='http://localhost:8000'
 const Login = (props) => {
     let [email, setEmail] = useState('');
     let [password, setPassword] = useState('');
+    let [error, setError] = useState(false)
 
     let handleEmail = (e) => {
         setEmail(e.target.value);
@@ -40,16 +41,25 @@ const Login = (props) => {
             // Set current user
             props.nowCurrentUser(decoded);
         })
-        .catch(error => console.log(`Login error`, error));
+        .catch(error => {
+            console.log(`Login error`, error)
+            setError(true)
+        });
     }
 
     if (props.user) return <Redirect to="/profile" user={props.user} />;
+
+    let errorMessage = error ? (
+        <p>Error logging in</p>
+    ) : (null)
 
     return (
         <div className="card card-body signup-page">
             <h2 className="py-2 title bold signup-title-div">
                 <span className='signup active-page'>Login</span>
             </h2>
+
+            {errorMessage}
 
             <Form onSubmit={handleSubmit}>
                 <div className="form-group">

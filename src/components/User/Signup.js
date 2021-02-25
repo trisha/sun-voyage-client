@@ -14,6 +14,7 @@ const Signup = () => {
     let [DOB, setDOB] = useState(null)
     let [confirmPassword, setConfirmPassword] = useState('')
     let [redirect, setRedirect] = useState(false)
+    let [error, setError] = useState(false)
 
     const handleName = (e) => {
         setName(e.target.value);
@@ -51,17 +52,25 @@ const Signup = () => {
                 console.log('Response: ' + response);
                 setRedirect(true);
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                console.log(error)
+                setError(true)
+            });
         }
     }
 
     if (redirect) return <Redirect to="/login" />
+
+    let errorMessage = error ? (
+        <p>Error creating account</p>
+    ) : (null)
 
     return (
         <div className="card card-body signup-page">
         <h2 className="py-2 title bold signup-title-div">
             <span className='signup'>Signup</span>
         </h2>
+        {errorMessage}
         <Form onSubmit={handleSubmit} className='signup-form'>
             <Form.Row className="form-group">
                 <label htmlFor="name">Name</label>
