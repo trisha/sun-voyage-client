@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap'
 const moment = require('moment')
 const APOD_KEY = process.env.REACT_APP_APOD_KEY

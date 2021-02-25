@@ -14,7 +14,7 @@ import Footer from './components/Footer';
 import AllPlanets from './components/Planet/AllPlanets'
 import Planet from './components/Planet/Planet'
 import AddComment from './components/Comment/AddComment.js'
-import TestData from './Data'
+// import TestData from './Data'
 import './App.css';
 const axios = require('axios')
 const REACT_APP_SERVER_URL = 'http://localhost:8000'
@@ -152,7 +152,7 @@ function App() {
             render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} 
           />
           <PrivateRoute exact path="/profile" component={ Profile } user={currentUser} />
-          <PrivateRoute path="/profile/edit" component={ ProfileEdit } user={currentUser} />
+          <PrivateRoute path="/profile/edit" component={ ProfileEdit } user={currentUser} refreshPage={refreshPage} />
           <PrivateRoute path="/profile/comments" component={ ProfileComments } user={currentUser} planets={data} />
 
         </Switch>

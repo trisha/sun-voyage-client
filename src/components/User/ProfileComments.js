@@ -1,7 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-const axios = require('axios')
+import React from 'react';
 
 const ProfileComments = (props) => {
 // props.user (currentUser and info)
