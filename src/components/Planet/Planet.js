@@ -14,6 +14,7 @@ const Planet = (props) => {
     // Yasamn added
     const [comments,setComments]=useState([])
     const [newComment,setNewComment]=useState('')
+    const [editComment, setEditComment] = useState(null)
 
     useEffect(() => {
         axios.get(`${REACT_APP_SERVER_URL}/planets/display/${props.planetId}`) 
@@ -21,14 +22,16 @@ const Planet = (props) => {
         .then(rdata => {
             setPlanetData(rdata.data[0])
             let comments=rdata.data[0].comments.map(comment=>{
-                console.log('🌹🌹🌹')
-                console.log(comment)
+                // console.log('🌹🌹🌹')
+                // console.log(comment)
                 return{
                     user:comment.user.name,
                     content:comment.content,
                     id:comment._id
                 }
             })
+            console.log('id')
+            console.log(comments[0].id)
             setComments([...comments])
         }).catch(err=>{
         })
@@ -40,12 +43,13 @@ const Planet = (props) => {
     const commentUpdate=(e)=>{
         setNewComment(e.target.value)
     }
-    const addCommentTodb=(e)=>{
+
+    const addCommentTodb=(e, planetId)=>{
         e.preventDefault()
         console.log("hello add comment")
-        console.log(planetData.id)
+        console.log(planetId)
         axios({
-            url: `http://localhost:8000/comments/add/${planetData.id}`,
+            url: `http://localhost:8000/comments/add/${planetId}`,
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
@@ -56,14 +60,51 @@ const Planet = (props) => {
             }
             
             }).then(res=>{
+                console.log(res)
+                setComments([...res.data.searchTerm])
+                let inputBox = document.getElementsByClassName('comment-input')[0]
+                inputBox.value = ''
+
+            }).catch(() => {
+                console.log('error')
+            })
+    }
+
+    const handleEdit = (comment) => {
+        setEditComment(comment)
+        let inputBox = document.getElementsByClassName('comment-input')[0]
+        console.log('Editing...')
+        inputBox.value = comment.content
+    }
+
+    const putEditedComment = (e, planetId) => {
+        e.preventDefault()
+        let editedComment = editComment
+        editedComment.content = newComment
+        console.log("hello edit comment")
+        console.log(editedComment)
+        console.log(`http://localhost:8000/comments/edit/${planetId}/${editedComment.id}`)
+        axios({
+            url: `http://localhost:8000/comments/edit/${planetId}/${editedComment.id}`,
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+            },
+            data:{
+                'comment': newComment 
+            }
+            }).then(res=>{
                 // let comment
                 console.log('🎉🎉🎉🎉')
                 console.log(res)
-                //setComments([])
                 setComments([...res.data.searchTerm])
-
+                let inputBox = document.getElementsByClassName('comment-input')[0]
+                inputBox.value = ''
             })
+        setEditComment(null)
     }
+
+
     //.................................................................
     if (!planetData.name || !planetData.moons) {
         return (
@@ -73,12 +114,11 @@ const Planet = (props) => {
             // Populate a value into comment list if any comments exist
             let commentList
             if (comments.length) {
-                console.log('❤❤')
+                // console.log('❤❤')
                 commentList = comments.map((comment, i) => {
                     // Yasaman quistion: It will takae long time to show new comments on page
                     //----> Elyssa I don't know what information do you need from comments let me know so I can send more info from backend
-                    console.log(comment)
-                    return < Comment comment={comment} user={props.user} key={`comment-id-${i}`} />
+                    return < Comment comment={comment} user={props.user} key={`comment-id-${i}`} handleEdit={handleEdit} />
                 })
             } else {
                 commentList = <p>No comments yet!</p>
@@ -101,8 +141,6 @@ const Planet = (props) => {
 
             let userData
             if (props.user) {
-                console.log("✔✔✔✔")
-                console.log(props.user)
                 userData = props.user
             } else {
                 userData = {
@@ -149,10 +187,14 @@ const Planet = (props) => {
                     <h4 className='title bold comment-section-head'>Comments: </h4>
                     {commentList}
                     <form>
-                        <input type='text' onChange={(e)=>{commentUpdate(e)}}></input>
+                        <input type='text' className='comment-input' onChange={(e)=>{commentUpdate(e)}}></input>
 
 
-                        <button className='link-button' onClick={(e)=>addCommentTodb(e)}>Add To This Entry</button>
+                        { editComment ? 
+                        <button className='link-button' onClick={(e)=>putEditedComment(e, planetData._id)}>Edit This Entry</button>
+                        :
+                        <button className='link-button' onClick={(e)=>addCommentTodb(e, planetData._id)}>Add To This Entry</button>
+                        }
 
 
                     </form>

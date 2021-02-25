@@ -10,8 +10,8 @@ const Comment = (props) => {
             </div>
             <div className='comment-head'>
                 Posted by <span className='bold'>{props.comment.user}</span> on {props.comment.createdAt}
-                <button style={{border:'non'},{background: 'none'},{ margin: 0},{padding: 0}}>Edit</button>
-                <button>Delete</button>
+                <button onClick={() => { props.handleEdit(props.comment) }}>Edit</button>
+                <button onClick={() => { console.log('Deleting comment')}}>Delete</button>
             </div>
             <div>
                 {props.user && props.comment.user == props.user.id ? <div><button >Edit</button> <button>Delete</button></div> : ""}
