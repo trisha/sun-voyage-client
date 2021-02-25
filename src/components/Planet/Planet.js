@@ -104,6 +104,15 @@ const Planet = (props) => {
         setEditComment(null)
     }
 
+    const cancelEdit = (e) => {
+        e.preventDefault()
+        let inputBox = document.getElementsByClassName('comment-input')[0]
+        inputBox.value = ''
+        setNewComment(null)
+        setEditComment(null)
+        console.log('Cancelling edit...')
+    }
+
 
     //.................................................................
     if (!planetData.name || !planetData.moons) {
@@ -187,11 +196,15 @@ const Planet = (props) => {
                     <h4 className='title bold comment-section-head'>Comments: </h4>
                     {commentList}
                     <form>
-                        <input type='text' className='comment-input' onChange={(e)=>{commentUpdate(e)}}></input>
+                        <textarea className='comment-input textbox-big box-shadow' onChange={(e)=>{commentUpdate(e)}}></textarea>
 
 
-                        { editComment ? 
-                        <button className='link-button' onClick={(e)=>putEditedComment(e, planetData._id)}>Edit This Entry</button>
+                        { editComment ? (
+                            <>
+                            <button className='link-button' onClick={(e)=>putEditedComment(e, planetData._id)}>Edit This Entry</button>
+                            <button onClick={(e)=>{ cancelEdit(e)}}>Cancel edit</button>
+                            </>
+                        )
                         :
                         <button className='link-button' onClick={(e)=>addCommentTodb(e, planetData._id)}>Add To This Entry</button>
                         }
