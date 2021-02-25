@@ -107,7 +107,6 @@ const Planet = (props) => {
             } else {
                 userData = {
                     weight: 150,
-                    age: 30,
                     DOB: '2000-01-01'
                 }
             }

@@ -16,9 +16,12 @@ const ProfileComments = (props) => {
             })
             .then(res=>{
                 console.log('✌✌✌')
-                console.log(res)
+                console.log(res.data.searchTerm.length)
                 //return JSON.stringify(res.data.searchTerm) 
-                setUserComments([...userComments,res.data.searchTerm])
+                if(res.data.searchTerm.length){
+
+                    setUserComments([...userComments,res.data.searchTerm])
+                }
             })
     }, [])
 // props.user (currentUser and info)
@@ -26,23 +29,29 @@ const ProfileComments = (props) => {
     // const comments = props.planets.forEach( (planet,i) => {
 
     // })
-    
-    return (
-        <div className='app-main'>
-            {userComments.map((data,i)=>{
-                console.log(`👏👏${data.planetName}`)
-                return <>
-                {/*----> Elyssa here is would be planet name and contenet so I will fix the state problem tomorrow and here just need design*/}
-                    <h1>Planet Name:</h1>
-                    <p>{data[0].planetName}</p>
-                    <h1>content:</h1>
-                    <p>{data[0].content}</p>
-                </>
-            })
-            }
-            { props.user.name }'s Comments
-        </div>
-    );
+    if(userComments.length){
+        console.log(userComments.length)
+        return (
+            <div className='app-main'>
+                {userComments.map((data,i)=>{
+                    
+                    return <>
+                    {/*----> Elyssa here is would be planet name and contenet so I will fix the state problem tomorrow and here just need design*/}
+                        <h1>Planet Name:</h1>
+                        <p>{data[0].planetName}</p>
+                        <h1>content:</h1>
+                        <p>{data[0].content}</p>
+                    </>
+                })
+                }
+            </div>
+        );
+    }
+    else{
+        return(
+            <p>You don't have comment yet</p>
+        )
+    }
 }
 
 export default ProfileComments;
