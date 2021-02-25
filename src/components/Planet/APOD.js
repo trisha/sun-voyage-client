@@ -40,12 +40,7 @@ const APOD = (props) => {
         <>
             < Col>
                 < div className='apod-pic' style={{ backgroundImage: `url(${dailyPic.url})`}} >
-            
-                </div>
-            </Col>
-            < Col >
-                <div>
-                    <p>{dailyPic.explanation}</p>
+                    <p className='apod-desc'>{dailyPic.explanation}</p>
                 </div>
             </Col>
         </>

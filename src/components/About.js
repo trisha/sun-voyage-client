@@ -30,15 +30,17 @@ const About = () => {
     ]
 
     const teammateCards = teammates.map((person, i) => (
-        < Col >
+        < Col className='teammate-col' >
             <div className="teammate">
-                <img className="profile" src={person.imgURL} alt={person.name} />
-                <h3 className='title bold'>{person.name}</h3>
-                <h5>{person.title}</h5>
-                
-                {/* Below allows us to escape HTML tags. */}
-                <p className='about-bio' dangerouslySetInnerHTML={{ __html: person.bio }} />
-                
+                <div className='teammate-body'>
+                    <img className="profile" src={person.imgURL} alt={person.name} />
+                    <h3 className='title bold'>{person.name}</h3>
+                    <h5>{person.title}</h5>
+                    
+                    {/* Below allows us to escape HTML tags. */}
+                    <p className='about-bio' dangerouslySetInnerHTML={{ __html: person.bio }} />
+                </div>
+            
                 <p className='logo-bank'>
                     <a href={person.githubURL}><img className="logo" src='githubLogo.png' alt="github logo" /></a> 
                     <a href={person.linkedinURL}><img className="logo" src='linkedinLogo.png' alt="linkedin logo" /></a>
@@ -50,7 +52,7 @@ const About = () => {
     return (
         <div className="app-main">
         <div className="about">
-            <h1 className='title bold'>About</h1>
+            <h1 className='title bold about-title'>About</h1>
             <p>Welcome to Sun Voyage!</p>
             <p>Feeling cooped up or anxious, and don't know what to do with your wanderlust?
             Sun Voyage (pronounced like 'bon voyage') is your go-to for experiencing what it would be like to live in another world!
@@ -60,7 +62,7 @@ const About = () => {
                 Each story is 10 comments long, so make your mark and go where no wo|man has gone before, by contributing something unique!
             </p>
 
-            <h1 className='title bold'>The Team</h1>
+            <h1 className='title bold title-team'>The Team</h1>
             <div className="team">
                 < Row >
                     {teammateCards}
