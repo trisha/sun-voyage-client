@@ -3,9 +3,9 @@ import { Redirect } from 'react-router-dom';
 // import jwt_decode from 'jwt-decode';
 // import setAuthToken from '../../utils/setAuthToken';
 const moment = require('moment')
-const APOD_KEY = process.env.REACT_APP_APOD_KEY
+//const APOD_KEY = process.env.REACT_APP_APOD_KEY
 const axios = require('axios')
-
+const APOD_KEY='xjTwiG8eZ4hulBTHXbVWpiSgYxoFUgEmpaLU3Hgo'
 const ProfileEdit = (props) => {
     // GRAB IMAGE FOR USER BASED ON THEIR BIRTHDAY.
     let [dailyPic, setDailyPic] = useState(null)
