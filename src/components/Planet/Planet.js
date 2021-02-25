@@ -20,8 +20,7 @@ const Planet = (props) => {
         // Returns info on the planet.
         .then(rdata => {
             //-----> Elyssa I really don't know what information do you need but we should grad the information that we need from rdata and make our own objedt and push to planetdata
-            console.log('🌹🌹🌹')
-            console.log(rdata.data)
+
             
             //setPlanetData(PlanetData)
             setPlanetData({
@@ -32,9 +31,12 @@ const Planet = (props) => {
                 moons:rdata.data[0].moons
             })
             let comments=rdata.data[0].comments.map(comment=>{
+                console.log('🌹🌹🌹')
+                console.log(comment)
                 return{
                     user:comment.user.name,
-                    content:comment.content
+                    content:comment.content,
+                    id:comment._id
                 }
             })
             setComments([...comments])
