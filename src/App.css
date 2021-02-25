@@ -37,15 +37,46 @@ body {
 
 /* WELCOME PAGE STYLING */
 
+@keyframes flickerAnimation {
+  0%   { opacity:1; }
+  50%  { opacity:0.2; }
+  100% { opacity:1; }
+}
+
+@keyframes fadeAnimation {
+  0%   { opacity:1; }
+  50%  { opacity:0.6; }
+  100% { opacity:1; }
+}
+
 .welcome-container-div {
+  position: absolute;
+  background-repeat: repeat;
   width: 100vw;
   height: 80vh;
   overflow: hidden;
 }
 
+.anim {
+  opacity:1;
+  animation: fadeAnimation 20s infinite;
+  background-image: url('./Images/star-background.png');
+}
+
+.flipped {
+  opacity:1;  
+  animation: flickerAnimation 2s infinite;
+  background-image: url('./Images/star-background-flipped.png');
+}
+
+.flipped-third{
+  opacity:1;
+  animation: flickerAnimation 5s infinite;
+  background-image: url('./Images/star-background-flipped-third.png');
+}
+
 .welcome-div {
-  background-image: url('./Images/planet-pic.jfif');
-  background-color: black;
+  background-image: url('./Images/planet-pic.png');
   background-position: center 40%;
   background-repeat: no-repeat;
   object-fit: cover;
@@ -55,6 +86,13 @@ body {
   justify-content: center;
   align-items: center;
   transition: 1s;
+}
+
+.twinkling-div {
+  width: 2000px;
+  height: 2000px;
+  background-color: red;
+  background:transparent url('http://www.script-tutorials.com/demos/360/images/twinkling.png') repeat;
 }
 
 .welcome-div:hover {
@@ -211,7 +249,8 @@ body {
   background-size: 650px;
   object-fit: cover;
   background-repeat: no-repeat;
-  background-position: top right;
+  background-position: 78% 150%;
+  background-attachment: fixed;
   width: 100%;
   height: fit-content;
   min-height: 400px;
