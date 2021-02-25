@@ -15,14 +15,10 @@ const ProfileComments = (props) => {
             }
             })
             .then(res=>{
-                // console.log('✌✌✌')
-                // console.log(res)
-                return JSON.stringify(res.data.searchTerm) 
-                //setUserComments([...userComments,res.data.searchTerm])
-            })
-            .then(response=>{
-                setUserComments([...userComments,response])
-                console.log(response)
+                console.log('✌✌✌')
+                console.log(res)
+                //return JSON.stringify(res.data.searchTerm) 
+                setUserComments([...userComments,res.data.searchTerm])
             })
     }, [])
 // props.user (currentUser and info)
@@ -38,9 +34,9 @@ const ProfileComments = (props) => {
                 return <>
                 {/*----> Elyssa here is would be planet name and contenet so I will fix the state problem tomorrow and here just need design*/}
                     <h1>Planet Name:</h1>
-                    <p>{data.planetName}</p>
+                    <p>{data[0].planetName}</p>
                     <h1>content:</h1>
-                    <p>{data.content}</p>
+                    <p>{data[0].content}</p>
                 </>
             })
             }

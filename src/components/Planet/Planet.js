@@ -37,7 +37,7 @@ const Planet = (props) => {
                     content:comment.content
                 }
             })
-            setComments([...comments,comments])
+            setComments([...comments])
         }).catch(err=>{
         })
         
@@ -49,8 +49,9 @@ const Planet = (props) => {
         setNewComment(e.target.value)
     }
     const addCommentTodb=(e)=>{
-        e.preventDefault();
+        e.preventDefault()
         console.log("hello add comment")
+        console.log(planetData.id)
         axios({
             url: `http://localhost:8000/comments/add/${planetData.id}`,
             method: 'POST',
@@ -66,8 +67,8 @@ const Planet = (props) => {
                 // let comment
                 console.log('🎉🎉🎉🎉')
                 console.log(res)
-                setComments([])
-                setComments([...comments,res.data.searchTerm])
+                //setComments([])
+                setComments([...res.data.searchTerm])
 
             })
     }
@@ -108,6 +109,8 @@ const Planet = (props) => {
 
             let userData
             if (props.user) {
+                console.log("✔✔✔✔")
+                console.log(props.user)
                 userData = props.user
             } else {
                 userData = {
