@@ -32,6 +32,7 @@ function App() {
   // set Authentication state values
   let [currentUser, setCurrentUser] = useState("");
   let [isAuthenticated, setIsAuthenticated] = useState(true);
+  let [updateUser, setUpdateUser] = useState(false);
 
   useEffect(() => {
     let token;
@@ -45,7 +46,7 @@ function App() {
       console.log(`this is token 😍 ${localStorage.getItem('jwtToken')}`)
       console.log(token)
     }
-  }, []);
+  }, [updateUser]);
 
   const nowCurrentUser = (userData) => {
     console.log('nowCurrentUser is working...');
@@ -152,7 +153,7 @@ function App() {
             render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} 
           />
           <PrivateRoute exact path="/profile" component={ Profile } user={currentUser} />
-          <PrivateRoute path="/profile/edit" component={ ProfileEdit } user={currentUser} refreshPage={refreshPage} />
+          <PrivateRoute path="/profile/edit" component={ ProfileEdit } user={currentUser} updateUser={updateUser} setUpdateUser={setUpdateUser} refreshPage={refreshPage} setRefreshPage={setRefreshPage} />
           <PrivateRoute path="/profile/comments" component={ ProfileComments } user={currentUser} planets={data} />
 
         </Switch>
