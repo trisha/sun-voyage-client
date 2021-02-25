@@ -1,4 +1,5 @@
 import React from 'react';
+import { Row, Col } from 'react-bootstrap'
 
 const About = () => {
     const teammates = [
@@ -8,7 +9,7 @@ const About = () => {
             title: 'Frontend Developer, CSStylist',
             githubURL: 'https://github.com/ElyssaW',
             linkedinURL: 'https://www.linkedin.com/in/elyssa-winch/',
-            bio: 'Add your bio here. You can add line breaks <br> instead of paragraph tags (p tags give too much space up top), as well as escape special characters such as like \' this.'
+            bio: 'Elyssa is a developer, writer, artist, and terrible picture-taker. She likes to draw, cook, and code. <br><br>She would like to thank her cat Cricket, for emotional support, and DnD, for just generally existing.'
         },
         {
             name: 'Patricia Pan',
@@ -29,25 +30,27 @@ const About = () => {
     ]
 
     const teammateCards = teammates.map((person, i) => (
-        <div className="teammate">
-            <img className="profile" src={person.imgURL} alt={person.name} />
-            <h3>{person.name}</h3>
-            <h5>{person.title}</h5>
-            
-            {/* Below allows us to escape HTML tags. */}
-            <p dangerouslySetInnerHTML={{ __html: person.bio }} />
-            
-            <p>
-                <a href={person.githubURL}><img className="logo" src='githubLogo.png' alt="github logo" /></a> 
-                <a href={person.linkedinURL}><img className="logo" src='linkedinLogo.png' alt="linkedin logo" /></a>
-            </p>
-        </div>
+        < Col >
+            <div className="teammate">
+                <img className="profile" src={person.imgURL} alt={person.name} />
+                <h3 className='title bold'>{person.name}</h3>
+                <h5>{person.title}</h5>
+                
+                {/* Below allows us to escape HTML tags. */}
+                <p className='about-bio' dangerouslySetInnerHTML={{ __html: person.bio }} />
+                
+                <p className='logo-bank'>
+                    <a href={person.githubURL}><img className="logo" src='githubLogo.png' alt="github logo" /></a> 
+                    <a href={person.linkedinURL}><img className="logo" src='linkedinLogo.png' alt="linkedin logo" /></a>
+                </p>
+            </div>
+        </Col>
     ))
     
     return (
-        <div className="container">
+        <div className="app-main">
         <div className="about">
-            <h1>About</h1>
+            <h1 className='title bold'>About</h1>
             <p>Welcome to Sun Voyage!</p>
             <p>Feeling cooped up or anxious, and don't know what to do with your wanderlust?
             Sun Voyage (pronounced like 'bon voyage') is your go-to for experiencing what it would be like to live in another world!
@@ -57,9 +60,11 @@ const About = () => {
                 Each story is 10 comments long, so make your mark and go where no wo|man has gone before, by contributing something unique!
             </p>
 
-            <h1>The Team</h1>
+            <h1 className='title bold'>The Team</h1>
             <div className="team">
-                {teammateCards}
+                < Row >
+                    {teammateCards}
+                </Row>
 
                 {/* <div className="teammate">
                     <img className="profile" src='https://media-exp1.licdn.com/dms/image/C5603AQGPXnfliT9Zpg/profile-displayphoto-shrink_200_200/0/1599016140804?e=1619654400&v=beta&t=IK-lHyhfjMhNakU_sPoDuXyPFpx2VnzH3X2DXPR5RT4' />
