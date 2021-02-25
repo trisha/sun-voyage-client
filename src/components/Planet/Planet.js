@@ -22,24 +22,18 @@ const Planet = (props) => {
         .then(rdata => {
             setPlanetData(rdata.data[0])
             let comments=rdata.data[0].comments.map(comment=>{
-                // console.log('🌹🌹🌹')
-                // console.log(comment)
                 return{
                     user:comment.user.name,
                     content:comment.content,
-                    id:comment._id
+                    id:comment._id,
+                    userId: comment.user.id
                 }
             })
-            console.log('id')
-            console.log(comments[0].id)
             setComments([...comments])
         }).catch(err=>{
         })
-        
-        
     }, [])
 
-    // Yasaman added
     const commentUpdate=(e)=>{
         setNewComment(e.target.value)
     }
@@ -62,12 +56,11 @@ const Planet = (props) => {
             }).then(res=>{
                 console.log(res)
                 setComments([...res.data.searchTerm])
-                let inputBox = document.getElementsByClassName('comment-input')[0]
-                inputBox.value = ''
-
             }).catch(() => {
                 console.log('error')
             })
+            let inputBox = document.getElementsByClassName('comment-input')[0]
+            inputBox.value = ''
     }
 
     const handleEdit = (comment) => {
@@ -81,9 +74,6 @@ const Planet = (props) => {
         e.preventDefault()
         let editedComment = editComment
         editedComment.content = newComment
-        console.log("hello edit comment")
-        console.log(editedComment)
-        console.log(`http://localhost:8000/comments/edit/${planetId}/${editedComment.id}`)
         axios({
             url: `http://localhost:8000/comments/edit/${planetId}/${editedComment.id}`,
             method: 'PUT',
@@ -94,13 +84,10 @@ const Planet = (props) => {
                 'comment': newComment 
             }
             }).then(res=>{
-                // let comment
-                console.log('🎉🎉🎉🎉')
-                console.log(res)
                 setComments([...res.data.searchTerm])
-                let inputBox = document.getElementsByClassName('comment-input')[0]
-                inputBox.value = ''
             })
+        let inputBox = document.getElementsByClassName('comment-input')[0]
+        inputBox.value = ''
         setEditComment(null)
     }
 
@@ -113,7 +100,10 @@ const Planet = (props) => {
         console.log('Cancelling edit...')
     }
 
-
+    const handleDelete = (comment) => {
+        console.log(`Deleting comment ${comment}`)
+    }
+    
     //.................................................................
     if (!planetData.name || !planetData.moons) {
         return (
@@ -123,11 +113,9 @@ const Planet = (props) => {
             // Populate a value into comment list if any comments exist
             let commentList
             if (comments.length) {
-                // console.log('❤❤')
                 commentList = comments.map((comment, i) => {
-                    // Yasaman quistion: It will takae long time to show new comments on page
-                    //----> Elyssa I don't know what information do you need from comments let me know so I can send more info from backend
-                    return < Comment comment={comment} user={props.user} key={`comment-id-${i}`} handleEdit={handleEdit} />
+                    console.log(comment)
+                    return < Comment comment={comment} user={props.user} key={`comment-id-${i}`} handleEdit={handleEdit} handleDelete={handleDelete}/>
                 })
             } else {
                 commentList = <p>No comments yet!</p>
@@ -201,7 +189,7 @@ const Planet = (props) => {
 
                         { editComment ? (
                             <>
-                            <button className='link-button' onClick={(e)=>putEditedComment(e, planetData._id)}>Edit This Entry</button>
+                            <button className='link-button' onClick={(e)=>putEditedComment(e, planetData._id)}>Edit Comment</button>
                             <button onClick={(e)=>{ cancelEdit(e)}}>Cancel edit</button>
                             </>
                         )
