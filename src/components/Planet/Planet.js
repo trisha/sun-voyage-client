@@ -19,22 +19,14 @@ const Planet = (props) => {
         axios.get(`${REACT_APP_SERVER_URL}/planets/display/${props.planetId}`) 
         // Returns info on the planet.
         .then(rdata => {
-            //-----> Elyssa I really don't know what information do you need but we should grad the information that we need from rdata and make our own objedt and push to planetdata
-            console.log('🌹🌹🌹')
-            console.log(rdata.data)
-            
-            //setPlanetData(PlanetData)
-            setPlanetData({
-                id:rdata.data[0]._id,
-                name:rdata.data[0].name,
-                sideralOrbit:rdata.data[0].sideralOrbit,
-                mass:rdata.data[0].mass,
-                moons:rdata.data[0].moons
-            })
+            setPlanetData(rdata.data[0])
             let comments=rdata.data[0].comments.map(comment=>{
+                console.log('🌹🌹🌹')
+                console.log(comment)
                 return{
                     user:comment.user.name,
-                    content:comment.content
+                    content:comment.content,
+                    id:comment._id
                 }
             })
             setComments([...comments])
@@ -73,7 +65,7 @@ const Planet = (props) => {
             })
     }
     //.................................................................
-    if (!planetData) {
+    if (!planetData.name || !planetData.moons) {
         return (
             <p>Loading...</p>
         )
@@ -120,16 +112,15 @@ const Planet = (props) => {
                 }
             }
             
-            // let moons = planetData.moons.map(moon => {
-            //     return < Moon moon={moon} />
-            // })
+            let moons = planetData.moons.map(moon => {
+                return < Moon moon={moon} />
+            })
 
         return (
             <div className='app-main'>
             <Row className='planet-page'>
                 <Col className='col-12' >
-                    {/* <div className={`planet-page-image ` + planetData.name.replace(/[0-9]/g, '')}> */}
-                    <div className={`planet-page-image `}>
+                    <div className={`planet-page-image ` + planetData.name.replace(/[0-9]/g, '')}>
                         <h2 className='planet-page-title'>{planetData.name}</h2>
 
                         <Row >
@@ -150,10 +141,10 @@ const Planet = (props) => {
                 
             </Row>
             <Row className='planet-page'>
-                {/* <h4 className='title bold moons-title'>Moons: {planetData.moons.length}</h4> */}
+                <h4 className='title bold moons-title'>Moons: {planetData.moons.length}</h4>
             </Row>
             < Row className="moon-container" >
-                {/* {moons} */}
+                {moons}
             </Row>
             <Row className='planet-comment-div'>
                     <h4 className='title bold comment-section-head'>Comments: </h4>
