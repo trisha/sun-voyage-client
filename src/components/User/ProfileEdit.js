@@ -38,25 +38,41 @@ const ProfileEdit = (props) => {
     const editWeight = (e) => setEditingWeight(e.target.value)
     
     // Our onClick submission.
-    const saveProfile = () => {
-        // Send user information to backend so that it can update the user based on ID.
-        // Axios.put 
+    const saveProfile = (e) => {
+        e.preventDefault() // To prevent refresh.
+        const profile = {
+            // Set new values.
+        }
+
+        axios.put('/profile/edit', profile)
+        .then( results => {
+            // access results here. 
+            // Update login token.
+            // Redirect to Profile page.
+        })
         console.log("Attempting to save user data.")
         console.log(editingName, editingDOB, editingAge, editingWeight)
     }
 
     const editUserData = (
         <div>
-            <form>
-                <p><strong>Name:</strong> <input type='text' value={editingName} onChange={editName} /></p> 
-                {/* <p><strong>Name:</strong> <input type='text' defaultValue={props.user.name}>{props</input></p>  */}
-                <p><strong>Email:</strong> {props.user.email}</p> 
-                <p><strong>DOB:</strong> <input type='text' value={editingDOB} placeholder="YYYY-MM-DD" onChange={editDOB} /></p> 
+            <form onSubmit={saveProfile}>
+                <p><label><strong>Name:</strong></label>
+                <input type='text' value={editingName} onChange={editName} name="name" /></p> 
+
+                <p><label><strong>Email:</strong></label>
+                {props.user.email}</p> 
+
+                <p><label><strong>DOB:</strong></label>
+                <input type='text' value={editingDOB} placeholder="YYYY-MM-DD" onChange={editDOB} name="DOB" /></p> 
+                
                 <p><strong>Age:</strong> {moment().diff(`${editingDOB}`, 'years')} years old</p> 
-                <p><strong>Weight: </strong> <input type='text' value={editingWeight} /> pounds </p> 
-                <button onClick={saveProfile}>Save</button>
-            </form>
-            
+                
+                <p><strong>Weight: </strong> <input type='text' value={editingWeight} onChange={editWeight} /> pounds </p> 
+                
+                <input type="submit" value="Save" onClick={saveProfile} />
+                {/* <button onClick={saveProfile}>Save</button> */}
+            </form>          
         </div>
     )
     
