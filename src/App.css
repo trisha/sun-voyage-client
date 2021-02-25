@@ -129,6 +129,16 @@ body {
   text-align: left;
 }
 
+.about-title {
+  border-bottom: 3px solid black;
+  width: 100%;
+}
+
+.title-team {
+  border-bottom: 3px solid black;
+  width: 100%;
+}
+
 .team{
   display: flex;
   justify-content: space-between;
@@ -138,12 +148,16 @@ body {
   width: 100%;
 }
 
-.teammate {
-  min-width: 200px;
+.teammate-col {
+  padding: 0 90px;
 }
 
-.about-bio {
-  height: 150px;
+.teammate-body {
+  height: 550px;
+}
+
+.teammate {
+  min-width: 150px;
 }
 
 .logo {
