@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-// import jwt_decode from 'jwt-decode';
-// import setAuthToken from '../../utils/setAuthToken';
+import jwt_decode from 'jwt-decode';
+import setAuthToken from '../../utils/setAuthToken';
 const moment = require('moment')
-const APOD_KEY = process.env.REACT_APP_APOD_KEY
+//const APOD_KEY = process.env.REACT_APP_APOD_KEY
 const axios = require('axios')
-
+const APOD_KEY='xjTwiG8eZ4hulBTHXbVWpiSgYxoFUgEmpaLU3Hgo'
 const ProfileEdit = (props) => {
     // GRAB IMAGE FOR USER BASED ON THEIR BIRTHDAY.
     let [dailyPic, setDailyPic] = useState(null)
@@ -58,27 +58,30 @@ const ProfileEdit = (props) => {
               'profile': JSON.stringify(profile) // Convert to JSON object so we can pass it via axios.
             }
         })
-        .then( res => {
-            console.log("The response data is: ", res.data)
-            console.log("updateUser is currently: ", props.updateUser)
-            redirect ? setRedirect(false) : setRedirect(true)
 
-            console.log("updateUser is: ", props.updateUser)
-            props.updateUser ? props.setUpdateUser(false) : props.setUpdateUser(true)
-            console.log("updateUser is now: ", props.updateUser)
+        // PART 1: Below code is what I had working to update the profile, but not to update the token. 
+        // Part 1 and 3 get combined to form part 2, the final product.
+        // .then( res => {
+        //     console.log("The response data is: ", res.data)
+        //     console.log("updateUser is currently: ", props.updateUser)
+        //     redirect ? setRedirect(false) : setRedirect(true)
 
-            // props.refreshPage ? props.setRefreshPage(false) : props.setRefreshPage(true)
-            // console.log("updateUser is now: ", props.updateUser)
-        })
+        //     console.log("updateUser is: ", props.updateUser)
+        //     props.updateUser ? props.setUpdateUser(false) : props.setUpdateUser(true)
+        //     console.log("updateUser is now: ", props.updateUser)
+
+        //     // props.refreshPage ? props.setRefreshPage(false) : props.setRefreshPage(true)
+        //     // console.log("updateUser is now: ", props.updateUser)
+        // })
 
 
-        // Below code is the combined code. Doesn't work because it says "We have an error 🤞: InvalidTokenError: Invalid token specified"
-        // My guess is that when I create a new token, it invalidates the old one. And then I never reassign the new token.
-        // Had to use localStorage.clear() command in console to undo the mess.
+        // PART 2: Below code is the combined code. 
+        // While debuging, had to use localStorage.clear() command in console to undo the mess.
         // https://stackoverflow.com/questions/43886878/auth0-and-vue-error-in-render-function-invalidtokenerror-invalid-token-speci
-        /*
+        
         .then(response => {
-            const { token } = response.data;
+            const token = response.data;
+            console.log("😍 response.data: ", response.data)
             console.log("😍 token: ", token)
             console.log("🥳 { token }: ", { token })
             // Save token to localStorage
@@ -93,10 +96,8 @@ const ProfileEdit = (props) => {
 
             redirect ? setRedirect(false) : setRedirect(true)
         })
-        */
 
-
-
+        // PART 3: Below code was copy and pasted from login function, and the basis for creating a new token.
         // .then(response => {
         //     const { token } = response.data;
         //     console.log("😍 token: ", token)

@@ -83,6 +83,7 @@ function App() {
   // Retrieves planet data from the Mongo database
   useEffect(() => {
     axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
+      console.log(res)
       setData([...res.data.planets])
     })
   }, [])  
@@ -156,7 +157,7 @@ function App() {
             render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} 
           />
           <PrivateRoute exact path="/profile" component={ Profile } user={currentUser} />
-          <PrivateRoute path="/profile/edit" component={ ProfileEdit } user={currentUser} updateUser={updateUser} setUpdateUser={setUpdateUser} refreshPage={refreshPage} setRefreshPage={setRefreshPage} />
+          <PrivateRoute path="/profile/edit" component={ ProfileEdit } user={currentUser} updateUser={updateUser} setUpdateUser={setUpdateUser} nowCurrentUser={nowCurrentUser} refreshPage={refreshPage} setRefreshPage={setRefreshPage} />
           <PrivateRoute path="/profile/comments" component={ ProfileComments } user={currentUser} planets={data} />
 
         </Switch>
