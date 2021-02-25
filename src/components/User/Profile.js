@@ -34,7 +34,7 @@ const Profile = (props) => {
         <p><strong>DOB:</strong> {props.user.DOB}</p> 
         <p><strong>Age (years):</strong> {moment().diff(`${props.user.DOB}`, 'years')}</p> 
         <p><strong>Weight (pounds):</strong> {props.user.weight}</p> 
-        <button>Edit</button>
+        <button onClick={editProfile}>Edit</button>
         <button onClick={viewComments}>View Comments</button>
     </div>) : <h4>Loading...</h4>
 
