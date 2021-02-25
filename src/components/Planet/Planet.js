@@ -19,7 +19,7 @@ const Planet = (props) => {
             
             console.log(rdata.data)
             
-            setPlanetData(PlanetData)
+            setPlanetData(rdata)
             
         }).catch(err=>{
         })
