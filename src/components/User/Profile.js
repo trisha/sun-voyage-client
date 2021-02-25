@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 const moment = require('moment')
 const APOD_KEY = process.env.REACT_APP_APOD_KEY
+const REACT_APP_SERVER_URL='http://localhost:8000'
+//const APOD_KEY='xjTwiG8eZ4hulBTHXbVWpiSgYxoFUgEmpaLU3Hgo'
 const axios = require('axios')
 
 const Profile = (props) => {
@@ -9,14 +11,37 @@ const Profile = (props) => {
     console.log(props.user)
     const [dailyPic, setDailyPic] = useState(null)
 
+    // useEffect(() => {
+    //     axios.get(`https://api.nasa.gov/planetary/apod?api_key=${APOD_KEY}&start_date=${props.user.DOB}&end_date=${props.user.DOB}`)
+    //     .then(res => {
+    //         console.log('DOB response')
+    //         console.log(res)
+    //         setDailyPic(res.data[0])
+    //     })
+    // }, [])
     useEffect(() => {
-        axios.get(`https://api.nasa.gov/planetary/apod?api_key=${APOD_KEY}&start_date=${props.user.DOB}&end_date=${props.user.DOB}`)
-        .then(res => {
-            console.log('DOB response')
-            console.log(res)
-            setDailyPic(res.data[0])
+
+        axios({
+            url:'http://localhost:8000/auth/profile',
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+            }
         })
-    }, [])
+        .then(res=>{
+                console.log('👏👏')
+                console.log(res)
+            })
+        // axios.get(`${REACT_APP_SERVER_URL}/planets`)
+        // .then(res => {
+        //     console.log('✔✔✔✔✔✔✔')
+        //     console.log('DOB response')
+        //     console.log(`👀👀👀${res}`)
+        // })
+        // .catch(err=>{
+        //     console.log(err)
+        // })
+    },[])
 
     const userData = props.user ? 
     (<div>
