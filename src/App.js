@@ -18,10 +18,10 @@ import AddComment from './components/Comment/AddComment.js'
 import APOD from './components/Planet/APOD.js'
 import TestData from './Data'
 import './App.css';
-require('dotenv').config;
 const axios = require('axios')
 // const REACT_APP_SERVER_URL='http://localhost:8000'
 const SERVER_URL=process.env.REACT_APP_SERVER_URL
+// console.log(SERVER_URL)
 
 const PrivateRoute = ({ component: Component, ...rest }) => { // Below route checks to see if a user is logged in. 
   const user = localStorage.getItem('jwtToken');
