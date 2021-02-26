@@ -133,7 +133,7 @@ const ProfileEdit = (props) => {
                 {props.user.email}</p> 
 
                 <p><label htmlFor="Date of Birth"><strong>DOB:</strong></label>
-                <input type='text' value={editingDOB} placeholder="YYYY-MM-DD" onChange={editDOB} name="DOB" /></p> 
+                <input type='date' value={editingDOB} placeholder="YYYY-MM-DD" onChange={editDOB} name="DOB" /></p> 
                 
                 <p><label htmlFor="age"><strong>Age:</strong></label> {moment().diff(`${editingDOB}`, 'years')} years old</p> 
                 
