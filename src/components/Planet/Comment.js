@@ -1,4 +1,7 @@
 import React from 'react';
+// const REACT_APP_SERVER_URL ='http://localhost:8000'
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
+const axios = require('axios')
 
 const Comment = (props) => {
 
