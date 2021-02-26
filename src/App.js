@@ -1,4 +1,3 @@
-require('dotenv').config
 import React, { useEffect, useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
@@ -19,6 +18,7 @@ import AddComment from './components/Comment/AddComment.js'
 import APOD from './components/Planet/APOD.js'
 import TestData from './Data'
 import './App.css';
+require('dotenv').config;
 const axios = require('axios')
 const REACT_APP_SERVER_URL=process.env.REACT_APP_SERVER_URL
 
