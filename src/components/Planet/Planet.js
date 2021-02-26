@@ -51,17 +51,17 @@ const Planet = (props) => {
         setNewComment(e.target.value)
     }
     const addCommentTodb=(e)=>{
-        e.preventDefault()
+         e.preventDefault()
         console.log("hello add comment")
         console.log(planetData.id)
         axios({
-            url: `http://localhost:8000/comments/add/${planetData.id}`,
-            method: 'POST',
+            url: `http://localhost:8000/comments/delete/${planetData.id}/60380cdfda336232906db724`,
+            method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
             },
             data:{
-                'comment': newComment,
+                
                 'userData': props.user 
             }
             
@@ -69,10 +69,34 @@ const Planet = (props) => {
                 // let comment
                 console.log('🎉🎉🎉🎉')
                 console.log(res)
-                //setComments([])
-                setComments([...res.data.searchTerm])
-
+                
+                
+            }).catch(err=>{
+                console.log('🎉🎉🎉🎉')
+                console.log(err)
+                
             })
+        // console.log("hello add comment")
+        // console.log(planetData.id)
+        // axios({
+        //     url: `http://localhost:8000/comments/add/${planetData.id}`,
+        //     method: 'POST',
+        //     headers: {
+        //         'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+        //     },
+        //     data:{
+        //         'comment': newComment,
+        //         'userData': props.user 
+        //     }
+            
+        //     }).then(res=>{
+        //         // let comment
+        //         console.log('🎉🎉🎉🎉')
+        //         console.log(res)
+        //         //setComments([])
+        //         setComments([...res.data.searchTerm])
+
+        //     })
     }
     //.................................................................
     if (!planetData) {

@@ -27,20 +27,20 @@ const ProfileComments = (props) => {
 // props.user (currentUser and info)
 // props.planets (all planets and their infor)
     // const comments = props.planets.forEach( (planet,i) => {
-
     // })
     if(userComments.length){
         console.log(userComments.length)
         return (
             <div className='app-main'>
-                {userComments.map((data,i)=>{
-                    
+                {userComments[0].map((data,i)=>{
+                    console.log('😍😍😍😍')
+                    console.log(data)
                     return <>
                     {/*----> Elyssa here is would be planet name and contenet so I will fix the state problem tomorrow and here just need design*/}
                         <h1>Planet Name:</h1>
-                        <p>{data[0].planetName}</p>
+                        <p>{data.planetName}</p>
                         <h1>content:</h1>
-                        <p>{data[0].content}</p>
+                        <p>{data.content}</p>
                     </>
                 })
                 }
