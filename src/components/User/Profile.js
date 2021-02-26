@@ -7,7 +7,6 @@ const moment = require('moment')
 const axios = require('axios')
 
 const Profile = (props) => {
-
     const [editMode, setEditMode] = useState(false) // Toggle on when user clicks Edit button.
     const [viewCommentsMode, setViewCommentsMode] = useState(false) // Toggle on when user clicks 'View Comments' button.
     
