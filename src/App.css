@@ -1,4 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho&display=swap');
+@font-face {
+  font-family: 'MoongladeDemoBold-jOzM';
+  src: url("./Images/Fonts/MoongladeDemoBold-jOzM.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'MandatoryPlaything-nRRd0';
+  src: url("./Images/Fonts/MandatoryPlaything-nRRd0.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'Minbus-A352';
+  src: url("./Images/Fonts/Minbus-A352.otf") format("opentype");
+}
+
 
 html {
   position: relative;
@@ -6,7 +20,7 @@ html {
 }
 body {
   height: 100%;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Shippori Mincho', serif;
   background-color: black;
 }
 
@@ -26,10 +40,18 @@ body {
   font-family: 'Poiret One', cursive;
 }
 
+.small-text {
+  font-size: 14px;
+}
+
+.comment-profile-div {
+  margin: 30px 0;
+}
+
 /* APP MAIN PAGE */
 
 .app-main {
-  margin: 6vh 6vw;
+  margin: 2vh 6vw;
   padding: 4vh 6vw;
   background-color: #fafafa;
   min-height: 70vh;
@@ -37,15 +59,46 @@ body {
 
 /* WELCOME PAGE STYLING */
 
+@keyframes flickerAnimation {
+  0%   { opacity:1; }
+  50%  { opacity:0.2; }
+  100% { opacity:1; }
+}
+
+@keyframes fadeAnimation {
+  0%   { opacity:1; }
+  50%  { opacity:0.6; }
+  100% { opacity:1; }
+}
+
 .welcome-container-div {
+  position: absolute;
+  background-repeat: repeat;
   width: 100vw;
   height: 80vh;
   overflow: hidden;
 }
 
+.anim {
+  opacity:1;
+  animation: fadeAnimation 20s infinite;
+  background-image: url('./Images/star-background.png');
+}
+
+.flipped {
+  opacity:1;  
+  animation: flickerAnimation 2s infinite;
+  background-image: url('./Images/star-background-flipped.png');
+}
+
+.flipped-third{
+  opacity:1;
+  animation: flickerAnimation 5s infinite;
+  background-image: url('./Images/star-background-flipped-third.png');
+}
+
 .welcome-div {
-  background-image: url('./Images/planet-pic.jfif');
-  background-color: black;
+  background-image: url('./Images/planet-pic.png');
   background-position: center 40%;
   background-repeat: no-repeat;
   object-fit: cover;
@@ -55,6 +108,13 @@ body {
   justify-content: center;
   align-items: center;
   transition: 1s;
+}
+
+.twinkling-div {
+  width: 2000px;
+  height: 2000px;
+  background-color: red;
+  background:transparent url('http://www.script-tutorials.com/demos/360/images/twinkling.png') repeat;
 }
 
 .welcome-div:hover {
@@ -69,6 +129,7 @@ body {
   font-size: 200px;
   text-shadow: 0px 2px 2px #ffffff,  0px 2px 15px #ffffff;
   transition: 1s;
+  font-family: 'MoongladeDemoBold-jOzM';
 }
 
 .welcome-title:hover {
@@ -91,6 +152,16 @@ body {
   text-align: left;
 }
 
+.about-title {
+  border-bottom: 3px solid black;
+  width: 100%;
+}
+
+.title-team {
+  border-bottom: 3px solid black;
+  width: 100%;
+}
+
 .team{
   display: flex;
   justify-content: space-between;
@@ -98,23 +169,36 @@ body {
 
 .profile {
   width: 100%;
+  border-radius: 7px;
+}
+
+.profile:hover {
+  opacity: .5;
+}
+
+.teammate-col {
+  padding: 0 90px;
+}
+
+.teammate-body {
+  height: 600px;
 }
 
 .teammate {
-  min-width: 200px;
+  min-width: 150px;
+  max-width: 200px
 }
 
-.about-bio {
-  height: 150px;
+.logo-bank {
+  text-align: center;
 }
 
 .logo {
   width: 60px;
-  padding: 5px;
+  padding: 10px;
 }
 
 /* ALL PLANETS PAGE */
-
 .planet-list-title {
   display: inline;
 }
@@ -177,6 +261,7 @@ body {
 
 .link-button{
   border: none;
+  border-radius: 5px;
   background-color: black;
   color: aliceblue;
   padding: 10px 18px;
@@ -186,9 +271,19 @@ body {
   display: block;
 }
 
+.link-button:hover{
+  text-shadow: 0px 7px 15px #ffffff;
+}
+
 .link-parent:hover .exp-color-box {
   background-color: red;
   width: 100%;
+}
+
+.comment-sub-button {
+  display: inline;
+  margin-top: 0;
+  margin-right: 10px;
 }
 
 /* PLANET SPECIFIC PAGE */
@@ -211,7 +306,8 @@ body {
   background-size: 650px;
   object-fit: cover;
   background-repeat: no-repeat;
-  background-position: top right;
+  background-position: 78% top;
+  background-attachment: fixed;
   width: 100%;
   height: fit-content;
   min-height: 400px;
@@ -255,9 +351,48 @@ body {
 }
 
 .comment-div {
-  background-color: lightgray;
+  background-color: lightgray; 
   padding: 10px;
   margin-top: 10px;
+  border-top: 0;
+  border-bottom: 0;
+  border-right-color: transparent;
+  transition: .5s;
+  /* https://css-tricks.com/notched-boxes/ */
+  clip-path: 
+    polygon(
+      0% 15px,                 /* top left */
+      15px 0%,                 /* top left */
+      calc(100% - 0px) 0%,    /* top right */
+      100% 15px,               /* top right */
+      100% calc(100% - 15px),  /* bottom right */
+      calc(100% - 15px) 100%,  /* bottom right */
+      15px 100%,               /* bottom left */
+      0 calc(100% - 0px)      /* bottom left */
+    );
+}
+
+.comment-div:hover {
+  /* Opacity is 0 (fully transparent) to 1 (fully opaque) */
+  background-color: rgb(211,211,211,0.7);
+  clip-path: 
+  polygon(
+    0% 0px,                 /* top left */
+    0px 0%,                 /* top left */
+    calc(100% - 0px) 0%,    /* top right */
+    100% 0px,               /* top right */
+    100% calc(100% - 0px),  /* bottom right */
+    calc(100% - 0px) 100%,  /* bottom right */
+    0px 100%,               /* bottom left */
+    0 calc(100% - 0px)      /* bottom left */
+  );
+}
+
+.comment-button {
+  display: inline;
+  cursor: pointer;
+  color: darkslategray;
+  padding: 3px;
 }
 
 .comment-body {
@@ -279,9 +414,11 @@ body {
 }
 
 .textbox-big {
-  width: 80%;
+  margin: 20px 0;
+  width: 100%;
   height: 20em;
   border: none;
+  padding: 30px;
 }
 
 .text-submit {
@@ -317,11 +454,6 @@ body {
 
 /* APOD */
 
-.apod-div {
-  background-color: #fafafa;
-  padding: 30px 50px;
-}
-
 .apod-title {
   width: 100%;
   border-bottom: 3px solid black;
@@ -333,11 +465,59 @@ body {
 
 .apod-pic {
   width: 100%;
-  height: 300px;
+  height: 90vh;
   margin: 0;
-  object-fit: contain;
+  font-size: 20px;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  color: rgba(0, 0, 0, 0);
+  background-image: rgba(0, 0, 0, 1);
+}
+
+.apod-desc {
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  padding: 40px 20px 40px 20px;
+  background: rgb(2,0,36);
+  background: linear-gradient(45deg, rgba(2,0,36,.9) 0%, rgba(22,65,80,.6) 62%, rgba(144,164,168,0) 100%);
+  opacity: 0;
+  transition: 1s;
+}
+
+@media screen and (max-width: 1200px) {
+  .apod-contents {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  .apod-contents {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.apod-desc:hover {
+  padding: 20px 20px;
+  opacity: 1;
+}
+
+.apod-pic:hover {
+  color: rgba(255, 255, 255, 1);
+  background-image:     linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.6)
+  )
 }
 
 /* SIGN UP */
@@ -360,6 +540,10 @@ body {
   justify-content: space-between;
 }
 
+.profile-button {
+  width: 100%;
+}
+
 /* FOOTER */
 
 .footer {
@@ -369,6 +553,52 @@ body {
   width: 100%;
   height: 60px; /* Set the fixed height of the footer here */
   line-height: 60px; /* Vertically center the text there */
+}
+
+/* NOT FOUND */
+
+.not-found {
+  background-position: right;
+  color: white;
+  background-image: url('./Images/404.jpg');
+}
+
+.not-found-button {
+  background-color: white;
+  color: black;
+  font-size: 30px;
+  margin-top: 50px;
+  padding: 20px 40px;
+  width: fit-content;
+  clip-path: 
+  polygon(
+    0% 15px,                 /* top left */
+    15px 0%,                 /* top left */
+    calc(100% - 0px) 0%,    /* top right */
+    100% 15px,               /* top right */
+    100% calc(100% - 15px),  /* bottom right */
+    calc(100% - 15px) 100%,  /* bottom right */
+    15px 100%,               /* bottom left */
+    0 calc(100% - 0px)      /* bottom left */
+  );
+  text-decoration: none;
+  transition: .5s;
+}
+
+.not-found-button:hover {
+  text-decoration: none;
+  color: black;
+  clip-path: 
+  polygon(
+    0% 0px,                 /* top left */
+    0px 0%,                 /* top left */
+    calc(100% - 0px) 0%,    /* top right */
+    100% 0px,               /* top right */
+    100% calc(100% - 0px),  /* bottom right */
+    calc(100% - 0px) 100%,  /* bottom right */
+    0px 100%,               /* bottom left */
+    0 calc(100% - 0px)      /* bottom left */
+  );
 }
 
   /* PLANET CARD PICTURES */

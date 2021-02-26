@@ -1,3 +1,4 @@
+require('dotenv').config
 import React, { useEffect, useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
@@ -10,6 +11,7 @@ import ProfileEdit from './components/User/ProfileEdit';
 import ProfileComments from './components/User/ProfileComments';
 import Welcome from './components/Welcome';
 import About from './components/About';
+import NotFound from './components/NotFound'
 import Footer from './components/Footer';
 import AllPlanets from './components/Planet/AllPlanets'
 import Planet from './components/Planet/Planet'
@@ -18,8 +20,7 @@ import APOD from './components/Planet/APOD.js'
 import TestData from './Data'
 import './App.css';
 const axios = require('axios')
-const REACT_APP_SERVER_URL = 'http://localhost:8000'
-//const REACT_APP_SERVER_URL =process.env.REACT_APP_SERVER_URL;
+const REACT_APP_SERVER_URL=process.env.REACT_APP_SERVER_URL
 
 const PrivateRoute = ({ component: Component, ...rest }) => { // Below route checks to see if a user is logged in. 
   const user = localStorage.getItem('jwtToken');
@@ -44,8 +45,7 @@ function App() {
       setAuthToken(localStorage.jwtToken);
       setCurrentUser(token);
       setIsAuthenticated(true);
-      console.log(`this is token 😍 ${localStorage.getItem('jwtToken')}`)
-      console.log(token)
+      console.log(`This is the token: 😍 ${localStorage.getItem('jwtToken')}`)
     }
   }, [updateUser]);
 
@@ -64,8 +64,8 @@ function App() {
       return false
     }
     return true
-    console.log("💕")
-    console.log(decodedToken.exp)
+    // console.log("💕")
+    // console.log(decodedToken.exp)
   } 
 
   const handleLogout = () => {
@@ -83,7 +83,7 @@ function App() {
   // Retrieves planet data from the Mongo database
   useEffect(() => {
     axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
-      console.log(res)
+      // console.log("The planets we're receiving from the API: ", res)
       setData([...res.data.planets])
     })
   }, [])  
@@ -110,7 +110,7 @@ function App() {
           'userData': JSON.stringify(currentUser) // W don't need this but including it to show how to send more than 1 object.
         }
     }).then( res => {
-      console.log(res.data)
+      // console.log(res.data)
       refreshPage ? setRefreshPage(false) : setRefreshPage(true) // Toggle between the two every time a comment is added.
     })
     .catch(err=>{
@@ -156,10 +156,11 @@ function App() {
             path="/login" 
             render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} 
           />
-          <PrivateRoute exact path="/profile" component={ Profile } user={currentUser} />
+          <PrivateRoute exact path="/profile" component={ Profile } user={currentUser} planets={data} />
           <PrivateRoute path="/profile/edit" component={ ProfileEdit } user={currentUser} updateUser={updateUser} setUpdateUser={setUpdateUser} nowCurrentUser={nowCurrentUser} refreshPage={refreshPage} setRefreshPage={setRefreshPage} />
           <PrivateRoute path="/profile/comments" component={ ProfileComments } user={currentUser} planets={data} />
 
+          <Route component={NotFound} /> 
         </Switch>
       </div>
       {/* <Footer /> */}

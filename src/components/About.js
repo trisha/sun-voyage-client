@@ -25,20 +25,21 @@ const About = () => {
             title: 'Backend Developer, Data Wrangler',
             githubURL: 'https://github.com/YasamanForouzesh',
             linkedinURL: 'https://www.linkedin.com/in/yasaman-forouzesh/',
-            bio: 'Place text here. Use <br> tags instead of paragraph tags because the paragraph tags give us too much space on top.'
+            bio: 'Yasaman is a software engineer in Los Angeles, CA with a passion for computer science and backend development. In her spare time, Yasaman enjoys reading books, listening to podcasts, and playing guitar'
         }
     ]
 
     const teammateCards = teammates.map((person, i) => (
-        < Col >
+        < Col className='teammate-col' >
             <div className="teammate">
-                <img className="profile" src={person.imgURL} alt={person.name} />
-                <h3 className='title bold'>{person.name}</h3>
-                <h5>{person.title}</h5>
-                
-                {/* Below allows us to escape HTML tags. */}
-                <p className='about-bio' dangerouslySetInnerHTML={{ __html: person.bio }} />
-                
+                <div className='teammate-body'>
+                    <a href={person.linkedinURL} target='_blank' ><img className="profile" src={person.imgURL} alt={person.name} /></a>
+                    <h3 className='title bold'>{person.name}</h3>
+                    <h5>{person.title}</h5>
+                    {/* Below allows us to escape HTML tags. */}
+                    <p className='about-bio' dangerouslySetInnerHTML={{ __html: person.bio }} />
+                </div>
+            
                 <p className='logo-bank'>
                     <a href={person.githubURL}><img className="logo" src='githubLogo.png' alt="github logo" /></a> 
                     <a href={person.linkedinURL}><img className="logo" src='linkedinLogo.png' alt="linkedin logo" /></a>
@@ -50,17 +51,19 @@ const About = () => {
     return (
         <div className="app-main">
         <div className="about">
-            <h1 className='title bold'>About</h1>
+            <h1 className='title bold about-title'>About</h1>
             <p>Welcome to Sun Voyage!</p>
             <p>Feeling cooped up or anxious, and don't know what to do with your wanderlust?
             Sun Voyage (pronounced like 'bon voyage') is your go-to for experiencing what it would be like to live in another world!
             </p>
 
-            <p>Engage with other galactic travelers on each planet to create a story together, just like in the game "Once Upon a Time." 
-                Each story is 10 comments long, so make your mark and go where no wo|man has gone before, by contributing something unique!
+            <p>Engage with other galactic travelers on each planet, and share your creative sci-fi stories and sight-seeing recommendations in the comments of each planet.
+                
+                {/* to create a story together, just like in the game "Once Upon a Time." 
+                Each story is 10 comments long, so make your mark and go where no wo|man has gone before, by contributing something unique! */}
             </p>
 
-            <h1 className='title bold'>The Team</h1>
+            <h1 className='title bold title-team'>The Team</h1>
             <div className="team">
                 < Row >
                     {teammateCards}
