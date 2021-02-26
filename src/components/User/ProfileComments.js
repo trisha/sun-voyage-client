@@ -48,11 +48,11 @@ const ProfileComments = (props) => {
     if (userComments.length > 0) {
         planetComments = filteredPlanets.map( (planet, i) => (
             <div>
-                <h3>Comments on {planet}</h3>
+                <h3>Your comments on {planet}:</h3>
                 {userComments.map( (comment, i) => {
                     if (comment.planetName == planet) {
                         return (
-                            <div className="commentBox">                            
+                            <div className="comment-div">                            
                                 <div>Content: {comment.content}</div>
                                 <div>Created at: {comment.createdAt}</div>
                                 <div>Updated at: {comment.updatedAt}</div>
