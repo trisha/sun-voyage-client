@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect,Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap'
 const moment = require('moment')
-const APOD_KEY = process.env.REACT_APP_APOD_KEY
-const REACT_APP_SERVER_URL='http://localhost:8000'
-//const APOD_KEY='xjTwiG8eZ4hulBTHXbVWpiSgYxoFUgEmpaLU3Hgo'
 const axios = require('axios')
 
 const Profile = (props) => {
-
-    console.log(props.user)
-    const [dailyPic, setDailyPic] = useState(null)
-
-    
 
     const [editMode, setEditMode] = useState(false) // Toggle on when user clicks Edit button.
     const [viewCommentsMode, setViewCommentsMode] = useState(false) // Toggle on when user clicks 'View Comments' button.
@@ -23,8 +16,6 @@ const Profile = (props) => {
 
     if (editMode) return <Redirect to={'/profile/edit'} />
     if (viewCommentsMode) return <Redirect to={'/profile/comments'} />
-    
-        
 
     // RENDER PROFILE.
     const userData = props.user ? 
@@ -36,15 +27,7 @@ const Profile = (props) => {
         <p><strong>Weight (pounds):</strong> {props.user.weight}</p> 
         <button onClick={editProfile}>Edit</button>
         <button onClick={viewComments}>View Comments</button>
-    </div>) : <h4>Loading...</h4>
-
-    const errorDiv = () => {
-        return (
-            <div className="text-center pt-4 app-main">
-                <h3>Please <Link to="/login">login</Link> to view this page</h3>
-            </div>
-        );
-    };
+    </div>) : <h4>User information loading...</h4>
     
     return (
         <Row className='app-main'>
@@ -53,7 +36,6 @@ const Profile = (props) => {
             </Col>
         </Row>
     );
-
 }
 
 export default Profile;
