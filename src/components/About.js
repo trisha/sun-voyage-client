@@ -25,7 +25,7 @@ const About = () => {
             title: 'Backend Developer, Data Wrangler',
             githubURL: 'https://github.com/YasamanForouzesh',
             linkedinURL: 'https://www.linkedin.com/in/yasaman-forouzesh/',
-            bio: 'Place text here. Use <br> tags instead of paragraph tags because the paragraph tags give us too much space on top.'
+            bio: 'She is a software engineer in Los Angeles, CA with a passion for computer science and backend development. In her spare time, Yasaman enjoys reading books, listening to podcasts, and playing guitar'
         }
     ]
 
