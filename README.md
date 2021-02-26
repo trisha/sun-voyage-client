@@ -1,68 +1,83 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Sun Voyage (API)
+This is the back-end for Sun Voyage (pronounced like 'Bon Voyage'), a decoupled fullstack app.
 
-## Available Scripts
+sun-voyage.herokuapp.com
 
-In the project directory, you can run:
 
-### `yarn start`
+# About
+Welcome to Sun Voyage! Visit planets and dwarf planets in the Solar System to learn more about each, and to see what your age and weight would be in a different world. Interact with other galactic travelers by sharing your experiences and sight-seeing recommendations in the comments of each planet!
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Click [here](http://sunvoyage.herokuapp.com) to visit the live site. 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Click [here](sun-voyage.herokuapp.com) to visit the live backend.
 
-### `yarn test`
+And click [here](https://github.com/patricia-pan/sun-voyage-client) to view the client github repo.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You don't need an account to view planets and others' comments, but you will need one to add your own and to update your profile.
 
-### `yarn build`
+# Screenshots
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Welcome](/public/screenshots/welcome.png)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+![Planets](/public/screenshots/planets.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Eris](/public/screenshots/eris.png)
 
-### `yarn eject`
+![Profile](/public/screenshots/profile.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![APOD picture with text](/public/screenshots/apodtext.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Contributors
+[Patricia Pan](https://github.com/patricia-pan)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+[Elyssa Winch](https://github.com/ElyssaW)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+[Yasaman Forouzesh](https://github.com/YasamanForouzesh)
 
-## Learn More
+# Technologies Used
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# How to Install
+If you'd like to set up this project on your local server:
+- Fork and clone this repository
+- Run `npm i` to install the dependencies listed in package.json
+    - Run `npm i nodemon` (if not already globally installed)
+- Create an .env containing:
+    - REACT_APP_APOD_KEY set to an API key to NASA's Astronomy Picture of the Day API
+    - REACT_APP_SERVER_URL set to the URL for the backend
+- Run npm start
+- Create a profile, view planets, and broswe APOD pictures!
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
+# Timeline
+<!-- How to add lists w/i a markdown table: https://stackoverflow.com/questions/19950648/how-to-write-lists-inside-a-markdown-table -->
+b = backend functionalty; f = frontend functionality.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+user = generic user; User = logged in user. 
+| On... | We created/implemented the following... |
+| ---- | --------------- |
+| Fri, 2/19/21 | <ul> <li>Project idea</li> <li> React components blueprint (f)</li> <li> RESTful Route paths (b)</li> <li>API for planet info (b)</li> <li>User login  (f, b)</li> <li>Account creation from backend (b)</li> </ul> |
+| Sat, 2/20/21 | <ul> <li>Atlas cluster (online database, DB) (b)</li> <li>Mongoose model schemas (b)</li> <li>API seeder file (b)</li> <li>Stubbing for files and components/routes (f, b)</li> <li>Navbar partial (f)</li> </ul>|
+| Mon, 2/22/21 | <ul> <li>Atlas DB with planet data (from seeder file) (b)</li> <li>User commenting on planets (f, b)</li> <li>Comment editing from backend (b)</li> <li>Navbar styling (f)</li> </ul> |
+| Tues, 2/23/21 | <ul> <li>Styling for homepage and planets display (f)</li> <li>Comment deletion from backend (b)</li> <li>User info on Profile page, User info conversions on Planet page</li> </ul> | 
+| Wed, 2/24/21 | <ul> <li>DB refactor: Object reference Comment schema (instead of Planet subdocument) (b)</li> <li>User commenting with new Comment schema (f, b)</li> <li>User editing Profile (f, b)</li> <li>'Picture of the Day,' NASA API space photos (f)</li> <li>About page styling, twinkling cover on homepage (f)</li> </ul> |
+| Thurs, 2/25/21 | <ul> <li>User comments display on Profile, grouped by Planet (f)</li> <li>User deletion of comments (from Comment, User.comments, and Planet.comments) (f,b)</li> <li>Styling for Astronomy Picture of the Day (APOD)</li> <li>Fresh User token generation when updating Profile (f, b)</li> <li>Deployment to the internet! (f, b) </li></ul> |
+| Fri, 2/26/21 | <ul> <li>Styling for smaller screens (f)</li> </ul>
 
-### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+<!-- How to deploy to Heroku:
+(Server) https://gawdiseattle.gitbook.io/wdi/00-config-deployment/deploy-node-mongo
+(Client) https://gawdiseattle.gitbook.io/wdi/00-config-deployment/deploy-node-mongo
 
-### Advanced Configuration
+Sample APIs and Clients to clone and fork for deployment practice: 
+API: https://github.com/TaylorDarneille/MERN-Auth-API/blob/main/package.json
+Client: https://github.com/WDI-SEA/MERN-auth-client-1214
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+We deploy both the client AND the server repos. 
 
-### Deployment
+The server URL is sun-voyage.herokuapp.com
+The client URL is sunvoyage.herokuapp.com
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+We can set up our environment/config variables either via terminal commands, or in the Heroku Dashboard: Project > Settings > Show Config Vars (and copy over your environment variables except for Port, since Heroku uses its own)
+-->
