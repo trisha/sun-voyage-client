@@ -6,7 +6,7 @@ import Comment from './Comment.js'
 import moment from 'moment'
 const axios = require('axios')
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
-// const REACT_APP_SERVER_URL ='http://localhost:8000'
+
 
 const Planet = (props) => {
 
@@ -44,13 +44,13 @@ const Planet = (props) => {
         console.log("hello add comment")
         console.log(planetId)
         axios({
-            url: `http://localhost:8000/comments/add/${planetId}`,
+            url: `${REACT_APP_SERVER_URL}/comments/add/${planetId}`,
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
             },
             data:{
-                'comment': newComment,
+                
                 'userData': props.user 
             }
             
@@ -77,7 +77,7 @@ const Planet = (props) => {
         let editedComment = editComment
         editedComment.content = newComment
         axios({
-            url: `http://localhost:8000/comments/edit/${planetId}/${editedComment.id}`,
+            url: `${REACT_APP_SERVER_URL}/comments/edit/${planetId}/${editedComment.id}`,
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
@@ -109,7 +109,7 @@ const Planet = (props) => {
         console.log(planetId)
 
         axios({
-            url: `http://localhost:8000/comments/delete/${planetId}/${comment.id}`,
+            url: `${REACT_APP_SERVER_URL}/comments/delete/${planetId}/${comment.id}`,
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
