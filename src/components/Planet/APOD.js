@@ -37,26 +37,25 @@ const APOD = (props) => {
     }, [])
 
     const picDisplay = dailyPic ? (
-        <>
-            < Col>
-                < div className='apod-pic' style={{ backgroundImage: `url(${dailyPic.url})`}} >
-                    <p className='apod-desc'>{dailyPic.explanation}</p>
+        <div className='apod-container'>
+            < div className='apod-pic' style={{ backgroundImage: `url(${dailyPic.hdurl})`}} >
+                    <div className='apod-desc'>
+                        <div className='apod-contents'>
+
+                            <h2 className='bold title apod-title'>NASA's Astronomy Pic of the Day: {dailyPic ? dailyPic.date : null }</h2>
+                            {dailyPic.explanation}
+                            <button className='link-button apod-button' onClick={()=>{window.location.reload(false)}}>Give me another!</button>
+                        
+                        </div>
+                    </div>
                 </div>
-            </Col>
-        </>
+        </div>
         ) : <p>Loading...</p>
 
     return (
-        <div className='container apod-div'>
-            < Row>
-                <h2 className='bold title apod-title'>NASA's Astronomy Pic of the Day: {dailyPic ? dailyPic.date : null }</h2>
-            </Row>
-            < Row >
-                {picDisplay}
-            </Row>
-
-            <button className='link-button apod-button' onClick={()=>{window.location.reload(false)}}>Give me another!</button>
-        </div>
+        <>
+        {picDisplay}
+        </>
     );
 }
 

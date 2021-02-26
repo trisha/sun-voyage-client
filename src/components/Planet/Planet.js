@@ -200,13 +200,13 @@ const Planet = (props) => {
 
 
                         { editComment ? (
-                            <>
-                            <button className='link-button' onClick={(e)=>putEditedComment(e, planetData._id)}>Edit Comment</button>
-                            <button onClick={(e)=>{ cancelEdit(e)}}>Cancel edit</button>
-                            </>
+                            <div>
+                            <button className='link-button comment-sub-button' onClick={(e)=>putEditedComment(e, planetData._id)}>Edit Comment</button>
+                            <button className='link-button comment-sub-button' onClick={(e)=>{ cancelEdit(e)}}>Cancel edit</button>
+                            </div>
                         )
                         :
-                        <button className='link-button' onClick={(e)=>addCommentTodb(e, planetData._id)}>Add To This Entry</button>
+                        <button className='link-button comment-sub-button' onClick={(e)=>addCommentTodb(e, planetData._id)}>Add To This Entry</button>
                         }
 
 
