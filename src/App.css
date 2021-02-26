@@ -243,6 +243,12 @@ body {
   width: 100%;
 }
 
+.comment-sub-button {
+  display: inline;
+  margin-top: 0;
+  margin-right: 10px;
+}
+
 /* PLANET SPECIFIC PAGE */
 
 .planet-page-title {
@@ -263,7 +269,7 @@ body {
   background-size: 650px;
   object-fit: cover;
   background-repeat: no-repeat;
-  background-position: 78% 150%;
+  background-position: 78% 100%;
   background-attachment: fixed;
   width: 100%;
   height: fit-content;
@@ -311,6 +317,13 @@ body {
   background-color: lightgray;
   padding: 10px;
   margin-top: 10px;
+}
+
+.comment-button {
+  display: inline;
+  cursor: pointer;
+  color: darkslategray;
+  padding: 3px;
 }
 
 .comment-body {
@@ -371,11 +384,6 @@ body {
 
 /* APOD */
 
-.apod-div {
-  background-color: #fafafa;
-  padding: 30px 50px;
-}
-
 .apod-title {
   width: 100%;
   border-bottom: 3px solid black;
@@ -386,21 +394,49 @@ body {
 }
 
 .apod-pic {
+  overflow: hidden;
   width: 100%;
-  height: 450px;
+  height: 90vh;
   margin: 0;
   font-size: 20px;
-  object-fit: contain;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: black;
-  padding: 20px;
+  color: rgba(0, 0, 0, 0);
+  background-image: rgba(0, 0, 0, 1);
+}
+
+.apod-desc {
+  width: 100%;
+  height: 100%;
+  background-color: red;
+  padding: 40px 20px 40px 20px;
+  background: rgb(2,0,36);
+  background: linear-gradient(45deg, rgba(2,0,36,.9) 0%, rgba(22,65,80,.6) 62%, rgba(144,164,168,0) 100%);
+  opacity: 0;
+  transition: 1s;
+}
+
+.apod-contents {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.apod-desc:hover {
+  padding: 20px 20px;
+  opacity: 1;
 }
 
 .apod-pic:hover {
-  opacity: .7;
   color: rgba(255, 255, 255, 1);
-  background-image: rgba(0, 0, 0, .4);
+  background-image:     linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.6)
+  )
 }
 
 /* SIGN UP */

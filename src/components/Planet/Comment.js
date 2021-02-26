@@ -13,11 +13,12 @@ const Comment = (props) => {
             <div className='comment-body'>
                 {props.comment.content}
             </div>
-            <div className='comment-head'>
-                Posted by <span className='bold'>{props.comment.user}</span>
-                 </div>
-            <div>
-                {props.user && props.comment.userId == props.user.id ? <div><button onClick={() => { props.handleEdit(props.comment) }} >Edit</button> <button onClick={() => { props.handleDelete(props.comment, props.planetId) }} >Delete</button></div> : ""}
+                <div className='comment-head muted'>
+                    Posted by <span className='bold'>{props.comment.user}</span>
+                    
+                    {props.user && props.comment.userId == props.user.id ? <> - <span className='comment-button' onClick={() => { props.handleEdit(props.comment) }} >Edit</span> - <span className='comment-button' onClick={() => { props.handleDelete(props.comment, props.planetId) }} >Delete</span></> : ""}
+                    </div>
+                <div>
             </div>
         </div>
     );
