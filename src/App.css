@@ -40,10 +40,18 @@ body {
   font-family: 'Poiret One', cursive;
 }
 
+.small-text {
+  font-size: 14px;
+}
+
+.comment-profile-div {
+  margin: 30px 0;
+}
+
 /* APP MAIN PAGE */
 
 .app-main {
-  margin: 6vh 6vw;
+  margin: 2vh 6vw;
   padding: 4vh 6vw;
   background-color: #fafafa;
   min-height: 70vh;
@@ -283,7 +291,7 @@ body {
   background-size: 650px;
   object-fit: cover;
   background-repeat: no-repeat;
-  background-position: 78% 100%;
+  background-position: 78% top;
   background-attachment: fixed;
   width: 100%;
   height: fit-content;
@@ -383,6 +391,7 @@ body {
   width: 100%;
   height: 20em;
   border: none;
+  padding: 30px;
 }
 
 .text-submit {
@@ -493,6 +502,10 @@ body {
   justify-content: space-between;
 }
 
+.profile-button {
+  width: 100%;
+}
+
 /* FOOTER */
 
 .footer {
@@ -502,6 +515,12 @@ body {
   width: 100%;
   height: 60px; /* Set the fixed height of the footer here */
   line-height: 60px; /* Vertically center the text there */
+}
+
+.not-found {
+  background-position: right;
+  color: white;
+  background-image: url('./Images/404.jpg');
 }
 
   /* PLANET CARD PICTURES */
