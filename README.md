@@ -36,6 +36,14 @@ You don't need an account to view planets and others' comments, but you will nee
 
 # Technologies Used
 
+- Javascript/CSS/HTML
+- React
+- MongoDB
+- Express
+- Node
+- Axios
+- Bootstrap
+- Moment
 
 # How to Install
 If you'd like to set up this project on your local server:
