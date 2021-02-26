@@ -56,8 +56,14 @@ const ProfileComments = (props) => {
                             <div className="comment-div">                            
                                 <div className='comment-body'>Content: {comment.content}</div>
                                 <div>
-                                    <span className='text-muted small-text'>Created at: {moment(comment.createdAt).format('MMMM Do YYYY, h:mm:ss a')} - </span>
-                                    <span className='text-muted small-text'>Updated at: {moment(comment.updatedAt).format('MMMM Do YYYY, h:mm:ss a')}</span>
+                                    {comment.createdAt === comment.updatedAt ?
+                                        <span className='text-muted small-text'>Created at: {moment(comment.createdAt).format('MMM Do, YYYY, h:mma')} </span>
+                                    :
+                                    <>
+                                        <span className='text-muted small-text'>Created at: {moment(comment.createdAt).format('MMM Do, YYYY, h:mma')} - </span>
+                                        <span className='text-muted small-text'>Updated at: {moment(comment.updatedAt).format('MMM Do, YYYY, h:mma')}</span>
+                                    </>
+                                    }
                                 </div>
                             </div>
                         )
