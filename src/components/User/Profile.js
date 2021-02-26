@@ -21,13 +21,12 @@ const Profile = (props) => {
     // RENDER PROFILE.
     const userData = props.user ? 
     (<div>
-        <h1 className='title bold'>{props.user.name}</h1>
+        <h1 className='title bold comment-section-head'>{props.user.name}</h1>
         <p><strong>Email:</strong> {props.user.email}</p> 
         <p><strong>DOB:</strong> {props.user.DOB}</p> 
         <p><strong>Age (years):</strong> {moment().diff(`${props.user.DOB}`, 'years')}</p> 
         <p><strong>Weight (pounds):</strong> {props.user.weight}</p> 
-        <button className='link-button' onClick={editProfile}>Edit</button>
-        <button className='link-button' onClick={viewComments}>View Comments</button>
+        <button className='link-button profile-button' onClick={editProfile}>Edit</button>
     </div>) : <h4>User information loading...</h4>
     
     return (
@@ -36,8 +35,8 @@ const Profile = (props) => {
                 { userData }
             </Col>
 
-            < Col >
-                <div style={{ overflow: 'auto' }}>
+            < Col xs={9} >
+                <div>
                     < ProfileComments user={props.user} planets={props.data} />
                 </div>
             </Col>

@@ -40,10 +40,18 @@ body {
   font-family: 'Poiret One', cursive;
 }
 
+.small-text {
+  font-size: 14px;
+}
+
+.comment-profile-div {
+  margin: 30px 0;
+}
+
 /* APP MAIN PAGE */
 
 .app-main {
-  margin: 6vh 6vw;
+  margin: 2vh 6vw;
   padding: 4vh 6vw;
   background-color: #fafafa;
   min-height: 70vh;
@@ -283,7 +291,7 @@ body {
   background-size: 650px;
   object-fit: cover;
   background-repeat: no-repeat;
-  background-position: 78% 100%;
+  background-position: 78% top;
   background-attachment: fixed;
   width: 100%;
   height: fit-content;
@@ -492,6 +500,10 @@ body {
 .signup-title-div {
   display: flex;
   justify-content: space-between;
+}
+
+.profile-button {
+  width: 100%;
 }
 
 /* FOOTER */

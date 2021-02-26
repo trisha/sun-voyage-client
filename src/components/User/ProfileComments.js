@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
+import moment from 'moment'
 import { Link } from 'react-router-dom';
 
 const axios = require('axios')
@@ -47,15 +48,17 @@ const ProfileComments = (props) => {
     let planetComments
     if (userComments.length > 0) {
         planetComments = filteredPlanets.map( (planet, i) => (
-            <div>
-                <h3>Your comments on {planet}:</h3>
+            <div className='comment-profile-div'>
+                <h4>Your comments on {planet}:</h4>
                 {userComments.map( (comment, i) => {
                     if (comment.planetName == planet) {
                         return (
                             <div className="comment-div">                            
-                                <div>Content: {comment.content}</div>
-                                <div>Created at: {comment.createdAt}</div>
-                                <div>Updated at: {comment.updatedAt}</div>
+                                <div className='comment-body'>Content: {comment.content}</div>
+                                <div>
+                                    <span className='text-muted small-text'>Created at: {moment(comment.createdAt).format('MMMM Do YYYY, h:mm:ss a')} - </span>
+                                    <span className='text-muted small-text'>Updated at: {moment(comment.updatedAt).format('MMMM Do YYYY, h:mm:ss a')}</span>
+                                </div>
                             </div>
                         )
                     }
@@ -66,7 +69,7 @@ const ProfileComments = (props) => {
     
     return (
         <div style={{backgroundColor:'white'}}>
-            <h1 className='title bold'>{props.user.name}'s Comments</h1>
+            <h1 className='title bold comment-section-head'>{props.user.name}'s Comments</h1>
             {planetComments ? planetComments : <p>You don't have any comments yet</p>}
         </div>
     )
