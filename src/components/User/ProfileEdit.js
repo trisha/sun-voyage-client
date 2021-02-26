@@ -81,9 +81,9 @@ const ProfileEdit = (props) => {
         
         .then(response => {
             const token = response.data;
-            console.log("😍 response.data: ", response.data)
-            console.log("😍 token: ", token)
-            console.log("🥳 { token }: ", { token })
+            // console.log("😍 response.data: ", response.data)
+            // console.log("😍 token: ", token)
+            // console.log("🥳 { token }: ", { token })
             // Save token to localStorage
             localStorage.setItem('jwtToken', token);
             // Set token to auth header
@@ -126,16 +126,13 @@ const ProfileEdit = (props) => {
         <div>
             {/* How to submit form data: https://blog.stvmlbrn.com/2017/04/07/submitting-form-data-with-react.html */}
             <form onSubmit={saveProfile}>
-                <p><label htmlFor="name"><strong>Name:</strong></label>
-                <input type='text' value={editingName} onChange={editName} name="name" /></p> 
+                <p><label htmlFor="name"><strong>Name: </strong></label> <input type='text' value={editingName} onChange={editName} name="name" /></p> 
 
-                <p><label htmlFor="email"><strong>Email:</strong></label>
-                {props.user.email}</p> 
+                <p><label htmlFor="email"><strong>Email: </strong></label> {props.user.email}</p> 
 
-                <p><label htmlFor="Date of Birth"><strong>DOB:</strong></label>
-                <input type='date' value={editingDOB} placeholder="YYYY-MM-DD" onChange={editDOB} name="DOB" /></p> 
+                <p><label htmlFor="Date of Birth"><strong>DOB: </strong></label> <input type='date' value={editingDOB} placeholder="YYYY-MM-DD" onChange={editDOB} name="DOB" /></p> 
                 
-                <p><label htmlFor="age"><strong>Age:</strong></label> {moment().diff(`${editingDOB}`, 'years')} years old</p> 
+                <p><label htmlFor="age"><strong>Age: </strong></label> {moment().diff(`${editingDOB}`, 'years')} years old</p> 
                 
                 <p><label htmlFor="weight"><strong>Weight: </strong></label> <input type='text' value={editingWeight} onChange={editWeight} /> pounds </p> 
                 
@@ -147,7 +144,7 @@ const ProfileEdit = (props) => {
     
     return (
         <div className='app-main'>
-            { dailyPic ? <p>{dailyPic.explanation} {dailyPic.url} or {dailyPic.hdurl}</p> : <p>Loading image...</p> }
+            {/* { dailyPic ? <p>{dailyPic.explanation} {dailyPic.url} or {dailyPic.hdurl}</p> : <p>Loading image...</p> } */}
             { editUserData }
         </div>
     );
