@@ -33,10 +33,9 @@ const About = () => {
         < Col className='teammate-col' >
             <div className="teammate">
                 <div className='teammate-body'>
-                    <img className="profile" src={person.imgURL} alt={person.name} />
+                    <a href={person.linkedinURL} target='_blank' ><img className="profile" src={person.imgURL} alt={person.name} /></a>
                     <h3 className='title bold'>{person.name}</h3>
                     <h5>{person.title}</h5>
-                    
                     {/* Below allows us to escape HTML tags. */}
                     <p className='about-bio' dangerouslySetInnerHTML={{ __html: person.bio }} />
                 </div>

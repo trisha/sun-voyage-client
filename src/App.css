@@ -161,6 +161,11 @@ body {
 
 .profile {
   width: 100%;
+  border-radius: 7px;
+}
+
+.profile:hover {
+  opacity: 50%;
 }
 
 .teammate-col {
@@ -175,9 +180,13 @@ body {
   min-width: 150px;
 }
 
+.logo-bank {
+  text-align: center;
+}
+
 .logo {
   width: 60px;
-  padding: 5px;
+  padding: 10px;
 }
 
 /* ALL PLANETS PAGE */
@@ -243,6 +252,7 @@ body {
 
 .link-button{
   border: none;
+  border-radius: 5px;
   background-color: black;
   color: aliceblue;
   padding: 10px 18px;
@@ -250,6 +260,10 @@ body {
   width: 20%;
   min-width: 150px;
   display: block;
+}
+
+.link-button:hover{
+  text-shadow: 0px 3px 22px #ffffff;
 }
 
 .link-parent:hover .exp-color-box {
