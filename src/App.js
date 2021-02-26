@@ -1,3 +1,4 @@
+require('dotenv').config
 import React, { useEffect, useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
@@ -19,8 +20,7 @@ import APOD from './components/Planet/APOD.js'
 import TestData from './Data'
 import './App.css';
 const axios = require('axios')
-const REACT_APP_SERVER_URL = 'http://localhost:8000'
-//const REACT_APP_SERVER_URL =process.env.REACT_APP_SERVER_URL;
+const REACT_APP_SERVER_URL=process.env.REACT_APP_SERVER_URL
 
 const PrivateRoute = ({ component: Component, ...rest }) => { // Below route checks to see if a user is logged in. 
   const user = localStorage.getItem('jwtToken');
@@ -123,7 +123,7 @@ function App() {
 
   return (
     <div >
-      <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} user={currentUser} />
+      <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
       <div >
         <Switch>
           <Route exact path="/" component={ Welcome } />
