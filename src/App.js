@@ -44,8 +44,7 @@ function App() {
       setAuthToken(localStorage.jwtToken);
       setCurrentUser(token);
       setIsAuthenticated(true);
-      console.log(`this is token 😍 ${localStorage.getItem('jwtToken')}`)
-      console.log(token)
+      console.log(`This is the token: 😍 ${localStorage.getItem('jwtToken')}`)
     }
   }, [updateUser]);
 
@@ -64,8 +63,8 @@ function App() {
       return false
     }
     return true
-    console.log("💕")
-    console.log(decodedToken.exp)
+    // console.log("💕")
+    // console.log(decodedToken.exp)
   } 
 
   const handleLogout = () => {
@@ -83,7 +82,7 @@ function App() {
   // Retrieves planet data from the Mongo database
   useEffect(() => {
     axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
-      console.log(res)
+      // console.log("The planets we're receiving from the API: ", res)
       setData([...res.data.planets])
     })
   }, [])  
@@ -110,7 +109,7 @@ function App() {
           'userData': JSON.stringify(currentUser) // W don't need this but including it to show how to send more than 1 object.
         }
     }).then( res => {
-      console.log(res.data)
+      // console.log(res.data)
       refreshPage ? setRefreshPage(false) : setRefreshPage(true) // Toggle between the two every time a comment is added.
     })
     .catch(err=>{
