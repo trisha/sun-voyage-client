@@ -6,7 +6,7 @@ import Comment from './Comment.js'
 import moment from 'moment'
 const axios = require('axios')
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
-// const REACT_APP_SERVER_URL ='http://localhost:8000'
+
 
 const Planet = (props) => {
 
@@ -50,7 +50,7 @@ const Planet = (props) => {
                 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
             },
             data:{
-                'comment': newComment,
+                
                 'userData': props.user 
             }
             
