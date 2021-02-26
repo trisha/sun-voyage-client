@@ -123,7 +123,7 @@ function App() {
 
   return (
     <div >
-      <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
+      <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} user={currentUser} />
       <div >
         <Switch>
           <Route exact path="/" component={ Welcome } />
