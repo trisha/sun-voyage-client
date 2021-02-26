@@ -17,7 +17,7 @@ const Comment = (props) => {
                 Posted by <span className='bold'>{props.comment.user}</span>
                  </div>
             <div>
-                {props.user && props.comment.userId == props.user.id ? <div><button onClick={() => { props.handleEdit(props.comment) }} >Edit</button> <button onClick={() => { props.handleDelete(props.comment) }} >Delete</button></div> : ""}
+                {props.user && props.comment.userId == props.user.id ? <div><button onClick={() => { props.handleEdit(props.comment) }} >Edit</button> <button onClick={() => { props.handleDelete(props.comment, props.planetId) }} >Delete</button></div> : ""}
             </div>
         </div>
     );

@@ -100,8 +100,20 @@ const Planet = (props) => {
         console.log('Cancelling edit...')
     }
 
-    const handleDelete = (comment) => {
-        console.log(`Deleting comment ${comment}`)
+    const handleDelete = (comment, planetId) => {
+        console.log(`Deleting comment`)
+        console.log(comment)
+        console.log(planetId)
+
+        axios({
+            url: `http://localhost:8000/comments/delete/${planetId}/${comment.id}`,
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
+            }
+            }).then(res=>{
+                
+        })
     }
     
     //.................................................................
@@ -115,7 +127,7 @@ const Planet = (props) => {
             if (comments.length) {
                 commentList = comments.map((comment, i) => {
                     console.log(comment)
-                    return < Comment comment={comment} user={props.user} key={`comment-id-${i}`} handleEdit={handleEdit} handleDelete={handleDelete}/>
+                    return < Comment comment={comment} user={props.user} key={`comment-id-${i}`} handleEdit={handleEdit} handleDelete={handleDelete} planetId={planetData._id}/>
                 })
             } else {
                 commentList = <p>No comments yet!</p>
