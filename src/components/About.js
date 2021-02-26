@@ -57,8 +57,10 @@ const About = () => {
             Sun Voyage (pronounced like 'bon voyage') is your go-to for experiencing what it would be like to live in another world!
             </p>
 
-            <p>Engage with other galactic travelers on each planet to create a story together, just like in the game "Once Upon a Time." 
-                Each story is 10 comments long, so make your mark and go where no wo|man has gone before, by contributing something unique!
+            <p>Engage with other galactic travelers on each planet, and share your creative sci-fi stories and sight-seeing recommendations in the comments of each planet.
+                
+                {/* to create a story together, just like in the game "Once Upon a Time." 
+                Each story is 10 comments long, so make your mark and go where no wo|man has gone before, by contributing something unique! */}
             </p>
 
             <h1 className='title bold title-team'>The Team</h1>
