@@ -41,10 +41,10 @@ const Planet = (props) => {
 
     const addCommentTodb=(e, planetId)=>{
         e.preventDefault()
-        console.log("hello add comment")
-        console.log(planetId)
+        // console.log("hello add comment")
+        // console.log(planetId)
         axios({
-            url: `http://localhost:8000/comments/add/${planetId}`,
+            url: `${REACT_APP_SERVER_URL}/comments/add/${planetId}`,
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
@@ -77,7 +77,7 @@ const Planet = (props) => {
         let editedComment = editComment
         editedComment.content = newComment
         axios({
-            url: `http://localhost:8000/comments/edit/${planetId}/${editedComment.id}`,
+            url: `${REACT_APP_SERVER_URL}/comments/edit/${planetId}/${editedComment.id}`,
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
@@ -109,7 +109,7 @@ const Planet = (props) => {
         console.log(planetId)
 
         axios({
-            url: `http://localhost:8000/comments/delete/${planetId}/${comment.id}`,
+            url: `${REACT_APP_SERVER_URL}/comments/delete/${planetId}/${comment.id}`,
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
