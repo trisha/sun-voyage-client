@@ -181,11 +181,12 @@ body {
 }
 
 .teammate-body {
-  height: 550px;
+  height: 600px;
 }
 
 .teammate {
   min-width: 150px;
+  max-width: 200px
 }
 
 .logo-bank {
@@ -463,7 +464,6 @@ body {
 }
 
 .apod-pic {
-  overflow: hidden;
   width: 100%;
   height: 90vh;
   margin: 0;
@@ -486,12 +486,24 @@ body {
   transition: 1s;
 }
 
-.apod-contents {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+@media screen and (max-width: 1200px) {
+  .apod-contents {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (min-width: 1201px) {
+  .apod-contents {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
 .apod-desc:hover {
