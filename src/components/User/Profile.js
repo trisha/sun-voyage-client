@@ -22,7 +22,7 @@ const Profile = (props) => {
     (<div>
         <h1 className='title bold comment-section-head'>{props.user.name}</h1>
         <p><strong>Email:</strong> {props.user.email}</p> 
-        <p><strong>DOB:</strong> {props.user.DOB}</p> 
+        <p><strong>DOB:</strong> {moment(props.user.DOB).format('MMMM Do, YYYY')}</p> 
         <p><strong>Age (years):</strong> {moment().diff(`${props.user.DOB}`, 'years')}</p> 
         <p><strong>Weight (pounds):</strong> {props.user.weight}</p> 
         <button className='link-button profile-button' onClick={editProfile}>Edit</button>
