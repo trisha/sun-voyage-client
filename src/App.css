@@ -356,6 +356,7 @@ body {
   border-top: 0;
   border-bottom: 0;
   border-right-color: transparent;
+  transition: .5s;
   /* https://css-tricks.com/notched-boxes/ */
   clip-path: 
     polygon(
@@ -373,6 +374,17 @@ body {
 .comment-div:hover {
   /* Opacity is 0 (fully transparent) to 1 (fully opaque) */
   background-color: rgb(211,211,211,0.7);
+  clip-path: 
+  polygon(
+    0% 0px,                 /* top left */
+    0px 0%,                 /* top left */
+    calc(100% - 0px) 0%,    /* top right */
+    100% 0px,               /* top right */
+    100% calc(100% - 0px),  /* bottom right */
+    calc(100% - 0px) 100%,  /* bottom right */
+    0px 100%,               /* bottom left */
+    0 calc(100% - 0px)      /* bottom left */
+  );
 }
 
 .comment-button {
@@ -531,10 +543,50 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
+/* NOT FOUND */
+
 .not-found {
   background-position: right;
   color: white;
   background-image: url('./Images/404.jpg');
+}
+
+.not-found-button {
+  background-color: white;
+  color: black;
+  font-size: 30px;
+  margin-top: 50px;
+  padding: 20px 40px;
+  width: fit-content;
+  clip-path: 
+  polygon(
+    0% 15px,                 /* top left */
+    15px 0%,                 /* top left */
+    calc(100% - 0px) 0%,    /* top right */
+    100% 15px,               /* top right */
+    100% calc(100% - 15px),  /* bottom right */
+    calc(100% - 15px) 100%,  /* bottom right */
+    15px 100%,               /* bottom left */
+    0 calc(100% - 0px)      /* bottom left */
+  );
+  text-decoration: none;
+  transition: .5s;
+}
+
+.not-found-button:hover {
+  text-decoration: none;
+  color: black;
+  clip-path: 
+  polygon(
+    0% 0px,                 /* top left */
+    0px 0%,                 /* top left */
+    calc(100% - 0px) 0%,    /* top right */
+    100% 0px,               /* top right */
+    100% calc(100% - 0px),  /* bottom right */
+    calc(100% - 0px) 100%,  /* bottom right */
+    0px 100%,               /* bottom left */
+    0 calc(100% - 0px)      /* bottom left */
+  );
 }
 
   /* PLANET CARD PICTURES */
