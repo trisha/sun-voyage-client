@@ -1,4 +1,3 @@
-require('dotenv').config
 import React, { useEffect, useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
@@ -20,7 +19,7 @@ import APOD from './components/Planet/APOD.js'
 import TestData from './Data'
 import './App.css';
 const axios = require('axios')
-const REACT_APP_SERVER_URL=process.env.REACT_APP_SERVER_URL
+const SERVER_URL=process.env.REACT_APP_SERVER_URL
 
 const PrivateRoute = ({ component: Component, ...rest }) => { // Below route checks to see if a user is logged in. 
   const user = localStorage.getItem('jwtToken');
@@ -82,7 +81,7 @@ function App() {
 
   // Retrieves planet data from the Mongo database
   useEffect(() => {
-    axios.get(`${REACT_APP_SERVER_URL}/planets`).then(res => {
+    axios.get(`${SERVER_URL}/planets`).then(res => {
       // console.log("The planets we're receiving from the API: ", res)
       setData([...res.data.planets])
     })
@@ -101,7 +100,7 @@ function App() {
     }
     // Below is the same thing as axios.post()
     axios({
-        url: `${REACT_APP_SERVER_URL}/comments/add/${planetId}`,
+        url: `${SERVER_URL}/comments/add/${planetId}`,
         method: 'POST',
         headers: {'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
         },
