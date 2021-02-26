@@ -23,8 +23,8 @@ const Profile = (props) => {
         <h1 className='title bold'>{props.user.name}</h1>
         <p><strong>Email:</strong> {props.user.email}</p> 
         <p><strong>DOB:</strong> {props.user.DOB}</p> 
-        <p><strong>Age:</strong> {moment().diff(`${props.user.DOB}`, 'years')} years old</p> 
-        <p><strong>Weight:</strong> {props.user.weight} pounds</p> 
+        <p><strong>Age (years):</strong> {moment().diff(`${props.user.DOB}`, 'years')}</p> 
+        <p><strong>Weight (pounds):</strong> {props.user.weight}</p> 
         <button onClick={editProfile}>Edit</button>
         <button onClick={viewComments}>View Comments</button>
     </div>) : <h4>User information loading...</h4>
