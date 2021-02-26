@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap'
+import ProfileComments from './ProfileComments'
 const moment = require('moment')
 const axios = require('axios')
 
@@ -33,6 +34,12 @@ const Profile = (props) => {
         <Row className='app-main'>
             < Col >
                 { userData }
+            </Col>
+
+            < Col >
+                <div style={{ overflow: 'auto' }}>
+                    < ProfileComments user={props.user} planets={props.data} />
+                </div>
             </Col>
         </Row>
     );

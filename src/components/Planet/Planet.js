@@ -201,8 +201,7 @@ const Planet = (props) => {
                     {commentList}
                     <form>
                         <textarea className='comment-input textbox-big box-shadow' onChange={(e)=>{commentUpdate(e)}}></textarea>
-
-
+                        
                         { editComment ? (
                             <div>
                             <button className='link-button comment-sub-button' onClick={(e)=>putEditedComment(e, planetData._id)}>Edit Comment</button>

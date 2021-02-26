@@ -66,7 +66,7 @@ const ProfileComments = (props) => {
     
     return (
         <div style={{backgroundColor:'white'}}>
-            <h1>{props.user.name}'s Comments</h1>
+            <h1 className='title bold'>{props.user.name}'s Comments</h1>
             {planetComments ? planetComments : <p>You don't have any comments yet</p>}
         </div>
     )
