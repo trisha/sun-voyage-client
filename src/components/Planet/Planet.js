@@ -11,7 +11,7 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 const Planet = (props) => {
 
     const [planetData, setPlanetData] = useState({})
-    // Yasamn added
+    // Yasaman added
     const [comments,setComments]=useState([])
     const [newComment,setNewComment]=useState('')
     const [editComment, setEditComment] = useState(null)
@@ -41,8 +41,8 @@ const Planet = (props) => {
 
     const addCommentTodb=(e, planetId)=>{
         e.preventDefault()
-        console.log("hello add comment")
-        console.log(planetId)
+        // console.log("hello add comment")
+        // console.log(planetId)
         axios({
             url: `${REACT_APP_SERVER_URL}/comments/add/${planetId}`,
             method: 'POST',
@@ -90,6 +90,7 @@ const Planet = (props) => {
             })
         let inputBox = document.getElementsByClassName('comment-input')[0]
         inputBox.value = ''
+        setRefreshFlag(!refreshFlag)
         setNewComment(null)
         setEditComment(null)
     }
@@ -105,8 +106,8 @@ const Planet = (props) => {
 
     const handleDelete = (comment, planetId) => {
         console.log(`Deleting comment`)
-        console.log(comment)
-        console.log(planetId)
+        console.log('Comment to be deleted: ', comment)
+        // console.log(planetId)
 
         axios({
             url: `${REACT_APP_SERVER_URL}/comments/delete/${planetId}/${comment.id}`,
@@ -115,7 +116,7 @@ const Planet = (props) => {
                 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
             }
             }).then(res=>{
-                console.log('setting refresh')
+                // console.log('setting refresh')
                 setRefreshFlag(!refreshFlag)
         })
     }
