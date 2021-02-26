@@ -15,6 +15,7 @@ const Planet = (props) => {
     const [comments,setComments]=useState([])
     const [newComment,setNewComment]=useState('')
     const [editComment, setEditComment] = useState(null)
+    const [refreshFlag, setRefreshFlag] = useState(false)
 
     useEffect(() => {
         axios.get(`${REACT_APP_SERVER_URL}/planets/display/${props.planetId}`) 
@@ -32,7 +33,7 @@ const Planet = (props) => {
             setComments([...comments])
         }).catch(err=>{
         })
-    }, [])
+    }, [refreshFlag])
 
     const commentUpdate=(e)=>{
         setNewComment(e.target.value)
@@ -54,6 +55,7 @@ const Planet = (props) => {
             }
             
             }).then(res=>{
+                console.log("adding comments")
                 console.log(res)
                 setComments([...res.data.searchTerm])
             }).catch(() => {
@@ -88,6 +90,7 @@ const Planet = (props) => {
             })
         let inputBox = document.getElementsByClassName('comment-input')[0]
         inputBox.value = ''
+        setNewComment(null)
         setEditComment(null)
     }
 
@@ -112,7 +115,8 @@ const Planet = (props) => {
                 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
             }
             }).then(res=>{
-                
+                console.log('setting refresh')
+                setRefreshFlag(!refreshFlag)
         })
     }
     

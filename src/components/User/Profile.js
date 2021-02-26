@@ -25,8 +25,8 @@ const Profile = (props) => {
         <p><strong>DOB:</strong> {props.user.DOB}</p> 
         <p><strong>Age (years):</strong> {moment().diff(`${props.user.DOB}`, 'years')}</p> 
         <p><strong>Weight (pounds):</strong> {props.user.weight}</p> 
-        <button onClick={editProfile}>Edit</button>
-        <button onClick={viewComments}>View Comments</button>
+        <button className='link-button' onClick={editProfile}>Edit</button>
+        <button className='link-button' onClick={viewComments}>View Comments</button>
     </div>) : <h4>User information loading...</h4>
     
     return (
