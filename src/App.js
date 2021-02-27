@@ -88,7 +88,7 @@ function App() {
   }, [])  
   
   // Add a comment to a planet.
-  // To store the temporary comment content, the onChange for setNewComment is in AddComment.js
+  // To store the temporary comment content, the onChange for setNewComment is in /omment.js
   // The onClick happens in AddComment.js.
   // The props get passed into AddComment.js from App.js. 
   const addComment = (content, planetId) => {
@@ -99,6 +99,7 @@ function App() {
       archived: false
     }
     // Below is the same thing as axios.post()
+    
     axios({
         url: `${SERVER_URL}/comments/add/${planetId}`,
         method: 'POST',
