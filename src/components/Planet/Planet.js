@@ -12,8 +12,8 @@ const Planet = (props) => {
 
     const [planetData, setPlanetData] = useState({})
     // Yasaman added
-    const [comments,setComments]=useState([])
-    const [newComment,setNewComment]=useState('')
+    const [comments, setComments]=useState([])
+    const [newComment, setNewComment]=useState('')
     const [editComment, setEditComment] = useState(null)
     const [refreshFlag, setRefreshFlag] = useState(false)
 
@@ -55,11 +55,10 @@ const Planet = (props) => {
             }
             
             }).then(res=>{
-                console.log("adding comments")
-                console.log(res)
-                setComments([...res.data.searchTerm])
-            }).catch(() => {
-                console.log('error')
+                console.log("Response when adding a comment: ", res)
+                setComments([...res.data.searchTerm]) // What is searchTerm? Is this supposed to be res.data.newComment or .content?
+            }).catch((err) => {
+                console.log('Error when adding a comment', err)
             })
             let inputBox = document.getElementsByClassName('comment-input')[0]
             inputBox.value = ''
@@ -86,7 +85,7 @@ const Planet = (props) => {
                 'comment': newComment 
             }
             }).then(res=>{
-                setComments([...res.data.searchTerm])
+                setComments([...res.data.searchTerm]) // What is searchTerm? Is this supposed to be res.data.newComment or .content?
             })
         let inputBox = document.getElementsByClassName('comment-input')[0]
         inputBox.value = ''
