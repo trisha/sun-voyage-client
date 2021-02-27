@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import { Form, Col } from 'react-bootstrap'
+import jwt_decode from 'jwt-decode';
+import setAuthToken from '../../utils/setAuthToken';
 const REACT_APP_SERVER_URL ='http://localhost:8000'
 //const REACT_APP_SERVER_URL =process.env.REACT_APP_SERVER_URL;
 
-const Signup = () => {
+const Signup = (props) => {
     let [email, setEmail] = useState('')
     let [password, setPassword] = useState('')
     let [name, setName] = useState('')
@@ -42,23 +44,47 @@ const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(password,confirmPassword)
+        // console.log(password,confirmPassword)
         if (password === confirmPassword) {
             const newUser = { name, weight, DOB, email, password }
-            console.log(`${REACT_APP_SERVER_URL}/auth/signup`)
+            // console.log(`${REACT_APP_SERVER_URL}/auth/signup`)
             axios.post(`${REACT_APP_SERVER_URL}/auth/signup`, newUser)
             .then(response => {
-                console.log('Response: ' + response);
-                setRedirect(true);
-            })
+                console.log('Signup response: ' + response);
+            })        
             .catch(error => {
-                console.log(error)
+                console.log("Error signing up: ", error)
                 setError(true)
             });
+
+            // After creating account, log them in.
+            // BELOW CODE ISN'T WORKING; gt an error signing in user: false
+            /*
+            const userData = { email, password }
+            axios.post(`${REACT_APP_SERVER_URL}/auth/login`, userData)
+            .then( response => {
+                const token = response.data
+                console.log("😍 token: ", token)
+                console.log("🥳 { token }: ", { token })
+                // Save token to localStorage
+                localStorage.setItem('jwtToken', token);
+                // Set token to auth header
+                setAuthToken(token);
+                // Decode token to get the user data
+                const decoded = jwt_decode(token);
+                console.log("JWT decoded token is: ", decoded)
+                // Set current user
+                props.nowCurrentUser(decoded);
+            })
+            .catch( err => {
+                console.log("Error signing in user: ", error)
+                setError(true)
+            })
+            */
         }
     }
 
-    if (redirect) return <Redirect to="/login" />
+    if (redirect) return <Redirect to="/profile" />
 
     let errorMessage = error ? (
         <p className='error'>Error creating account</p>
@@ -77,7 +103,7 @@ const Signup = () => {
             </Form.Row>
             <Form.Row className="form-group">
                 <Col>
-                <label htmlFor="weight">Weight</label>
+                <label htmlFor="weight">Weight (lbs)</label>
                 <input type="number" name="weight" value={weight} onChange={handleWeight} className="form-control"/>
                 </Col>
                 <Col>
