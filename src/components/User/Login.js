@@ -24,7 +24,7 @@ const Login = (props) => {
         e.preventDefault();
 
         const userData = { email, password };
-        console.log(REACT_APP_SERVER_URL)
+        // console.log(REACT_APP_SERVER_URL)
         axios.post(`${REACT_APP_SERVER_URL}/auth/login`, userData)
         .then(response => {
             const { token } = response.data;
