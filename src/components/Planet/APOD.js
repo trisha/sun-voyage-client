@@ -21,16 +21,16 @@ const APOD = (props) => {
                     DOB = DOB.join('')
                 }
         
-                console.log(DOB)
+                // console.log(DOB)
                 axios.get(`https://api.nasa.gov/planetary/apod?api_key=${APOD_KEY}&start_date=${DOB}&end_date=${DOB}`)
                 .then(res => {
                     setDailyPic(res.data[0])
                 })
         } else {
-            console.log('nope')
+            console.log('No user logged in for getting an APOD pic based on their birthday')
             axios.get(`https://api.nasa.gov/planetary/apod?api_key=${APOD_KEY}&count=1`)
             .then(res => {
-                console.log(res.data[0])
+                console.log("URL for a random APOD picture is: ", res.data[0])
                 setDailyPic(res.data[0])
             })
         }
