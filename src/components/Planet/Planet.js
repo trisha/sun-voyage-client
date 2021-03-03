@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap'
 import Moon from './Moon'
-import Comment from './Comment.js'
+import Comment from '../Comment/Comment.js'
 import moment from 'moment'
 const axios = require('axios')
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
@@ -10,7 +10,6 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 const Planet = (props) => {
 
     const [planetData, setPlanetData] = useState({})
-    // Yasaman added
     const [comments, setComments]=useState([])
     const [newComment, setNewComment]=useState('')
     const [editComment, setEditComment] = useState(null)
