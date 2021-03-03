@@ -51,6 +51,7 @@ const Signup = (props) => {
             axios.post(`${REACT_APP_SERVER_URL}/auth/signup`, newUser)
             .then(response => {
                 console.log('Signup response: ' + response);
+                setRedirect(true)
             })        
             .catch(error => {
                 console.log("Error signing up: ", error)
@@ -84,7 +85,7 @@ const Signup = (props) => {
         }
     }
 
-    if (redirect) return <Redirect to="/profile" />
+    if (redirect) return <Redirect to="/login" />
 
     let errorMessage = error ? (
         <p className='error'>Error creating account</p>
