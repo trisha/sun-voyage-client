@@ -6,7 +6,6 @@ import Comment from './Comment.js'
 import moment from 'moment'
 const axios = require('axios')
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
-// const REACT_APP_SERVER_URL ='http://localhost:8000'
 
 const Planet = (props) => {
 
@@ -41,10 +40,8 @@ const Planet = (props) => {
 
     const addCommentTodb=(e, planetId)=>{
         e.preventDefault()
-        console.log("hello add comment")
-        console.log(planetId)
         axios({
-            url: `http://localhost:8000/comments/add/${planetId}`,
+            url: `${REACT_APP_SERVER_URL}/comments/add/${planetId}`,
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
@@ -56,7 +53,6 @@ const Planet = (props) => {
             
             }).then(res=>{
                 console.log("adding comments")
-                console.log(res)
                 setComments([...res.data.searchTerm])
             }).catch(() => {
                 console.log('error')
@@ -77,7 +73,7 @@ const Planet = (props) => {
         let editedComment = editComment
         editedComment.content = newComment
         axios({
-            url: `http://localhost:8000/comments/edit/${planetId}/${editedComment.id}`,
+            url: `${REACT_APP_SERVER_URL}/comments/edit/${planetId}/${editedComment.id}`,
             method: 'PUT',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
@@ -104,12 +100,9 @@ const Planet = (props) => {
     }
 
     const handleDelete = (comment, planetId) => {
-        console.log(`Deleting comment`)
-        console.log(comment)
-        console.log(planetId)
 
         axios({
-            url: `http://localhost:8000/comments/delete/${planetId}/${comment.id}`,
+            url: `${REACT_APP_SERVER_URL}/comments/delete/${planetId}/${comment.id}`,
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
@@ -130,8 +123,17 @@ const Planet = (props) => {
             let commentList
             if (comments.length) {
                 commentList = comments.map((comment, i) => {
-                    console.log(comment)
-                    return < Comment comment={comment} user={props.user} key={`comment-id-${i}`} handleEdit={handleEdit} handleDelete={handleDelete} planetId={planetData._id}/>
+                    console.log(comment.userId)
+                    console.log(props.user.id)
+                    return < Comment 
+                        comment={comment} 
+                        user={props.user} 
+                        key={`comment-id-${i}`} 
+                        handleEdit={handleEdit} 
+                        handleDelete={handleDelete} 
+                        planetId={planetData._id}
+                        owner={props.user.id === comment.userId}
+                    />
                 })
             } else {
                 commentList = <p>No comments yet!</p>
