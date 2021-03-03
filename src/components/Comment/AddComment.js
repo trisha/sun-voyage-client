@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+// This component is no longe used and has been replaced/built-in to Planet.js.
 const Comment = (props) => {
 
     let [newComment, setNewComment] = useState('')

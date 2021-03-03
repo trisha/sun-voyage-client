@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap'
 import Moon from './Moon'
 import Comment from './Comment.js'
@@ -7,6 +6,7 @@ import moment from 'moment'
 const axios = require('axios')
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
+// props = planetId, user (current user) 
 const Planet = (props) => {
 
     const [planetData, setPlanetData] = useState({})
@@ -41,6 +41,7 @@ const Planet = (props) => {
         e.preventDefault()
         // console.log("hello add comment")
         // console.log(planetId)
+            
         axios({
             url: `${REACT_APP_SERVER_URL}/comments/add/${planetId}`,
             method: 'POST',
@@ -53,13 +54,13 @@ const Planet = (props) => {
             }
             
             }).then(res=>{
-                console.log("Response when adding a comment: ", res)
+                // console.log("Response when adding a comment: ", res)
                 setComments([...res.data.searchTerm]) // What is searchTerm? Is this supposed to be res.data.newComment or .content?
             }).catch((err) => {
                 console.log('Error when adding a comment', err)
             })
             let inputBox = document.getElementsByClassName('comment-input')[0]
-            inputBox.value = ''
+            inputBox.value = ''      
     }
 
     const handleEdit = (comment) => {
@@ -125,8 +126,8 @@ const Planet = (props) => {
             let commentList
             if (comments.length) {
                 commentList = comments.map((comment, i) => {
-                    console.log(comment.userId)
-                    console.log(props.user.id)
+                    // console.log(comment.userId)
+                    // console.log(props.user.id)
                     return < Comment 
                         comment={comment} 
                         user={props.user} 
@@ -203,7 +204,7 @@ const Planet = (props) => {
             <Row className='planet-comment-div'>
                     <h4 className='title bold comment-section-head'>Comments: </h4>
                     {commentList}
-                    <form>
+                    <form className="scroll-target">
                         <textarea className='comment-input textbox-big box-shadow' onChange={(e)=>{commentUpdate(e)}}></textarea>
                         
                         { editComment ? (
@@ -215,16 +216,10 @@ const Planet = (props) => {
                         :
                         <button className='link-button comment-sub-button' onClick={(e)=>addCommentTodb(e, planetData._id)}>Add To This Entry</button>
                         }
-
-
                     </form>
-                    {/* < Link to={`/comments/add/${planetData._id}`} ><button className='link-button'>Add To This Entry</button></Link> */}
+                    
                 </Row>
             </div>
-            // <>
-            //     <p>{planetData.name}</p>
-            //     <p>{console.log(planetData.moons)}</p>
-            // </>
         );
     }
 }
