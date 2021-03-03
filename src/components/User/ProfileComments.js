@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
 import moment from 'moment'
-import { Link } from 'react-router-dom';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 const axios = require('axios')
 

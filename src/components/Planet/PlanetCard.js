@@ -12,7 +12,6 @@ const PlanetCard = (props) => {
                     <Card.Subtitle className="mb-2 text-muted planet-card-sub">Comments: {props.planet.comments.length}</Card.Subtitle>
                     
                     < Link to={`/planets/display/${props.planet._id}`} style={{ textDecoration: 'none' }} ><span className='exp-color-box '><button className='link-button box-shadow'>See Page</button></span></Link>
-                    {/* < Link to={`/planets/display/${props.planet._id}`} ><button className='link-button box-shadow'>View Archives</button></Link> */}
                 </Card.Body>
             </Card>
         </>

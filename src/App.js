@@ -52,7 +52,7 @@ function App() {
       setAuthToken(localStorage.jwtToken);
       setCurrentUser(token);
       setIsAuthenticated(true);
-      console.log(`💫 This is the token: ${localStorage.getItem('jwtToken')}`)
+      console.log(`💫 The user token is: ${localStorage.getItem('jwtToken')}`)
     }
   }, [updateUser]);
 
