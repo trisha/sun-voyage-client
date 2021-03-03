@@ -6,7 +6,6 @@ import Comment from './Comment.js'
 import moment from 'moment'
 const axios = require('axios')
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
-// const REACT_APP_SERVER_URL ='http://localhost:8000'
 
 const Planet = (props) => {
 
@@ -104,9 +103,6 @@ const Planet = (props) => {
     }
 
     const handleDelete = (comment, planetId) => {
-        console.log(`Deleting comment`)
-        console.log('Comment to be deleted: ', comment)
-        // console.log(planetId)
 
         axios({
             url: `${REACT_APP_SERVER_URL}/comments/delete/${planetId}/${comment.id}`,
@@ -130,8 +126,17 @@ const Planet = (props) => {
             let commentList
             if (comments.length) {
                 commentList = comments.map((comment, i) => {
-                    console.log(comment)
-                    return < Comment comment={comment} user={props.user} key={`comment-id-${i}`} handleEdit={handleEdit} handleDelete={handleDelete} planetId={planetData._id}/>
+                    console.log(comment.userId)
+                    console.log(props.user.id)
+                    return < Comment 
+                        comment={comment} 
+                        user={props.user} 
+                        key={`comment-id-${i}`} 
+                        handleEdit={handleEdit} 
+                        handleDelete={handleDelete} 
+                        planetId={planetData._id}
+                        owner={props.user.id === comment.userId}
+                    />
                 })
             } else {
                 commentList = <p>No comments yet!</p>

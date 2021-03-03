@@ -3,20 +3,28 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import Navbar from './components/Navbar';
+import Welcome from './components/Welcome';
+import About from './components/About';
+import NotFound from './components/NotFound'
+
+// User
 import Signup from './components/User/Signup';
 import Login from './components/User/Login';
 import Profile from './components/User/Profile';
 import ProfileEdit from './components/User/ProfileEdit';
 import ProfileComments from './components/User/ProfileComments';
-import Welcome from './components/Welcome';
-import About from './components/About';
-import NotFound from './components/NotFound'
-import Footer from './components/Footer';
+
+// Planets
 import AllPlanets from './components/Planet/AllPlanets'
 import Planet from './components/Planet/Planet'
+
+// Comments
 import AddComment from './components/Comment/AddComment.js'
-import APOD from './components/Planet/APOD.js'
-import TestData from './Data'
+
+// APOD
+import APOD from './components/APOD/APOD.js'
+
+// Misc
 import './App.css';
 const axios = require('axios')
 const SERVER_URL=process.env.REACT_APP_SERVER_URL
