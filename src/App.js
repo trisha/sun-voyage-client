@@ -52,19 +52,19 @@ function App() {
       setAuthToken(localStorage.jwtToken);
       setCurrentUser(token);
       setIsAuthenticated(true);
-      console.log(`This is the token: 😍 ${localStorage.getItem('jwtToken')}`)
+      console.log(`💫 This is the token: ${localStorage.getItem('jwtToken')}`)
     }
   }, [updateUser]);
 
   const nowCurrentUser = (userData) => {
-    console.log('nowCurrentUser is working...');
+    console.log('💫 nowCurrentUser is working...');
     setCurrentUser(userData);
     setIsAuthenticated(true);
   };
   const tokenExpiration=()=>{
     var dateNow = new Date();
     dateNow.getTime()
-    console.log("Inside the tokenExpiration",dateNow.getTime())
+    console.log(" 💫Inside the tokenExpiration",dateNow.getTime())
     var decodedToken=jwt_decode(localStorage.getItem('jwtToken'));
     if(decodedToken.exp<dateNow.getTime()/1000){
       handleLogout()
@@ -96,7 +96,7 @@ function App() {
   }, [])  
   
   // Add a comment to a planet.
-  // To store the temporary comment content, the onChange for setNewComment is in AddComment.js
+  // To store the temporary comment content, the onChange for setNewComment is in /omment.js
   // The onClick happens in AddComment.js.
   // The props get passed into AddComment.js from App.js. 
   const addComment = (content, planetId) => {
@@ -107,6 +107,7 @@ function App() {
       archived: false
     }
     // Below is the same thing as axios.post()
+    
     axios({
         url: `${SERVER_URL}/comments/add/${planetId}`,
         method: 'POST',
@@ -121,7 +122,7 @@ function App() {
       refreshPage ? setRefreshPage(false) : setRefreshPage(true) // Toggle between the two every time a comment is added.
     })
     .catch(err=>{
-      console.log(`🤞 ${err}`)
+      console.log(`🤞 Error adding a comment: ${err}`)
     })
   }
 
@@ -158,7 +159,7 @@ function App() {
           />
 
           {/* Authentication Routes */}
-          <Route path="/signup" component={ Signup } />
+          <Route path="/signup" component={ Signup } nowCurrentUser={nowCurrentUser} />
           <Route 
             path="/login" 
             render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} 

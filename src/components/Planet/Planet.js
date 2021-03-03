@@ -10,9 +10,9 @@ const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 const Planet = (props) => {
 
     const [planetData, setPlanetData] = useState({})
-    // Yasamn added
-    const [comments,setComments]=useState([])
-    const [newComment,setNewComment]=useState('')
+    // Yasaman added
+    const [comments, setComments]=useState([])
+    const [newComment, setNewComment]=useState('')
     const [editComment, setEditComment] = useState(null)
     const [refreshFlag, setRefreshFlag] = useState(false)
 
@@ -40,6 +40,8 @@ const Planet = (props) => {
 
     const addCommentTodb=(e, planetId)=>{
         e.preventDefault()
+        // console.log("hello add comment")
+        // console.log(planetId)
         axios({
             url: `${REACT_APP_SERVER_URL}/comments/add/${planetId}`,
             method: 'POST',
@@ -52,10 +54,10 @@ const Planet = (props) => {
             }
             
             }).then(res=>{
-                console.log("adding comments")
-                setComments([...res.data.searchTerm])
-            }).catch(() => {
-                console.log('error')
+                console.log("Response when adding a comment: ", res)
+                setComments([...res.data.searchTerm]) // What is searchTerm? Is this supposed to be res.data.newComment or .content?
+            }).catch((err) => {
+                console.log('Error when adding a comment', err)
             })
             let inputBox = document.getElementsByClassName('comment-input')[0]
             inputBox.value = ''
@@ -82,10 +84,11 @@ const Planet = (props) => {
                 'comment': newComment 
             }
             }).then(res=>{
-                setComments([...res.data.searchTerm])
+                setComments([...res.data.searchTerm]) // What is searchTerm? Is this supposed to be res.data.newComment or .content?
             })
         let inputBox = document.getElementsByClassName('comment-input')[0]
         inputBox.value = ''
+        setRefreshFlag(!refreshFlag)
         setNewComment(null)
         setEditComment(null)
     }
@@ -108,7 +111,7 @@ const Planet = (props) => {
                 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
             }
             }).then(res=>{
-                console.log('setting refresh')
+                // console.log('setting refresh')
                 setRefreshFlag(!refreshFlag)
         })
     }

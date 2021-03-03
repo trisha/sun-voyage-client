@@ -1,11 +1,11 @@
 import React from 'react';
-const REACT_APP_SERVER_URL ='http://localhost:8000'
+// const REACT_APP_SERVER_URL ='http://localhost:8000'
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 const axios = require('axios')
 
 const Comment = (props) => {
-
-    console.log('user data')
-    console.log(props.owner)
+    console.log("User when adding a comment: ", props.user)
+    console.log("Comment when adding a comment: ", props.comment)
 
     return (
         <div className='comment-div'>

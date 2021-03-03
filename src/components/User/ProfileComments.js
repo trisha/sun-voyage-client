@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import moment from 'moment'
 import { Link } from 'react-router-dom';
-
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 const axios = require('axios')
 
 // props = user (currentUser), planets (data for all planets)
@@ -10,7 +10,7 @@ const ProfileComments = (props) => {
     let [userComments, setUserComments] = useState([])
     useEffect(() => {
         axios({
-            url: `http://localhost:8000/auth/profile/comments`,
+            url: `${REACT_APP_SERVER_URL}/auth/profile/comments`,
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
