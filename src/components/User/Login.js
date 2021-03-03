@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import { Form } from 'react-bootstrap'
 import setAuthToken from '../../utils/setAuthToken';
 import { Redirect } from 'react-router-dom';
-import axios from 'axios';
-const REACT_APP_SERVER_URL ='http://localhost:8000'
-//const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
+//const REACT_APP_SERVER_URL ='http://localhost:8000'
+const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const Login = (props) => {
     let [email, setEmail] = useState('');
@@ -24,7 +24,7 @@ const Login = (props) => {
         e.preventDefault();
 
         const userData = { email, password };
-        console.log(REACT_APP_SERVER_URL)
+        // console.log(REACT_APP_SERVER_URL)
         axios.post(`${REACT_APP_SERVER_URL}/auth/login`, userData)
         .then(response => {
             const { token } = response.data;
@@ -76,4 +76,4 @@ const Login = (props) => {
     );
 }
 
-export default Login;   
+export default Login;
