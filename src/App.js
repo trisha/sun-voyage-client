@@ -159,7 +159,7 @@ function App() {
           />
 
           {/* Authentication Routes */}
-          <Route path="/signup" component={ Signup } nowCurrentUser={nowCurrentUser} />
+          <Route path="/signup" component={ Signup } nowCurrentUser={nowCurrentUser} setUpdateUser={setUpdateUser} />
           <Route 
             path="/login" 
             render={ (props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>} 
