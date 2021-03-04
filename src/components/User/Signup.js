@@ -51,6 +51,21 @@ const Signup = (props) => {
             axios.post(`${REACT_APP_SERVER_URL}/auth/signup`, newUser)
             .then(response => {
                 console.log('Signup response: ' + response);
+
+
+                const token = response.data
+                console.log("😍 token: ", token)
+                console.log("🥳 { token }: ", { token })
+                // Save token to localStorage
+                localStorage.setItem('jwtToken', token);
+                // Set token to auth header
+                setAuthToken(token);
+                // Decode token to get the user data
+                const decoded = jwt_decode(token);
+                console.log("JWT decoded token is: ", decoded)
+                // Set current user
+                props.nowCurrentUser(decoded);
+
                 setRedirect(true)
             })        
             .catch(error => {
@@ -99,8 +114,8 @@ const Signup = (props) => {
         {errorMessage}
         <Form onSubmit={handleSubmit} className='signup-form'>
             <Form.Row className="form-group">
-                <label htmlFor="name">Name</label>
-                <input type="text" name="name" value={name} onChange={handleName} className="form-control"/>
+                <label htmlFor="name">Name<span className="red-asterisk">*</span></label>
+                <input type="text" name="name" value={name} onChange={handleName} className="form-control" required />
             </Form.Row>
             <Form.Row className="form-group">
                 <Col>
@@ -113,16 +128,19 @@ const Signup = (props) => {
                 </Col>
             </Form.Row>
             <Form.Row className="form-group">
-                <label htmlFor="email">Email</label>
-                <input type="email" name="email" value={email} onChange={handleEmail} className="form-control"/>
+                <label htmlFor="email">Email<span className="red-asterisk">*</span></label>
+                <input type="email" name="email" value={email} onChange={handleEmail} className="form-control" required />
             </Form.Row>
             <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" value={password} onChange={handlePassword} className="form-control"/>
+                <label htmlFor="password">Password<span className="red-asterisk">*</span></label>
+                <input type="password" name="password" value={password} onChange={handlePassword} className="form-control" required />
             </div>
             <div className="form-group">
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleConfirmPassword} className="form-control"/>
+                <label htmlFor="confirmPassword">Confirm Password<span className="red-asterisk">*</span></label>
+                <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleConfirmPassword} className="form-control" required/>
+            </div>
+            <div>
+                <em><span className="red-asterisk">*</span> indicates required field.</em>
             </div>
             <button type="submit" className="link-button btn btn-primary float-right">Submit</button>
         </Form>

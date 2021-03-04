@@ -577,6 +577,10 @@ body {
   width: 100%;
 }
 
+.red-asterisk {
+  color: rgb(163, 22, 22);
+}
+
 /* FOOTER */
 
 .footer {
