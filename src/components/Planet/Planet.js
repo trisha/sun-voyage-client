@@ -60,6 +60,7 @@ const Planet = (props) => {
                 console.log('Error when adding a comment', err)
             })
             let inputBox = document.getElementsByClassName('comment-input')[0]
+            console.log("Right before setting inputBox to 0")
             inputBox.value = ''      
     }
 

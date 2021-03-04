@@ -17,6 +17,10 @@ const Profile = (props) => {
     if (editMode) return <Redirect to={'/profile/edit'} />
     if (viewCommentsMode) return <Redirect to={'/profile/comments'} />
 
+    // Force refresh the profile page right after creating a new account.
+    // Otherwise, it gives a 'Cannot read property 'name' of null' error that goes away when you refresh the page.
+    if (props.refresh) return <Redirect to={'/profile'} />
+
     // RENDER PROFILE.
     const userData = props.user ? 
     (<div>

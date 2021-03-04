@@ -14,78 +14,48 @@ const Signup = (props) => {
     let [weight, setWeight] = useState(null)
     let [DOB, setDOB] = useState(null)
     let [confirmPassword, setConfirmPassword] = useState('')
-    let [redirect, setRedirect] = useState(false)
     let [error, setError] = useState(false)
 
-    const handleName = (e) => {
-        setName(e.target.value);
-    }
+    const handleName = (e) => setName(e.target.value)
+    const handleWeight = (e) => setWeight(e.target.value)
+    const handleDOB = (e) => setDOB(e.target.value)
+    const handleEmail = (e) => setEmail(e.target.value)
+    const handlePassword = (e) => setPassword(e.target.value)
+    const handleConfirmPassword = (e) => setConfirmPassword(e.target.value)
 
-    const handleWeight = (e) => {
-        setWeight(e.target.value);
-    }
-
-    const handleDOB = (e) => {
-        console.log(e.target.value)
-        setDOB(e.target.value);
-    }
-
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
-    }
-
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
-    }
-
-    const handleConfirmPassword = (e) => {
-        setConfirmPassword(e.target.value);
-    }
-
+    // Have to set props to constants, since props.nowCurrentUser unavailable at nested child levels--get error message that it's not a function.
+    const nowCurrentUser = () => props.nowCurrentUser 
+    const setUpdateUser = () => props.setUpdateUser
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(password,confirmPassword)
+        // console.log(password, confirmPassword)
         if (password === confirmPassword) {
             const newUser = { name, weight, DOB, email, password }
             // console.log(`${REACT_APP_SERVER_URL}/auth/signup`)
             axios.post(`${REACT_APP_SERVER_URL}/auth/signup`, newUser)
             .then(response => {
-                console.log('Signup response: ' + response);
-                setRedirect(true)
+                const token = response.data
+                // console.log("⭐️ token: ", token)
+                // Save token to localStorage.
+                localStorage.setItem('jwtToken', token);
+                // Set token to auth header.
+                setAuthToken(token);
+                // Decode token to get the user data.
+                const decoded = jwt_decode(token);
+                console.log("JWT decoded token is: ", decoded)
+                // Set current user.
+                nowCurrentUser(decoded)
+                setUpdateUser(true)
+                // Redirect to profile page after signing up and being logged in.
+                // https://stackoverflow.com/questions/53900739/redirection-using-axios-and-react
+                window.location = "/profile" 
             })        
             .catch(error => {
                 console.log("Error signing up: ", error)
                 setError(true)
             });
-
-            // After creating account, log them in.
-            // BELOW CODE ISN'T WORKING; gt an error signing in user: false
-            /*
-            const userData = { email, password }
-            axios.post(`${REACT_APP_SERVER_URL}/auth/login`, userData)
-            .then( response => {
-                const token = response.data
-                console.log("😍 token: ", token)
-                console.log("🥳 { token }: ", { token })
-                // Save token to localStorage
-                localStorage.setItem('jwtToken', token);
-                // Set token to auth header
-                setAuthToken(token);
-                // Decode token to get the user data
-                const decoded = jwt_decode(token);
-                console.log("JWT decoded token is: ", decoded)
-                // Set current user
-                props.nowCurrentUser(decoded);
-            })
-            .catch( err => {
-                console.log("Error signing in user: ", error)
-                setError(true)
-            })
-            */
         }
     }
-
-    if (redirect) return <Redirect to="/login" />
 
     let errorMessage = error ? (
         <p className='error'>Error creating account</p>
@@ -99,8 +69,8 @@ const Signup = (props) => {
         {errorMessage}
         <Form onSubmit={handleSubmit} className='signup-form'>
             <Form.Row className="form-group">
-                <label htmlFor="name">Name</label>
-                <input type="text" name="name" value={name} onChange={handleName} className="form-control"/>
+                <label htmlFor="name">Name<span className="red-asterisk">*</span></label>
+                <input type="text" name="name" value={name} onChange={handleName} className="form-control" required />
             </Form.Row>
             <Form.Row className="form-group">
                 <Col>
@@ -113,22 +83,24 @@ const Signup = (props) => {
                 </Col>
             </Form.Row>
             <Form.Row className="form-group">
-                <label htmlFor="email">Email</label>
-                <input type="email" name="email" value={email} onChange={handleEmail} className="form-control"/>
+                <label htmlFor="email">Email<span className="red-asterisk">*</span></label>
+                <input type="email" name="email" value={email} onChange={handleEmail} className="form-control" required />
             </Form.Row>
             <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" value={password} onChange={handlePassword} className="form-control"/>
+                <label htmlFor="password">Password <em>(min 5 chars)</em><span className="red-asterisk">*</span></label>
+                <input type="password" name="password" value={password} onChange={handlePassword} className="form-control" required />
             </div>
             <div className="form-group">
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleConfirmPassword} className="form-control"/>
+                <label htmlFor="confirmPassword">Confirm Password<span className="red-asterisk">*</span></label>
+                <input type="password" name="confirmPassword" value={confirmPassword} onChange={handleConfirmPassword} className="form-control" required/>
+            </div>
+            <div>
+                <em><span className="red-asterisk">*</span> indicates required field.</em>
             </div>
             <button type="submit" className="link-button btn btn-primary float-right">Submit</button>
         </Form>
     </div>     
     );
-
 }
 
 export default Signup;
