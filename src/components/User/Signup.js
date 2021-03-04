@@ -8,7 +8,7 @@ import setAuthToken from '../../utils/setAuthToken';
 const REACT_APP_SERVER_URL =process.env.REACT_APP_SERVER_URL;
 
 const Signup = (props) => {
-    let [email, setEmail] = useState('')
+    let [email, setEmail] = useState('') 
     let [password, setPassword] = useState('')
     let [name, setName] = useState('')
     let [weight, setWeight] = useState(null)
