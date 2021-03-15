@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import Navbar from './components/Navbar';
@@ -130,7 +130,7 @@ function App() {
   // console.log('Authenticated', isAuthenticated);
 
   return (
-    <div >
+    <BrowserRouter >
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
       <div >
         <Switch>
@@ -172,7 +172,7 @@ function App() {
         </Switch>
       </div>
       {/* <Footer /> */}
-    </div>
+    </BrowserRouter>
   );
 }
 
