@@ -14,6 +14,7 @@ const Signup = (props) => {
     let [weight, setWeight] = useState(null)
     let [DOB, setDOB] = useState(null)
     let [confirmPassword, setConfirmPassword] = useState('')
+    let [redirect, setRedirect] = useState(false)
     let [error, setError] = useState(false)
 
     const handleName = (e) => setName(e.target.value)
@@ -24,8 +25,8 @@ const Signup = (props) => {
     const handleConfirmPassword = (e) => setConfirmPassword(e.target.value)
 
     // Have to set props to constants, since props.nowCurrentUser unavailable at nested child levels--get error message that it's not a function.
-    const nowCurrentUser = () => props.nowCurrentUser 
-    const setUpdateUser = () => props.setUpdateUser
+    // const nowCurrentUser = () => props.nowCurrentUser 
+    // const setUpdateUser = () => props.setUpdateUser
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log(password, confirmPassword)
@@ -34,6 +35,8 @@ const Signup = (props) => {
             // console.log(`${REACT_APP_SERVER_URL}/auth/signup`)
             axios.post(`${REACT_APP_SERVER_URL}/auth/signup`, newUser)
             .then(response => {
+                setRedirect(true)
+                /* Unable to automatically log in and redirect to profile after signing up.
                 const token = response.data
                 // console.log("⭐️ token: ", token)
                 // Save token to localStorage.
@@ -49,6 +52,7 @@ const Signup = (props) => {
                 // Redirect to profile page after signing up and being logged in.
                 // https://stackoverflow.com/questions/53900739/redirection-using-axios-and-react
                 window.location = "/profile" 
+                */
             })        
             .catch(error => {
                 console.log("Error signing up: ", error)
@@ -56,6 +60,10 @@ const Signup = (props) => {
             });
         }
     }
+
+    // if (redirect) return <Redirect to={'/login'} state={{ email: email}} />
+    if (redirect) return <Redirect to={ {pathname: '/login', state: {email: email}} } />
+
 
     let errorMessage = error ? (
         <p className='error'>Error creating account</p>
