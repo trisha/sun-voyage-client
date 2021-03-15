@@ -8,7 +8,8 @@ import { Redirect } from 'react-router-dom';
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const Login = (props) => {
-    let [email, setEmail] = useState('');
+    // props.location.state is from our 'Create Account' Redirect.
+    let [email, setEmail] = useState(props.location.state.email ? props.location.state.email : '');
     let [password, setPassword] = useState('');
     let [error, setError] = useState(false)
 
