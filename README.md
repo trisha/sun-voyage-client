@@ -15,6 +15,12 @@ And click [here](https://github.com/patricia-pan/sun-voyage-client) to view the 
 
 You don't need an account to view planets and others' comments, but you will need one to add your own and to update your profile.
 
+Test user credentials:
+
+`test@user.com`
+
+`TestUser`
+
 # Screenshots
 
 ![Welcome](/public/screenshots/welcome.png)
