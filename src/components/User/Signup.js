@@ -5,7 +5,7 @@ import { Form, Col } from 'react-bootstrap'
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../../utils/setAuthToken';
 //const REACT_APP_SERVER_URL ='http://localhost:8000'
-const REACT_APP_SERVER_URL =process.env.REACT_APP_SERVER_URL;
+const REACT_APP_SERVER_URL=process.env.REACT_APP_SERVER_URL;
 
 const Signup = (props) => {
     let [email, setEmail] = useState('') 
@@ -61,9 +61,8 @@ const Signup = (props) => {
         }
     }
 
-    // if (redirect) return <Redirect to={'/login'} state={{ email: email}} />
+    // Trisha wrote an article on how to pass in props through Redirects: https://patricia-pan.medium.com/react-router-dom-how-to-pass-in-props-within-a-redirect-d414a46bcd60
     if (redirect) return <Redirect to={ {pathname: '/login', state: {email: email}} } />
-
 
     let errorMessage = error ? (
         <p className='error'>Error creating account</p>
