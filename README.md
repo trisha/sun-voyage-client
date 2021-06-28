@@ -9,7 +9,7 @@ Welcome to Sun Voyage! Visit planets and dwarf planets in the Solar System to le
 
 Click [here](http://sunvoyage.herokuapp.com) to visit the live site. 
 
-Click [here](sun-voyage.herokuapp.com) to visit the live backend.
+Click [here](http://sun-voyage.herokuapp.com) to visit the live backend.
 
 And click [here](https://github.com/trisha/sun-voyage-server) to view the server github repo.
 
