@@ -12,11 +12,11 @@ const About = () => {
             bio: 'Elyssa is a developer, writer, artist, and terrible picture-taker. She likes to draw, cook, and code. <br><br>She would like to thank her cat Cricket, for emotional support, and DnD, for just generally existing.'
         },
         {
-            name: 'Patricia Pan',
+            name: 'Trisha Pan',
             imgURL: 'https://media-exp1.licdn.com/dms/image/C5603AQExvwtz83SW_A/profile-displayphoto-shrink_200_200/0/1611081947490?e=1619654400&v=beta&t=0fZe_modaRsIprbkbv7EHleQ8GmnmPGw1HTHdq1zYyQ',
             title: 'Fullstack Manager',
-            githubURL: 'https://github.com/patricia-pan',
-            linkedinURL: 'https://www.linkedin.com/in/patricia-pan/',
+            githubURL: 'https://github.com/trisha',
+            linkedinURL: 'https://www.linkedin.com/in/trishapan/',
             bio: 'Trisha is a software engineer with a background in management consulting, as well as chemical and biomedical engineering.<br><br>In her free time, she enjoys painting, backpacking, and doing improv.'
         },
         {
