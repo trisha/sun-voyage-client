@@ -1,5 +1,5 @@
 # Sun Voyage (API)
-This is the back-end for Sun Voyage (pronounced like 'Bon Voyage'), a decoupled fullstack app.
+This is the frontend for Sun Voyage (pronounced like 'Bon Voyage'), a decoupled fullstack app.
 
 sun-voyage.herokuapp.com
 
